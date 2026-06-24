@@ -15,7 +15,7 @@ class HetrodValidationTests(unittest.TestCase):
         }
         self.prediction = {
             "agent_id": self.gt["object_ids"].clone(),
-            "simulated_states": torch.zeros(2, 3, 80, 4),
+            "simulated_states": torch.zeros(32, 3, 80, 4),
         }
 
     def test_complete_submission_is_accepted(self):
@@ -49,9 +49,17 @@ class HetrodValidationTests(unittest.TestCase):
     def test_wrong_future_length_is_rejected(self):
         prediction = {
             **self.prediction,
-            "simulated_states": torch.zeros(2, 3, 79, 4),
+            "simulated_states": torch.zeros(32, 3, 79, 4),
         }
         with self.assertRaisesRegex(ValueError, "shape mismatch"):
+            validate_prediction(self.gt, prediction)
+
+    def test_wrong_num_rollouts_is_rejected(self):
+        prediction = {
+            **self.prediction,
+            "simulated_states": torch.zeros(31, 3, 80, 4),
+        }
+        with self.assertRaisesRegex(ValueError, "exactly 32 rollouts"):
             validate_prediction(self.gt, prediction)
 
 

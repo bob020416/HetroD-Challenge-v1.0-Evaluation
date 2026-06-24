@@ -119,7 +119,7 @@ class HetrodCoverageTests(unittest.TestCase):
         future = gt["tracks"][:, 11:, [0, 1, 2, 6]]
         return {
             "agent_id": gt["object_ids"],
-            "simulated_states": future.unsqueeze(0).repeat(8, 1, 1, 1),
+            "simulated_states": future.unsqueeze(0).repeat(32, 1, 1, 1),
         }
 
 

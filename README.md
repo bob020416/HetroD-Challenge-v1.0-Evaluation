@@ -72,11 +72,12 @@ Rollout pickle content:
 ```python
 {
     "agent_id": ...,          # [num_agents]
-    "simulated_states": ...,  # [num_rollouts, num_agents, 80, 4]
+    "simulated_states": ...,  # [32, num_agents, 80, 4]
 }
 ```
 
-`simulated_states` is global `(x, y, z, yaw)` for future timesteps 11..90.
+`simulated_states` contains exactly 32 rollouts in global `(x, y, z, yaw)` for
+future timesteps 11..90.
 
 For public test input:
 

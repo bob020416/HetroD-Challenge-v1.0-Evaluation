@@ -110,6 +110,7 @@ agent_id:    metadata.required_agent_ids
 ```
 
 Submit one rollout pickle for every scenario in `manifests/test.txt`.
+Each pickle must use `simulated_states` shape `[32, num_agents, 80, 4]`.
 
 Archive:
 

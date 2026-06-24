@@ -80,14 +80,17 @@ def validate_prediction(
     )
     if simulated_states.ndim != 4:
         raise ValueError(
-            "simulated_states must have shape [num_rollouts, num_agents, num_steps, 4]."
+            "simulated_states must have shape [32, num_agents, num_steps, 4]."
         )
-    if simulated_states.shape[0] < 1:
-        raise ValueError("simulated_states must contain at least one rollout.")
+    if simulated_states.shape[0] != config.required_num_rollouts:
+        raise ValueError(
+            "simulated_states must contain exactly "
+            f"{config.required_num_rollouts} rollouts, got {simulated_states.shape[0]}."
+        )
     if tuple(simulated_states.shape[1:]) != expected_shape:
         raise ValueError(
             "simulated_states shape mismatch: expected "
-            f"[num_rollouts, {expected_shape[0]}, {expected_shape[1]}, 4], "
+            f"[{config.required_num_rollouts}, {expected_shape[0]}, {expected_shape[1]}, 4], "
             f"got {tuple(simulated_states.shape)}."
         )
     if not torch.isfinite(simulated_states).all():

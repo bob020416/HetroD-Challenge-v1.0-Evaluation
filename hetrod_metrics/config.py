@@ -9,6 +9,7 @@ from waymo_open_dataset.protos import scenario_pb2
 class HetrodMetricConfig:
     current_time_index: int = 10
     future_start_index: int = 11
+    required_num_rollouts: int = 32
     future_displacement_threshold_m: float = 1.0
     valid_region_distance_threshold_m: float = 1.0
     cross_type_distance_threshold_m: float = 5.0

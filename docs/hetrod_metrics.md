@@ -40,8 +40,9 @@ Kinematic = mean(
 )
 ```
 
-Each metric uses the WOSAC likelihood estimator, normalizes by the GT-as-rollout
-ceiling, then macro-averages vehicle / two-wheeler / pedestrian.
+Each submission must provide exactly 32 rollouts. Kinematic metrics use the
+WOSAC likelihood estimator, normalize by the GT-as-rollout ceiling, then
+macro-average vehicle / two-wheeler / pedestrian.
 
 ## Safety
 
