@@ -111,9 +111,16 @@ def normalize_prediction(
             raise KeyError(
                 f"CATK rollout branch '{rollout_key}' must contain 'rollouts'. Found keys: [{keys}]"
             )
+        agent_id = torch.as_tensor(predict['agents_id'], device=device)
+        simulated_states = torch.as_tensor(rollout_branch['rollouts'], device=device)
+        sim_agent_mask = predict.get('sim_agent_mask')
+        if sim_agent_mask is not None:
+            valid_agent_mask = torch.as_tensor(sim_agent_mask, device=device, dtype=torch.bool)
+            agent_id = agent_id[valid_agent_mask]
+            simulated_states = simulated_states[:, valid_agent_mask]
         return {
-            'agent_id': torch.as_tensor(predict['agents_id'], device=device),
-            'simulated_states': torch.as_tensor(rollout_branch['rollouts'], device=device),
+            'agent_id': agent_id,
+            'simulated_states': simulated_states,
         }
 
     keys = ', '.join(sorted(predict.keys()))
@@ -124,6 +131,60 @@ def normalize_prediction(
     )
 
 
+def fill_missing_agents_with_gt(
+    predict: dict[str, torch.Tensor],
+    gt_scenario: dict[str, torch.Tensor],
+) -> dict[str, torch.Tensor]:
+    pred_agent_ids = predict['agent_id'].int()
+    simulated_states = predict['simulated_states']
+    sim_agent_ids = gt_scenario['sim_agent_ids'].int()
+
+    object_ids = gt_scenario['object_ids'].int()
+    existing_pos, existing_gt_indices = torch.where(pred_agent_ids.unsqueeze(1) == object_ids.unsqueeze(0))
+    if existing_gt_indices.numel() > 0:
+        order = torch.argsort(existing_pos)
+        existing_pos = existing_pos[order]
+        existing_gt_indices = existing_gt_indices[order]
+        num_steps = simulated_states.shape[2]
+        gt_z = gt_scenario['tracks'][existing_gt_indices, 11 : 11 + num_steps, 2].to(simulated_states.dtype)
+        simulated_states = simulated_states.clone()
+        simulated_states[:, existing_pos, :, 2] = gt_z.unsqueeze(0).expand(simulated_states.shape[0], -1, -1)
+
+    missing_agent_ids = sim_agent_ids[~torch.isin(sim_agent_ids, pred_agent_ids)]
+    if missing_agent_ids.numel() == 0:
+        return {
+            'agent_id': pred_agent_ids,
+            'simulated_states': simulated_states,
+        }
+
+    missing_pos, gt_indices = torch.where(missing_agent_ids.unsqueeze(1) == object_ids.unsqueeze(0))
+    if gt_indices.numel() != missing_agent_ids.numel():
+        found_agent_ids = object_ids[gt_indices]
+        not_found = missing_agent_ids[~torch.isin(missing_agent_ids, found_agent_ids)]
+        raise KeyError(f'GT tracks missing sim agent ids needed for fill: {not_found.detach().cpu().tolist()}')
+
+    order = torch.argsort(missing_pos)
+    gt_indices = gt_indices[order]
+    missing_agent_ids = missing_agent_ids[missing_pos[order]]
+
+    num_rollouts, _, num_steps, state_dim = simulated_states.shape
+    gt_future = gt_scenario['tracks'][gt_indices, 11 : 11 + num_steps]
+    if gt_future.shape[1] < num_steps:
+        raise ValueError(
+            f'GT future has only {gt_future.shape[1]} steps, cannot fill {num_steps} simulated steps'
+        )
+
+    gt_simulated_states = gt_future[..., [0, 1, 2, 6]].to(simulated_states.dtype)
+    if state_dim != 4:
+        raise ValueError(f'Expected simulated states with 4 dims (x,y,z,yaw), got {state_dim}')
+    gt_simulated_states = gt_simulated_states.unsqueeze(0).repeat(num_rollouts, 1, 1, 1)
+
+    return {
+        'agent_id': torch.cat([pred_agent_ids, missing_agent_ids.to(pred_agent_ids.dtype)], dim=0),
+        'simulated_states': torch.cat([simulated_states, gt_simulated_states], dim=1),
+    }
+
+
 def evaluate_one_file(
     scenario_id: str,
     rollout_path: Path,
@@ -132,12 +193,15 @@ def evaluate_one_file(
     version: str,
     device: str,
     rollout_key: str,
+    fill_missing_agents_with_gt_flag: bool,
 ) -> EvalResult:
     try:
         gt_scenario = load_pickle(gt_path)
         predict = load_pickle(rollout_path)
         gt_scenario = gt_scenario_to_device(gt_scenario, device=device)
         predict = normalize_prediction(predict, device=device, rollout_key=rollout_key)
+        if fill_missing_agents_with_gt_flag:
+            predict = fill_missing_agents_with_gt(predict, gt_scenario)
         metrics = sim_agents_metric_api.compute_scenario_metrics_for_bundle(
             eval_config,
             gt_scenario,
@@ -166,6 +230,7 @@ def worker(
     result_queue: Any,
     version: str,
     rollout_key: str,
+    fill_missing_agents_with_gt_flag: bool,
 ) -> None:
     if device.startswith('cuda'):
         torch.cuda.set_device(device)
@@ -184,6 +249,7 @@ def worker(
             version=version,
             device=device,
             rollout_key=rollout_key,
+            fill_missing_agents_with_gt_flag=fill_missing_agents_with_gt_flag,
         )
         result_queue.put(result.__dict__)
 
@@ -216,6 +282,7 @@ def build_report(
     results: list[EvalResult],
     metric_names: list[str],
     rollout_key: str,
+    fill_missing_agents_with_gt_flag: bool,
 ) -> dict[str, Any]:
     successful = [result for result in results if result.metrics is not None]
     failed = [result for result in results if result.error is not None]
@@ -225,6 +292,7 @@ def build_report(
         'rollout_dir': str(rollout_dir.resolve()),
         'gt_dir': str(gt_dir.resolve()),
         'rollout_key': rollout_key,
+        'fill_missing_agents_with_gt': fill_missing_agents_with_gt_flag,
         'summary': {
             'matched_files': len(matched_files),
             'successful_files': len(successful),
@@ -285,6 +353,7 @@ def run_eval(
     force_device: str | None,
     debug: bool,
     rollout_key: str,
+    fill_missing_agents_with_gt_flag: bool,
 ) -> dict[str, Any]:
     eval_config = load_eval_config(version)
     metric_names = get_metric_names(version)
@@ -311,6 +380,7 @@ def run_eval(
                     version=version,
                     device=device,
                     rollout_key=rollout_key,
+                    fill_missing_agents_with_gt_flag=fill_missing_agents_with_gt_flag,
                 )
             )
     else:
@@ -332,6 +402,7 @@ def run_eval(
                     result_queue,
                     version,
                     rollout_key,
+                    fill_missing_agents_with_gt_flag,
                 ),
             )
             process.start()
@@ -356,6 +427,7 @@ def run_eval(
         results=results,
         metric_names=metric_names,
         rollout_key=rollout_key,
+        fill_missing_agents_with_gt_flag=fill_missing_agents_with_gt_flag,
     )
 
 
@@ -373,7 +445,7 @@ def main() -> None:
     parser.add_argument(
         '--rollout-key',
         type=str,
-        choices=['baseline', 'controlnet'],
+        choices=['baseline', 'controlnet', 'vbd_ttg_sparse_gt'],
         default='baseline',
         help='CATK rollout branch to evaluate when using CATK closed-loop rollout pickles.',
     )
@@ -386,6 +458,11 @@ def main() -> None:
     parser.add_argument('--num-gpus', type=int, default=None, help='Number of GPUs to use. Set 0 to force CPU.')
     parser.add_argument('--device', type=str, choices=['cpu'], default=None, help='Force CPU execution.')
     parser.add_argument('--debug', action='store_true', help='Run in a single process for easier debugging.')
+    parser.add_argument(
+        '--fill-missing-agents-with-gt',
+        action='store_true',
+        help='Append GT future trajectories for WOSAC sim agents missing from the rollout prediction.',
+    )
     parser.add_argument('--fail-on-error', action='store_true', help='Exit non-zero if any matched scenario fails to evaluate.')
     args = parser.parse_args()
 
@@ -406,6 +483,7 @@ def main() -> None:
         force_device=args.device,
         debug=args.debug,
         rollout_key=args.rollout_key,
+        fill_missing_agents_with_gt_flag=args.fill_missing_agents_with_gt,
     )
 
     report_path.parent.mkdir(parents=True, exist_ok=True)

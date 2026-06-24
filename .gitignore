@@ -1,7 +1,10 @@
 /data
 /logs
+/reports/
 **/__pycache__/
+/.pytest_cache/
 .vscode
+.codex
 *.pkl
 *.pickle
 *.pt
@@ -18,4 +21,11 @@
 *.mp4
 *.gif
 *.png
+*.log
 wosac_metrics_report.json
+smart_cache_wosac_report.json
+hetrod_metrics_report.json
+*_metrics_report.json
+*_debug/
+tests/debug_smoke/
+trash/
