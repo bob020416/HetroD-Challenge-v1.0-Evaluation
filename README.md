@@ -15,19 +15,7 @@ pip install --no-deps waymo-open-dataset-tf-2-12-0==1.6.7
 ## Data
 
 ```text
-Public data link: https://drive.google.com/file/d/1FvyIpt0I-GVdYoKR24Yus_NJz9Gi4J3v/view?usp=sharing
-
-Please request access using your official institutional or company Google Account. In the request message, include:
-
-- Full name
-- Institution or company
-- Position
-- Team name
-- Official institutional email
-- Type: I confirm that I have read and agree to the HetroD Challenge Data Licence v1.0.
-- Type: I confirm that I will not redistribute or commercially use the dataset.
-
-Incomplete or unverifiable requests may be declined.
+Public data link:  https://levelxdata.com/hetrod-dataset/ 
 ```
 
 Public package layout:
