@@ -136,6 +136,7 @@ def evaluate_directory(
                 load_pickle(rollout_path),
                 device=device,
                 rollout_key=rollout_key,
+                apply_sim_agent_mask=False,
             )
             scenario_reports.append(
                 to_jsonable_cpu(evaluate_scenario(eval_config, gt_scenario, prediction))
