@@ -39,6 +39,11 @@ main { width:min(1440px,94vw); margin:0 auto; }
 .case-head h3 { margin:0; font-size:.98rem; } .case-head p { margin:0; color:var(--muted); font-family:ui-monospace,monospace; font-size:.8rem; }
 .rank { display:grid; place-items:center; width:42px; height:42px; flex:0 0 42px; border-radius:50%; color:white; background:var(--blue); font-weight:800; }
 .detail { min-height:52px; margin:0; padding:12px 16px 16px; color:var(--muted); font-size:.88rem; border-top:1px solid var(--line); }
+.rollout-picker { display:flex; gap:7px; padding:12px 16px 8px; border-top:1px solid var(--line); }
+.rollout-button { flex:1; cursor:pointer; padding:6px 4px; color:var(--blue); background:#edf5f7; border:1px solid #b8cdd5; border-radius:8px; font-weight:800; }
+.rollout-button:hover { background:#dceef2; } .rollout-button.active { color:white; background:var(--blue); border-color:var(--blue); }
+.selected-ids { display:flex; align-items:center; gap:7px; margin:0; padding:4px 16px 10px; color:#17633d; font-size:.82rem; font-weight:750; }
+.selected-ids span { width:12px; height:12px; flex:0 0 12px; border-radius:3px; background:#00E676; border:2px solid #006B3C; }
 footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:var(--muted); border-top:1px solid var(--line); }
 @media (max-width:720px) { .pros-cons { grid-template-columns:1fr; } header { padding-top:48px; } }
 </style>
@@ -61,7 +66,7 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
       <div class="score"><strong>0.090279</strong><span>Coverage</span></div>
     </div>
     <div class="formula">overall = 0.30 × kinematic + 0.35 × safety + 0.25 × cross-type + 0.10 × coverage × kinematic × safety</div>
-    <p class="caveat"><strong>閱讀提醒：</strong>每個 metric score 使用 32 個 rollouts 彙整；頁面中的 GIF 僅顯示 baseline rollout 0。GIF 已套用 organizer GT future-validity mask，無效時間點會隱藏。</p>
+    <p class="caveat"><strong>閱讀提醒：</strong>每個 metric score 使用 32 個 rollouts 彙整；每張卡片可點選 R1–R5 查看五個 sampled rollouts。<strong>亮綠色粗框</strong>代表 evaluator 實際選中的 agents，標籤是 agent ID。GIF 已套用 organizer GT future-validity mask，無效時間點會隱藏。</p>
   </section>
   
     <section id="overall" class="metric-section">
@@ -78,7 +83,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#01</span>
                 <div><h3>37_loc0_seg114_ego_1</h3><p>score 0.452798</p></div>
               </div>
-              <img src="overall/rank_01__37_loc0_seg114_ego_1__score_0.452798.gif" loading="lazy" decoding="async" alt="overall edge case 37_loc0_seg114_ego_1">
+              <img src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 37_loc0_seg114_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 269</p>
               <p class="detail">kin 0.104 · safety 1.000 · cross 0.286 · coverage 0.000</p>
             </article>
             
@@ -87,7 +94,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#02</span>
                 <div><h3>29_loc5_seg70_ego_1</h3><p>score 0.484190</p></div>
               </div>
-              <img src="overall/rank_02__29_loc5_seg70_ego_1__score_0.484190.gif" loading="lazy" decoding="async" alt="overall edge case 29_loc5_seg70_ego_1">
+              <img src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 29_loc5_seg70_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 434, 638</p>
               <p class="detail">kin 0.106 · safety 1.000 · cross 0.410 · coverage 0.001</p>
             </article>
             
@@ -96,7 +105,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#03</span>
                 <div><h3>19_loc1_seg113_ego_1</h3><p>score 0.503939</p></div>
               </div>
-              <img src="overall/rank_03__19_loc1_seg113_ego_1__score_0.503939.gif" loading="lazy" decoding="async" alt="overall edge case 19_loc1_seg113_ego_1">
+              <img src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 19_loc1_seg113_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 566</p>
               <p class="detail">kin 0.101 · safety 1.000 · cross 0.494 · coverage 0.006</p>
             </article>
             
@@ -105,7 +116,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#04</span>
                 <div><h3>43_loc4_seg34_ego_1</h3><p>score 0.542044</p></div>
               </div>
-              <img src="overall/rank_04__43_loc4_seg34_ego_1__score_0.542044.gif" loading="lazy" decoding="async" alt="overall edge case 43_loc4_seg34_ego_1">
+              <img src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 43_loc4_seg34_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 9, 204, 209</p>
               <p class="detail">kin 0.471 · safety 0.835 · cross 0.422 · coverage 0.084</p>
             </article>
             
@@ -114,7 +127,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#05</span>
                 <div><h3>46_loc4_seg64_ego_1</h3><p>score 0.562206</p></div>
               </div>
-              <img src="overall/rank_05__46_loc4_seg64_ego_1__score_0.562206.gif" loading="lazy" decoding="async" alt="overall edge case 46_loc4_seg64_ego_1">
+              <img src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 46_loc4_seg64_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 314</p>
               <p class="detail">kin 0.096 · safety 1.000 · cross 0.734 · coverage 0.000</p>
             </article>
             
@@ -123,7 +138,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#06</span>
                 <div><h3>28_loc5_seg52_ego_1</h3><p>score 0.564282</p></div>
               </div>
-              <img src="overall/rank_06__28_loc5_seg52_ego_1__score_0.564282.gif" loading="lazy" decoding="async" alt="overall edge case 28_loc5_seg52_ego_1">
+              <img src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 28_loc5_seg52_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg52_ego_1/28_loc5_seg52_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 458</p>
               <p class="detail">kin 0.366 · safety 1.000 · cross 0.411 · coverage 0.052</p>
             </article>
             
@@ -132,7 +149,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#07</span>
                 <div><h3>38_loc0_seg45_ego_1</h3><p>score 0.568668</p></div>
               </div>
-              <img src="overall/rank_07__38_loc0_seg45_ego_1__score_0.568668.gif" loading="lazy" decoding="async" alt="overall edge case 38_loc0_seg45_ego_1">
+              <img src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 38_loc0_seg45_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg45_ego_1/38_loc0_seg45_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 370</p>
               <p class="detail">kin 0.306 · safety 0.999 · cross 0.494 · coverage 0.121</p>
             </article>
             
@@ -141,7 +160,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#08</span>
                 <div><h3>03_loc3_seg2_ego_1</h3><p>score 0.571090</p></div>
               </div>
-              <img src="overall/rank_08__03_loc3_seg2_ego_1__score_0.571090.gif" loading="lazy" decoding="async" alt="overall edge case 03_loc3_seg2_ego_1">
+              <img src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 03_loc3_seg2_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 34, 43, 59, 61</p>
               <p class="detail">kin 0.266 · safety 1.000 · cross 0.563 · coverage 0.023</p>
             </article>
             
@@ -150,7 +171,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#09</span>
                 <div><h3>48_loc4_seg34_ego_1</h3><p>score 0.572469</p></div>
               </div>
-              <img src="overall/rank_09__48_loc4_seg34_ego_1__score_0.572469.gif" loading="lazy" decoding="async" alt="overall edge case 48_loc4_seg34_ego_1">
+              <img src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 48_loc4_seg34_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 176, 179</p>
               <p class="detail">kin 0.615 · safety 0.721 · cross 0.515 · coverage 0.158</p>
             </article>
             
@@ -159,7 +182,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#10</span>
                 <div><h3>42_loc4_seg66_ego_1</h3><p>score 0.578215</p></div>
               </div>
-              <img src="overall/rank_10__42_loc4_seg66_ego_1__score_0.578215.gif" loading="lazy" decoding="async" alt="overall edge case 42_loc4_seg66_ego_1">
+              <img src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="overall edge case 42_loc4_seg66_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 534</p>
               <p class="detail">kin 0.304 · safety 1.000 · cross 0.545 · coverage 0.020</p>
             </article>
             </div>
@@ -179,7 +204,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#01</span>
                 <div><h3>46_loc4_seg64_ego_1</h3><p>score 0.095883</p></div>
               </div>
-              <img src="kinematic_realism/rank_01__46_loc4_seg64_ego_1__score_0.095883.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 46_loc4_seg64_ego_1">
+              <img src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 46_loc4_seg64_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 314</p>
               <p class="detail">最低子指標：angular speed 0.064</p>
             </article>
             
@@ -188,7 +215,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#02</span>
                 <div><h3>19_loc1_seg113_ego_1</h3><p>score 0.101053</p></div>
               </div>
-              <img src="kinematic_realism/rank_02__19_loc1_seg113_ego_1__score_0.101053.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 19_loc1_seg113_ego_1">
+              <img src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 19_loc1_seg113_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg113_ego_1/19_loc1_seg113_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 566</p>
               <p class="detail">最低子指標：speed 0.002</p>
             </article>
             
@@ -197,7 +226,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#03</span>
                 <div><h3>37_loc0_seg114_ego_1</h3><p>score 0.104024</p></div>
               </div>
-              <img src="kinematic_realism/rank_03__37_loc0_seg114_ego_1__score_0.104024.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 37_loc0_seg114_ego_1">
+              <img src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 37_loc0_seg114_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 269</p>
               <p class="detail">最低子指標：speed 0.021</p>
             </article>
             
@@ -206,7 +237,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#04</span>
                 <div><h3>29_loc5_seg70_ego_1</h3><p>score 0.105565</p></div>
               </div>
-              <img src="kinematic_realism/rank_04__29_loc5_seg70_ego_1__score_0.105565.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 29_loc5_seg70_ego_1">
+              <img src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 29_loc5_seg70_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 434, 638</p>
               <p class="detail">最低子指標：speed 0.003</p>
             </article>
             
@@ -215,7 +248,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#05</span>
                 <div><h3>03_loc3_seg2_ego_1</h3><p>score 0.265785</p></div>
               </div>
-              <img src="kinematic_realism/rank_05__03_loc3_seg2_ego_1__score_0.265785.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 03_loc3_seg2_ego_1">
+              <img src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 03_loc3_seg2_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/03_loc3_seg2_ego_1/03_loc3_seg2_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 34, 43, 59, 61</p>
               <p class="detail">最低子指標：speed 0.032</p>
             </article>
             
@@ -224,7 +259,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#06</span>
                 <div><h3>20_loc1_seg68_ego_1</h3><p>score 0.282276</p></div>
               </div>
-              <img src="kinematic_realism/rank_06__20_loc1_seg68_ego_1__score_0.282276.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 20_loc1_seg68_ego_1">
+              <img src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 20_loc1_seg68_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/20_loc1_seg68_ego_1/20_loc1_seg68_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 347</p>
               <p class="detail">最低子指標：speed 0.009</p>
             </article>
             
@@ -233,7 +270,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#07</span>
                 <div><h3>16_loc1_seg32_ego_1</h3><p>score 0.288814</p></div>
               </div>
-              <img src="kinematic_realism/rank_07__16_loc1_seg32_ego_1__score_0.288814.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 16_loc1_seg32_ego_1">
+              <img src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 16_loc1_seg32_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/16_loc1_seg32_ego_1/16_loc1_seg32_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 182</p>
               <p class="detail">最低子指標：speed 0.154</p>
             </article>
             
@@ -242,7 +281,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#08</span>
                 <div><h3>43_loc4_seg52_ego_1</h3><p>score 0.302974</p></div>
               </div>
-              <img src="kinematic_realism/rank_08__43_loc4_seg52_ego_1__score_0.302974.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 43_loc4_seg52_ego_1">
+              <img src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 43_loc4_seg52_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 289</p>
               <p class="detail">最低子指標：angular speed 0.013</p>
             </article>
             
@@ -251,7 +292,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#09</span>
                 <div><h3>42_loc4_seg66_ego_1</h3><p>score 0.304408</p></div>
               </div>
-              <img src="kinematic_realism/rank_09__42_loc4_seg66_ego_1__score_0.304408.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 42_loc4_seg66_ego_1">
+              <img src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 42_loc4_seg66_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/42_loc4_seg66_ego_1/42_loc4_seg66_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 534</p>
               <p class="detail">最低子指標：speed 0.001</p>
             </article>
             
@@ -260,7 +303,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#10</span>
                 <div><h3>38_loc0_seg12_ego_1</h3><p>score 0.306121</p></div>
               </div>
-              <img src="kinematic_realism/rank_10__38_loc0_seg12_ego_1__score_0.306121.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 38_loc0_seg12_ego_1">
+              <img src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="kinematic_realism edge case 38_loc0_seg12_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/38_loc0_seg12_ego_1/38_loc0_seg12_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 91</p>
               <p class="detail">最低子指標：speed 0.063</p>
             </article>
             </div>
@@ -280,7 +325,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#01</span>
                 <div><h3>27_loc5_seg80_ego_1</h3><p>score 0.714844</p></div>
               </div>
-              <img src="safety/rank_01__27_loc5_seg80_ego_1__score_0.714844.gif" loading="lazy" decoding="async" alt="safety edge case 27_loc5_seg80_ego_1">
+              <img src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 27_loc5_seg80_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg80_ego_1/27_loc5_seg80_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 803</p>
               <p class="detail">collision unsafe 4.0% · out-of-region 53.0%</p>
             </article>
             
@@ -289,7 +336,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#02</span>
                 <div><h3>48_loc4_seg34_ego_1</h3><p>score 0.720605</p></div>
               </div>
-              <img src="safety/rank_02__48_loc4_seg34_ego_1__score_0.720605.gif" loading="lazy" decoding="async" alt="safety edge case 48_loc4_seg34_ego_1">
+              <img src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 48_loc4_seg34_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/48_loc4_seg34_ego_1/48_loc4_seg34_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 176, 179</p>
               <p class="detail">collision unsafe 54.0% · out-of-region 1.9%</p>
             </article>
             
@@ -298,7 +347,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#03</span>
                 <div><h3>27_loc5_seg54_ego_1</h3><p>score 0.756478</p></div>
               </div>
-              <img src="safety/rank_03__27_loc5_seg54_ego_1__score_0.756478.gif" loading="lazy" decoding="async" alt="safety edge case 27_loc5_seg54_ego_1">
+              <img src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 27_loc5_seg54_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/27_loc5_seg54_ego_1/27_loc5_seg54_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 168, 497, 587, 588</p>
               <p class="detail">collision unsafe 4.1% · out-of-region 39.6%</p>
             </article>
             
@@ -307,7 +358,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#04</span>
                 <div><h3>25_loc5_seg60_ego_1</h3><p>score 0.770833</p></div>
               </div>
-              <img src="safety/rank_04__25_loc5_seg60_ego_1__score_0.770833.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg60_ego_1">
+              <img src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg60_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg60_ego_1/25_loc5_seg60_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 780, 794, 833</p>
               <p class="detail">collision unsafe 6.5% · out-of-region 39.3%</p>
             </article>
             
@@ -316,7 +369,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#05</span>
                 <div><h3>25_loc5_seg121_ego_1</h3><p>score 0.789746</p></div>
               </div>
-              <img src="safety/rank_05__25_loc5_seg121_ego_1__score_0.789746.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg121_ego_1">
+              <img src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg121_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg121_ego_1/25_loc5_seg121_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 1539, 1541</p>
               <p class="detail">collision unsafe 5.9% · out-of-region 36.1%</p>
             </article>
             
@@ -325,7 +380,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#06</span>
                 <div><h3>37_loc0_seg4_ego_1</h3><p>score 0.812305</p></div>
               </div>
-              <img src="safety/rank_06__37_loc0_seg4_ego_1__score_0.812305.gif" loading="lazy" decoding="async" alt="safety edge case 37_loc0_seg4_ego_1">
+              <img src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 37_loc0_seg4_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 10</p>
               <p class="detail">collision unsafe 12.8% · out-of-region 24.7%</p>
             </article>
             
@@ -334,7 +391,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#07</span>
                 <div><h3>45_loc4_seg136_ego_1</h3><p>score 0.822754</p></div>
               </div>
-              <img src="safety/rank_07__45_loc4_seg136_ego_1__score_0.822754.gif" loading="lazy" decoding="async" alt="safety edge case 45_loc4_seg136_ego_1">
+              <img src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 45_loc4_seg136_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg136_ego_1/45_loc4_seg136_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 597, 600</p>
               <p class="detail">collision unsafe 0.5% · out-of-region 34.9%</p>
             </article>
             
@@ -343,7 +402,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#08</span>
                 <div><h3>25_loc5_seg134_ego_1</h3><p>score 0.823047</p></div>
               </div>
-              <img src="safety/rank_08__25_loc5_seg134_ego_1__score_0.823047.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg134_ego_1">
+              <img src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 25_loc5_seg134_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/25_loc5_seg134_ego_1/25_loc5_seg134_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 1692, 1726</p>
               <p class="detail">collision unsafe 0.0% · out-of-region 35.4%</p>
             </article>
             
@@ -352,7 +413,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#09</span>
                 <div><h3>26_loc5_seg37_ego_1</h3><p>score 0.830859</p></div>
               </div>
-              <img src="safety/rank_09__26_loc5_seg37_ego_1__score_0.830859.gif" loading="lazy" decoding="async" alt="safety edge case 26_loc5_seg37_ego_1">
+              <img src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 26_loc5_seg37_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/26_loc5_seg37_ego_1/26_loc5_seg37_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 406</p>
               <p class="detail">collision unsafe 32.7% · out-of-region 1.2%</p>
             </article>
             
@@ -361,7 +424,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#10</span>
                 <div><h3>43_loc4_seg34_ego_1</h3><p>score 0.834701</p></div>
               </div>
-              <img src="safety/rank_10__43_loc4_seg34_ego_1__score_0.834701.gif" loading="lazy" decoding="async" alt="safety edge case 43_loc4_seg34_ego_1">
+              <img src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="safety edge case 43_loc4_seg34_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg34_ego_1/43_loc4_seg34_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 9, 204, 209</p>
               <p class="detail">collision unsafe 0.0% · out-of-region 33.1%</p>
             </article>
             </div>
@@ -381,7 +446,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#01</span>
                 <div><h3>02_loc3_seg81_ego_1</h3><p>score 0.184635</p></div>
               </div>
-              <img src="cross_type_interaction/rank_01__02_loc3_seg81_ego_1__score_0.184635.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 02_loc3_seg81_ego_1">
+              <img src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 02_loc3_seg81_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/02_loc3_seg81_ego_1/02_loc3_seg81_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 656</p>
               <p class="detail">distance 0.103 · TTP 0.267 · pairs 1</p>
             </article>
             
@@ -390,7 +457,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#02</span>
                 <div><h3>08_loc3_seg88_ego_1</h3><p>score 0.248222</p></div>
               </div>
-              <img src="cross_type_interaction/rank_02__08_loc3_seg88_ego_1__score_0.248222.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 08_loc3_seg88_ego_1">
+              <img src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 08_loc3_seg88_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/08_loc3_seg88_ego_1/08_loc3_seg88_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 796</p>
               <p class="detail">distance 0.138 · TTP 0.359 · pairs 3</p>
             </article>
             
@@ -399,7 +468,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#03</span>
                 <div><h3>37_loc0_seg114_ego_1</h3><p>score 0.286358</p></div>
               </div>
-              <img src="cross_type_interaction/rank_03__37_loc0_seg114_ego_1__score_0.286358.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 37_loc0_seg114_ego_1">
+              <img src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 37_loc0_seg114_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 269</p>
               <p class="detail">distance 0.378 · TTP 0.195 · pairs 1</p>
             </article>
             
@@ -408,7 +479,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#04</span>
                 <div><h3>40_loc4_seg51_ego_1</h3><p>score 0.300000</p></div>
               </div>
-              <img src="cross_type_interaction/rank_04__40_loc4_seg51_ego_1__score_0.300000.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 40_loc4_seg51_ego_1">
+              <img src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 40_loc4_seg51_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/40_loc4_seg51_ego_1/40_loc4_seg51_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 275</p>
               <p class="detail">distance 0.571 · TTP 0.029 · pairs 1</p>
             </article>
             
@@ -417,7 +490,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#05</span>
                 <div><h3>37_loc0_seg4_ego_1</h3><p>score 0.368262</p></div>
               </div>
-              <img src="cross_type_interaction/rank_05__37_loc0_seg4_ego_1__score_0.368262.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 37_loc0_seg4_ego_1">
+              <img src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 37_loc0_seg4_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg4_ego_1/37_loc0_seg4_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 10</p>
               <p class="detail">distance 0.112 · TTP 0.624 · pairs 2</p>
             </article>
             
@@ -426,7 +501,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#06</span>
                 <div><h3>19_loc1_seg61_ego_1</h3><p>score 0.388574</p></div>
               </div>
-              <img src="cross_type_interaction/rank_06__19_loc1_seg61_ego_1__score_0.388574.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 19_loc1_seg61_ego_1">
+              <img src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 19_loc1_seg61_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/19_loc1_seg61_ego_1/19_loc1_seg61_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 324</p>
               <p class="detail">distance 0.167 · TTP 0.610 · pairs 4</p>
             </article>
             
@@ -435,7 +512,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#07</span>
                 <div><h3>46_loc4_seg58_ego_1</h3><p>score 0.389300</p></div>
               </div>
-              <img src="cross_type_interaction/rank_07__46_loc4_seg58_ego_1__score_0.389300.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 46_loc4_seg58_ego_1">
+              <img src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 46_loc4_seg58_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg58_ego_1/46_loc4_seg58_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 288</p>
               <p class="detail">distance 0.414 · TTP 0.365 · pairs 2</p>
             </article>
             
@@ -444,7 +523,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#08</span>
                 <div><h3>43_loc4_seg25_ego_1</h3><p>score 0.392773</p></div>
               </div>
-              <img src="cross_type_interaction/rank_08__43_loc4_seg25_ego_1__score_0.392773.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 43_loc4_seg25_ego_1">
+              <img src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 43_loc4_seg25_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg25_ego_1/43_loc4_seg25_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 154</p>
               <p class="detail">distance 0.367 · TTP 0.419 · pairs 3</p>
             </article>
             
@@ -453,7 +534,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#09</span>
                 <div><h3>28_loc5_seg118_ego_1</h3><p>score 0.394881</p></div>
               </div>
-              <img src="cross_type_interaction/rank_09__28_loc5_seg118_ego_1__score_0.394881.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 28_loc5_seg118_ego_1">
+              <img src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 28_loc5_seg118_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/28_loc5_seg118_ego_1/28_loc5_seg118_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 1065, 1068, 1075, 1103, 1109</p>
               <p class="detail">distance 0.498 · TTP 0.291 · pairs 19</p>
             </article>
             
@@ -462,7 +545,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#10</span>
                 <div><h3>29_loc5_seg70_ego_1</h3><p>score 0.410041</p></div>
               </div>
-              <img src="cross_type_interaction/rank_10__29_loc5_seg70_ego_1__score_0.410041.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 29_loc5_seg70_ego_1">
+              <img src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="cross_type_interaction edge case 29_loc5_seg70_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 434, 638</p>
               <p class="detail">distance 0.545 · TTP 0.275 · pairs 12</p>
             </article>
             </div>
@@ -482,7 +567,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#01</span>
                 <div><h3>33_loc0_seg7_ego_1</h3><p>score 0.000000</p></div>
               </div>
-              <img src="coverage/rank_01__33_loc0_seg7_ego_1__score_0.000000.gif" loading="lazy" decoding="async" alt="coverage edge case 33_loc0_seg7_ego_1">
+              <img src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 33_loc0_seg7_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/33_loc0_seg7_ego_1/33_loc0_seg7_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 4</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -491,7 +578,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#02</span>
                 <div><h3>43_loc4_seg52_ego_1</h3><p>score 0.000000</p></div>
               </div>
-              <img src="coverage/rank_02__43_loc4_seg52_ego_1__score_0.000000.gif" loading="lazy" decoding="async" alt="coverage edge case 43_loc4_seg52_ego_1">
+              <img src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 43_loc4_seg52_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/43_loc4_seg52_ego_1/43_loc4_seg52_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 289</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -500,7 +589,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#03</span>
                 <div><h3>45_loc4_seg33_ego_1</h3><p>score 0.000000</p></div>
               </div>
-              <img src="coverage/rank_03__45_loc4_seg33_ego_1__score_0.000000.gif" loading="lazy" decoding="async" alt="coverage edge case 45_loc4_seg33_ego_1">
+              <img src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 45_loc4_seg33_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/45_loc4_seg33_ego_1/45_loc4_seg33_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 49</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -509,7 +600,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#04</span>
                 <div><h3>46_loc4_seg64_ego_1</h3><p>score 0.000000</p></div>
               </div>
-              <img src="coverage/rank_04__46_loc4_seg64_ego_1__score_0.000000.gif" loading="lazy" decoding="async" alt="coverage edge case 46_loc4_seg64_ego_1">
+              <img src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 46_loc4_seg64_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/46_loc4_seg64_ego_1/46_loc4_seg64_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 314</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -518,7 +611,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#05</span>
                 <div><h3>47_loc4_seg140_ego_1</h3><p>score 0.000032</p></div>
               </div>
-              <img src="coverage/rank_05__47_loc4_seg140_ego_1__score_0.000032.gif" loading="lazy" decoding="async" alt="coverage edge case 47_loc4_seg140_ego_1">
+              <img src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 47_loc4_seg140_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/47_loc4_seg140_ego_1/47_loc4_seg140_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 630</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -527,7 +622,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#06</span>
                 <div><h3>37_loc0_seg114_ego_1</h3><p>score 0.000069</p></div>
               </div>
-              <img src="coverage/rank_06__37_loc0_seg114_ego_1__score_0.000069.gif" loading="lazy" decoding="async" alt="coverage edge case 37_loc0_seg114_ego_1">
+              <img src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 37_loc0_seg114_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/37_loc0_seg114_ego_1/37_loc0_seg114_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 269</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -536,7 +633,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#07</span>
                 <div><h3>32_loc0_seg28_ego_1</h3><p>score 0.000657</p></div>
               </div>
-              <img src="coverage/rank_07__32_loc0_seg28_ego_1__score_0.000657.gif" loading="lazy" decoding="async" alt="coverage edge case 32_loc0_seg28_ego_1">
+              <img src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 32_loc0_seg28_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/32_loc0_seg28_ego_1/32_loc0_seg28_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 17</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             
@@ -545,7 +644,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#08</span>
                 <div><h3>24_loc5_seg119_ego_1</h3><p>score 0.000801</p></div>
               </div>
-              <img src="coverage/rank_08__24_loc5_seg119_ego_1__score_0.000801.gif" loading="lazy" decoding="async" alt="coverage edge case 24_loc5_seg119_ego_1">
+              <img src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 24_loc5_seg119_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/24_loc5_seg119_ego_1/24_loc5_seg119_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 1576, 1580, 1596, 1598, 1605</p>
               <p class="detail">selected agents 5 · grid 0.5 m</p>
             </article>
             
@@ -554,7 +655,9 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#09</span>
                 <div><h3>29_loc5_seg70_ego_1</h3><p>score 0.000972</p></div>
               </div>
-              <img src="coverage/rank_09__29_loc5_seg70_ego_1__score_0.000972.gif" loading="lazy" decoding="async" alt="coverage edge case 29_loc5_seg70_ego_1">
+              <img src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 29_loc5_seg70_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/29_loc5_seg70_ego_1/29_loc5_seg70_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 434, 638</p>
               <p class="detail">selected agents 2 · grid 0.5 m</p>
             </article>
             
@@ -563,13 +666,24 @@ footer { margin-top:50px; padding:30px max(3vw,18px); text-align:center; color:v
                 <span class="rank">#10</span>
                 <div><h3>04_loc3_seg127_ego_1</h3><p>score 0.002057</p></div>
               </div>
-              <img src="coverage/rank_10__04_loc3_seg127_ego_1__score_0.002057.gif" loading="lazy" decoding="async" alt="coverage edge case 04_loc3_seg127_ego_1">
+              <img src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_00.gif" loading="lazy" decoding="async" alt="coverage edge case 04_loc3_seg127_ego_1">
+              <div class="rollout-picker" aria-label="Choose rollout"><button type="button" class="rollout-button active" data-src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_00.gif">R1</button><button type="button" class="rollout-button" data-src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_01.gif">R2</button><button type="button" class="rollout-button" data-src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_02.gif">R3</button><button type="button" class="rollout-button" data-src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_03.gif">R4</button><button type="button" class="rollout-button" data-src="rollouts/04_loc3_seg127_ego_1/04_loc3_seg127_ego_1_baseline_rollout_04.gif">R5</button></div>
+              <p class="selected-ids"><span></span>Selected agent IDs: 1637</p>
               <p class="detail">selected agents 1 · grid 0.5 m</p>
             </article>
             </div>
     </section>
     
 </main>
-<footer>Generated 2026-07-20 14:47 CST · HetroD metric version hetrod-0.1.0</footer>
+<footer>Generated 2026-07-21 15:06 CST · HetroD metric version hetrod-0.1.0</footer>
+<script>
+document.addEventListener("click", function (event) {
+  const button = event.target.closest(".rollout-button");
+  if (!button) return;
+  const card = button.closest(".case-card");
+  card.querySelector("img").src = button.dataset.src;
+  card.querySelectorAll(".rollout-button").forEach(item => item.classList.toggle("active", item === button));
+});
+</script>
 </body>
 </html>

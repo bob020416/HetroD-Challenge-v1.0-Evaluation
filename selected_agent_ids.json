@@ -1,0 +1,235 @@
+{
+  "02_loc3_seg81_ego_1": {
+    "agent_ids": [
+      656
+    ],
+    "count": 1
+  },
+  "03_loc3_seg2_ego_1": {
+    "agent_ids": [
+      34,
+      43,
+      59,
+      61
+    ],
+    "count": 4
+  },
+  "04_loc3_seg127_ego_1": {
+    "agent_ids": [
+      1637
+    ],
+    "count": 1
+  },
+  "08_loc3_seg88_ego_1": {
+    "agent_ids": [
+      796
+    ],
+    "count": 1
+  },
+  "16_loc1_seg32_ego_1": {
+    "agent_ids": [
+      182
+    ],
+    "count": 1
+  },
+  "19_loc1_seg113_ego_1": {
+    "agent_ids": [
+      566
+    ],
+    "count": 1
+  },
+  "19_loc1_seg61_ego_1": {
+    "agent_ids": [
+      324
+    ],
+    "count": 1
+  },
+  "20_loc1_seg68_ego_1": {
+    "agent_ids": [
+      347
+    ],
+    "count": 1
+  },
+  "24_loc5_seg119_ego_1": {
+    "agent_ids": [
+      1576,
+      1580,
+      1596,
+      1598,
+      1605
+    ],
+    "count": 5
+  },
+  "25_loc5_seg121_ego_1": {
+    "agent_ids": [
+      1539,
+      1541
+    ],
+    "count": 2
+  },
+  "25_loc5_seg134_ego_1": {
+    "agent_ids": [
+      1692,
+      1726
+    ],
+    "count": 2
+  },
+  "25_loc5_seg60_ego_1": {
+    "agent_ids": [
+      780,
+      794,
+      833
+    ],
+    "count": 3
+  },
+  "26_loc5_seg37_ego_1": {
+    "agent_ids": [
+      406
+    ],
+    "count": 1
+  },
+  "27_loc5_seg54_ego_1": {
+    "agent_ids": [
+      168,
+      497,
+      587,
+      588
+    ],
+    "count": 4
+  },
+  "27_loc5_seg80_ego_1": {
+    "agent_ids": [
+      803
+    ],
+    "count": 1
+  },
+  "28_loc5_seg118_ego_1": {
+    "agent_ids": [
+      1065,
+      1068,
+      1075,
+      1103,
+      1109
+    ],
+    "count": 5
+  },
+  "28_loc5_seg52_ego_1": {
+    "agent_ids": [
+      458
+    ],
+    "count": 1
+  },
+  "29_loc5_seg70_ego_1": {
+    "agent_ids": [
+      434,
+      638
+    ],
+    "count": 2
+  },
+  "32_loc0_seg28_ego_1": {
+    "agent_ids": [
+      17
+    ],
+    "count": 1
+  },
+  "33_loc0_seg7_ego_1": {
+    "agent_ids": [
+      4
+    ],
+    "count": 1
+  },
+  "37_loc0_seg114_ego_1": {
+    "agent_ids": [
+      269
+    ],
+    "count": 1
+  },
+  "37_loc0_seg4_ego_1": {
+    "agent_ids": [
+      10
+    ],
+    "count": 1
+  },
+  "38_loc0_seg12_ego_1": {
+    "agent_ids": [
+      91
+    ],
+    "count": 1
+  },
+  "38_loc0_seg45_ego_1": {
+    "agent_ids": [
+      370
+    ],
+    "count": 1
+  },
+  "40_loc4_seg51_ego_1": {
+    "agent_ids": [
+      275
+    ],
+    "count": 1
+  },
+  "42_loc4_seg66_ego_1": {
+    "agent_ids": [
+      534
+    ],
+    "count": 1
+  },
+  "43_loc4_seg25_ego_1": {
+    "agent_ids": [
+      154
+    ],
+    "count": 1
+  },
+  "43_loc4_seg34_ego_1": {
+    "agent_ids": [
+      9,
+      204,
+      209
+    ],
+    "count": 3
+  },
+  "43_loc4_seg52_ego_1": {
+    "agent_ids": [
+      289
+    ],
+    "count": 1
+  },
+  "45_loc4_seg136_ego_1": {
+    "agent_ids": [
+      597,
+      600
+    ],
+    "count": 2
+  },
+  "45_loc4_seg33_ego_1": {
+    "agent_ids": [
+      49
+    ],
+    "count": 1
+  },
+  "46_loc4_seg58_ego_1": {
+    "agent_ids": [
+      288
+    ],
+    "count": 1
+  },
+  "46_loc4_seg64_ego_1": {
+    "agent_ids": [
+      314
+    ],
+    "count": 1
+  },
+  "47_loc4_seg140_ego_1": {
+    "agent_ids": [
+      630
+    ],
+    "count": 1
+  },
+  "48_loc4_seg34_ego_1": {
+    "agent_ids": [
+      176,
+      179
+    ],
+    "count": 2
+  }
+}
