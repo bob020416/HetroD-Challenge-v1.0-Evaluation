@@ -15,6 +15,13 @@ def has_full_future(track_masks: torch.Tensor, config: HetrodMetricConfig = DEFA
     return track_masks[:, config.future_start_index :].all(dim=1)
 
 
+def future_valid_frames(
+    track_masks: torch.Tensor,
+    config: HetrodMetricConfig = DEFAULT_CONFIG,
+) -> torch.Tensor:
+    return track_masks[:, config.future_start_index :].sum(dim=1)
+
+
 def future_path_length(
     tracks: torch.Tensor,
     config: HetrodMetricConfig = DEFAULT_CONFIG,
@@ -37,15 +44,14 @@ def is_evaluated_type(object_types: torch.Tensor, config: HetrodMetricConfig = D
 
 
 def select_base_agents(gt_scenario: dict, config: HetrodMetricConfig = DEFAULT_CONFIG) -> torch.Tensor:
-    """Return the base HetroD selection mask before map/cross-type interaction filters."""
-    tracks = gt_scenario["tracks"]
+    """Return the observable, type-valid base selection mask."""
     track_masks = gt_scenario["track_masks"]
     object_types = gt_scenario["object_types"]
     return (
         has_full_history(track_masks, config)
-        & has_full_future(track_masks, config)
+        & track_masks[:, config.current_time_index]
         & is_evaluated_type(object_types, config)
-        & (future_path_length(tracks, config) > config.future_displacement_threshold_m)
+        & (future_valid_frames(track_masks, config) >= config.min_future_valid_frames)
     )
 
 
@@ -157,7 +163,6 @@ def min_cross_type_ttc(gt_scenario: dict, config: HetrodMetricConfig = DEFAULT_C
 def select_agents(gt_scenario: dict, config: HetrodMetricConfig = DEFAULT_CONFIG) -> torch.Tensor:
     return (
         select_base_agents(gt_scenario, config)
-        & (distance_to_valid_region(gt_scenario, config) < config.valid_region_distance_threshold_m)
         & (
             (min_cross_type_distance(gt_scenario, config) < config.cross_type_distance_threshold_m)
             | (min_cross_type_ttc(gt_scenario, config) < config.cross_type_ttc_threshold_s)
@@ -170,16 +175,11 @@ def selection_audit(
     config: HetrodMetricConfig = DEFAULT_CONFIG,
 ) -> dict[str, int]:
     track_masks = gt_scenario["track_masks"]
-    tracks = gt_scenario["tracks"]
     object_types = gt_scenario["object_types"]
     history = has_full_history(track_masks, config)
-    future = has_full_future(track_masks, config)
+    current = track_masks[:, config.current_time_index]
+    future_frames = future_valid_frames(track_masks, config) >= config.min_future_valid_frames
     evaluated_type = is_evaluated_type(object_types, config)
-    motion = future_path_length(tracks, config) > config.future_displacement_threshold_m
-    valid_region = (
-        distance_to_valid_region(gt_scenario, config)
-        < config.valid_region_distance_threshold_m
-    )
     interaction = (
         min_cross_type_distance(gt_scenario, config)
         < config.cross_type_distance_threshold_m
@@ -190,11 +190,10 @@ def selection_audit(
     cumulative = torch.ones_like(history)
     counts = {"total_agents": int(history.numel())}
     for name, condition in (
-        ("full_history", history),
-        ("full_future", future),
         ("evaluated_type", evaluated_type),
-        ("future_path_length", motion),
-        ("valid_region", valid_region),
+        ("current_frame_valid", current),
+        ("full_history", history),
+        ("minimum_future_valid_frames", future_frames),
         ("cross_type_interaction", interaction),
     ):
         cumulative &= condition

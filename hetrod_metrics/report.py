@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 import math
+import re
 from typing import Any
 
 import torch
@@ -17,7 +18,7 @@ from .features import build_feature_bundle
 from .kinematic import compute_kinematic_realism, normalize_kinematic_realism
 from .safety import compute_safety
 
-METRIC_VERSION = "hetrod-0.1.0"
+METRIC_VERSION = "hetrod-0.2.0"
 
 
 class NoSelectedAgentsError(ValueError):
@@ -29,12 +30,14 @@ def validate_config(config: HetrodMetricConfig) -> None:
         raise ValueError("future_start_index must equal current_time_index + 1.")
     if config.seconds_per_step <= 0.0:
         raise ValueError("seconds_per_step must be positive.")
+    if config.min_future_valid_frames <= 0:
+        raise ValueError("min_future_valid_frames must be positive.")
+    if config.cross_type_pair_chunk_size <= 0:
+        raise ValueError("cross_type_pair_chunk_size must be positive.")
+    if config.valid_region_agent_chunk_size <= 0:
+        raise ValueError("valid_region_agent_chunk_size must be positive.")
     if config.coverage_grid_resolution_m <= 0.0:
         raise ValueError("coverage_grid_resolution_m must be positive.")
-    if config.cross_type_distance_hist_bins <= 0 or config.cross_type_ttc_hist_bins <= 0:
-        raise ValueError("Cross-type histogram bin counts must be positive.")
-    if config.cross_type_distance_hist_max_m <= 0.0 or config.cross_type_ttc_hist_max_s <= 0.0:
-        raise ValueError("Cross-type histogram ranges must be positive.")
     weight_sum = (
         config.kinematic_weight
         + config.safety_weight
@@ -163,8 +166,8 @@ def evaluate_scenario(
         "coverage_bonus_gate": overall["coverage_bonus_gate"],
         "metadata": {
             "valid_region_source": "road_edge_margin_fallback",
-            "collision_definition": "box_overlap_depth_exceeds_annotation_tolerance",
-            "interaction_definition": "constant_velocity_time_to_5m_proximity",
+            "collision_definition": "any_strict_box_overlap_per_agent_rollout",
+            "interaction_definition": "minimum_distance_and_time_of_closest_approach",
             "coverage_definition": "normalized_incremental_box_union",
             "config": asdict(config),
         },
@@ -190,11 +193,11 @@ def skipped_no_selected_agents_report(
     }
 
 
-def aggregate_scenario_reports(
+def _aggregate_scenario_reports_within_location(
     scenario_reports: list[dict[str, Any]],
     config: HetrodMetricConfig = DEFAULT_CONFIG,
 ) -> dict[str, Any]:
-    """Aggregate sufficient statistics across scenarios before macro averaging."""
+    """Aggregate sufficient statistics within one location."""
     scenario_reports = [
         report
         for report in scenario_reports
@@ -240,19 +243,47 @@ def aggregate_scenario_reports(
     }
 
     safety_components = {}
-    for component_name in (
-        "collision_with_annotation_tolerance",
-        "valid_region_margin",
-    ):
+    for component_name in ("collision_rollout_rate", "valid_region_margin"):
         by_type = {}
         for type_name in type_names:
-            values = []
+            type_reports = []
             for report in scenario_reports:
                 type_report = report["safety"][component_name]["by_type"].get(type_name)
                 if type_report is not None:
-                    values.append((type_report["score"], type_report["num_samples"]))
-            score = _weighted_mean(values)
-            by_type[type_name] = None if score is None else {"score": score}
+                    type_reports.append(type_report)
+            if not type_reports:
+                by_type[type_name] = None
+                continue
+            if component_name == "collision_rollout_rate":
+                num_unsafe = sum(item["num_unsafe"] for item in type_reports)
+                num_samples = sum(item["num_samples"] for item in type_reports)
+                rate = num_unsafe / num_samples
+                by_type[type_name] = {
+                    "score": 1.0 - rate,
+                    "collision_rate": rate,
+                    "num_collided_agent_rollouts": num_unsafe,
+                    "num_valid_agent_rollouts": num_samples,
+                    "num_unsafe": num_unsafe,
+                    "num_samples": num_samples,
+                }
+            else:
+                sim_outside = sum(item["num_unsafe"] for item in type_reports)
+                sim_samples = sum(item["num_samples"] for item in type_reports)
+                gt_outside = sum(item["gt_num_unsafe"] for item in type_reports)
+                gt_samples = sum(item["gt_num_samples"] for item in type_reports)
+                sim_rate = sim_outside / sim_samples
+                gt_rate = gt_outside / gt_samples
+                excess_rate = max(sim_rate - gt_rate, 0.0)
+                by_type[type_name] = {
+                    "score": 1.0 - excess_rate,
+                    "excess_outside_rate": excess_rate,
+                    "sim_outside_rate": sim_rate,
+                    "gt_outside_rate": gt_rate,
+                    "num_unsafe": sim_outside,
+                    "num_samples": sim_samples,
+                    "gt_num_unsafe": gt_outside,
+                    "gt_num_samples": gt_samples,
+                }
         safety_components[component_name] = {
             "score": _mean_present(
                 [
@@ -265,12 +296,18 @@ def aggregate_scenario_reports(
     safety = {
         "score": 0.5
         * (
-            safety_components["collision_with_annotation_tolerance"]["score"]
+            safety_components["collision_rollout_rate"]["score"]
             + safety_components["valid_region_margin"]["score"]
         ),
         **safety_components,
         "aggregation": "dataset_sample_weighted_then_agent_type_macro_average",
     }
+    safety["collision_with_annotation_tolerance"] = safety_components[
+        "collision_rollout_rate"
+    ]
+    safety["collision_with_safe_margin"] = safety_components[
+        "collision_rollout_rate"
+    ]
 
     pair_type_names = (
         "vehicle_pedestrian",
@@ -360,7 +397,84 @@ def aggregate_scenario_reports(
         "overall_formula": overall["formula"],
         "coverage_bonus_gate": overall["coverage_bonus_gate"],
         "metadata": {
-            "aggregation": "dataset_level_sufficient_statistics",
+            "aggregation": "within_location_sufficient_statistics",
             "config": asdict(config),
         },
     }
+
+
+def _location_from_scenario_id(scenario_id: Any) -> str:
+    match = re.search(r"(?:^|_)loc(\d+)(?:_|$)", str(scenario_id))
+    return f"loc{match.group(1)}" if match else "unknown"
+
+
+def aggregate_scenario_reports(
+    scenario_reports: list[dict[str, Any]],
+    config: HetrodMetricConfig = DEFAULT_CONFIG,
+) -> dict[str, Any]:
+    """Macro-average location-level scores after balanced within-location aggregation."""
+    usable = [
+        report
+        for report in scenario_reports
+        if report.get("status") != "skipped_no_selected_agents"
+    ]
+    if not usable:
+        raise ValueError("At least one scenario report is required.")
+
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    for report in usable:
+        location = _location_from_scenario_id(report.get("scenario_id"))
+        grouped.setdefault(location, []).append(report)
+    by_location = {
+        location: _aggregate_scenario_reports_within_location(reports, config)
+        for location, reports in sorted(grouped.items())
+    }
+
+    # Use the pooled report as a detailed sufficient-statistics template, then
+    # replace every score that contributes to the leaderboard with an equal
+    # macro-average over locations.
+    result = _aggregate_scenario_reports_within_location(usable, config)
+    location_reports = list(by_location.values())
+    result["score"] = _mean_present([item["score"] for item in location_reports])
+    for key in ("kinematic_realism", "safety", "cross_type_interaction", "coverage"):
+        result[key]["score"] = _mean_present(
+            [item[key]["score"] for item in location_reports]
+        )
+        result[key]["aggregation"] = (
+            "location_macro_average; pooled_by_type_details_are_diagnostic_only"
+        )
+    for component in ("collision_rollout_rate", "valid_region_margin"):
+        result["safety"][component]["score"] = _mean_present(
+            [item["safety"][component]["score"] for item in location_reports]
+        )
+    result["safety"]["collision_with_annotation_tolerance"] = result["safety"][
+        "collision_rollout_rate"
+    ]
+    result["safety"]["collision_with_safe_margin"] = result["safety"][
+        "collision_rollout_rate"
+    ]
+    result["weighted_components"] = {
+        name: _mean_present(
+            [item["weighted_components"][name] for item in location_reports]
+        )
+        for name in (
+            "kinematic_realism",
+            "safety",
+            "cross_type_interaction",
+            "coverage_bonus",
+        )
+    }
+    result["coverage_bonus_gate"] = {
+        "aggregation": "location_macro_average_of_gated_bonus",
+        "by_location": {
+            location: item["coverage_bonus_gate"]
+            for location, item in by_location.items()
+        },
+    }
+    result["num_scenarios"] = len(usable)
+    result["num_locations"] = len(by_location)
+    result["by_location"] = by_location
+    result["metadata"]["aggregation"] = (
+        "location_macro_average_after_within_location_type_balancing"
+    )
+    return result

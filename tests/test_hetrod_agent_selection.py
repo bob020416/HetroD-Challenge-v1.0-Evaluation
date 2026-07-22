@@ -22,7 +22,7 @@ class HetrodAgentSelectionTests(unittest.TestCase):
 
         self.assertGreater(float(future_path_length(tracks)[0]), 5.0)
 
-    def test_select_base_agents_filters_history_future_type_and_motion(self):
+    def test_select_base_agents_uses_partial_future_and_does_not_require_motion(self):
         tracks = torch.zeros(5, 91, 9, dtype=torch.float32)
         track_masks = torch.ones(5, 91, dtype=torch.bool)
         object_types = torch.tensor(
@@ -52,7 +52,16 @@ class HetrodAgentSelectionTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(selected.tolist(), [True, False, False, False, False])
+        self.assertEqual(selected.tolist(), [True, False, True, False, True])
+
+    def test_select_base_agents_requires_twenty_future_frames(self):
+        scenario = self.make_scenario()
+        scenario["track_masks"][0, 11:] = False
+        scenario["track_masks"][0, 11:30] = True
+
+        selected = select_base_agents(scenario)
+
+        self.assertFalse(selected[0])
 
     def test_cross_type_distance_uses_different_type_pairs(self):
         scenario = self.make_scenario()

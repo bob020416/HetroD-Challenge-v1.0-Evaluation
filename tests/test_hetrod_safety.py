@@ -32,6 +32,31 @@ class HetrodSafetyTests(unittest.TestCase):
         self.assertLess(report["score"], 0.5)
         self.assertGreater(report["unsafe_rate"], 0.5)
 
+    def test_one_colliding_frame_marks_the_agent_rollout_collided(self):
+        gt = self.make_gt()
+        prediction = self.make_prediction(gt)
+        prediction["simulated_states"][:, 1, 25, 0:2] = prediction[
+            "simulated_states"
+        ][:, 0, 25, 0:2]
+        features = build_feature_bundle(gt, prediction, torch.tensor([True, True]))
+
+        report = collision_with_safe_margin(features)
+
+        self.assertGreater(report["collision_rate"], 0.99)
+        self.assertEqual(report["num_collided_agent_rollouts"], 64)
+
+    def test_valid_region_scores_gt_replay_one_even_when_gt_is_outside(self):
+        gt = self.make_gt()
+        gt["tracks"][0, 11:, 1] = 30.0
+        features = build_feature_bundle(
+            gt, self.make_prediction(gt), torch.tensor([True, True])
+        )
+
+        report = compute_safety(features)["valid_region_margin"]
+
+        self.assertAlmostEqual(report["score"], 1.0, places=6)
+        self.assertGreater(report["gt_outside_rate"], 0.0)
+
     def test_collision_checks_selected_anchor_against_non_selected_context(self):
         gt = self.make_gt(num_agents=3)
         prediction = self.make_prediction(gt)

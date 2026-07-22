@@ -1,19 +1,24 @@
-# HetroD Metrics
+# HetroD Metrics (`hetrod-0.2.0`)
 
 ## Agent Selection
 
 Evaluate agent `i` if:
 
 ```text
-has_full_history(i)
-has_full_future(i)
 type_i in {vehicle, two_wheeler, pedestrian}
-future_displacement(i) > 1.0 m
-distance_to_valid_region(i) < 1.0 m
-min_cross_type_distance(i) < 5.0 m OR min_cross_type_TTP(i) < 4.0 s
+AND current_frame_valid(i)
+AND full_history_valid(i)
+AND future_valid_frames(i) >= 20
+AND (
+  min_cross_type_distance(i) < 5.0 m
+  OR min_cross_type_TTP(i) < 4.0 s
+)
 ```
 
-`TTP` is constant-velocity time to enter a 5 m proximity radius.
+The interaction gate is computed from GT and only decides which agents are
+relevant. TTP is constant-velocity time to enter a 5 m proximity radius.
+Partial future tracks remain eligible; every metric ignores GT-invalid frames.
+Selection does not depend on motion amount or map position.
 
 ## Score
 
@@ -23,10 +28,10 @@ Base =
 + 0.35 Safety
 + 0.25 Cross-type
 
-Coverage Bonus =
-0.10 * Coverage * Kinematic * Safety
+Diversity Bonus =
+0.10 * Diversity * Kinematic * Safety
 
-Overall = Base + Coverage Bonus
+Overall = Base + Diversity Bonus
 ```
 
 ## Kinematic
@@ -40,58 +45,69 @@ Kinematic = mean(
 )
 ```
 
-Each submission must provide exactly 32 rollouts. Kinematic metrics use the
-WOSAC likelihood estimator, normalize by the GT-as-rollout ceiling, then
+Each submission provides exactly 32 rollouts. Kinematic metrics use the WOSAC
+likelihood estimator, normalize by the GT-as-rollout ceiling, then
 macro-average vehicle / two-wheeler / pedestrian.
 
 ## Safety
 
 ```text
-Safety =
-0.5 Collision with Annotation Tolerance
-+ 0.5 Valid Region Margin
+Safety = 0.5 Collision + 0.5 Valid Region
 ```
 
-- Collision ignores overlap shallower than `0.1 m`.
-- Valid region uses road-edge signed distance fallback:
-  vehicle `0 m`, two-wheeler `1 m`, pedestrian `2 m`.
-
-## Cross-Type
+Collision has no tolerance. For each selected agent and rollout, it is `1` if
+the oriented box strictly overlaps any other valid agent at least once on a
+frame where both GT tracks are valid. Therefore:
 
 ```text
-Cross-type =
-0.5 Distance Proximity to GT
-+ 0.5 Time-to-Proximity Proximity to GT
+Collision score =
+1 - collided_agent_rollouts / valid_agent_rollouts
 ```
 
-Only unique physical cross-type pairs are used. Pair types are
-vehicle-pedestrian, vehicle-two-wheeler, and pedestrian-two-wheeler. Candidate
-pairs must have GT distance `< 10 m` or GT TTP `< 6 s`.
-
-## Coverage
-
-Rasterize selected-agent oriented boxes on a `0.5 m` BEV grid.
-
-Per agent/timestep:
+Valid region uses road-edge signed distance with type margins: vehicle `0 m`,
+two-wheeler `1 m`, pedestrian `2 m`. It penalizes only excess outside-region
+frequency relative to the annotation:
 
 ```text
-incremental coverage =
-(union cells - largest single-rollout footprint)
-/
-(sum rollout footprint cells - largest single-rollout footprint)
+Valid-region score =
+1 - max(sim_outside_rate - GT_outside_rate, 0)
 ```
 
-Identical rollouts score `0`. Fully non-overlapping valid footprints score `1`.
-Scores are averaged by agent, type, then present types. Missing pedestrian size
-uses `0.8 m x 0.8 m`.
+This prevents known map/annotation disagreement from lowering a perfect GT
+replay's score.
+
+## Cross-Type Interaction
+
+For each unique physical cross-type pair and rollout, find closest center
+distance `d_min` and its time `t*`. Include a pair if GT or any simulated
+rollout comes within 10 m; the union catches both missed and invented
+interactions.
+
+```text
+distance score = max(0, 1 - |sim_d_min - GT_d_min| / 5 m)
+time score     = max(0, 1 - |sim_t* - GT_t*| / 4 s)
+pair score     = 0.5 * distance score + 0.5 * time score
+```
+
+Scores are averaged over rollouts and pairs, then macro-averaged across
+vehicle-pedestrian, vehicle-two-wheeler, and pedestrian-two-wheeler. This
+metric does not use histogram bins or a second constant-velocity TTP model.
+
+## Diversity Bonus
+
+Rasterize selected-agent oriented boxes on a `0.5 m` BEV grid. Identical
+rollouts score `0`; separated valid footprints increase the score. Diversity
+remains a bonus gated by Kinematic and Safety, so unrealistic or unsafe spread
+cannot compensate for poor base quality.
 
 ## Aggregation
 
-Dataset aggregation is type-balanced:
+Within each location:
 
-- Kinematic/Safety: aggregate samples within each agent type, then macro-average.
-- Cross-type: aggregate within each pair type, then macro-average.
-- Coverage: aggregate within each agent type, then macro-average.
+- Kinematic/Safety aggregate within agent type, then macro-average types.
+- Cross-type aggregates within pair type, then macro-averages pair types.
+- Diversity aggregates within agent type, then macro-averages types.
 
-No-selected scenarios are reported as `skipped_no_selected_agents` and excluded
-from score aggregation.
+The leaderboard score is then an equal macro-average of all locations present
+in the split. No-selected scenarios are reported as
+`skipped_no_selected_agents` and excluded.

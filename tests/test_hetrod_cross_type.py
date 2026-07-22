@@ -22,7 +22,7 @@ class HetrodCrossTypeTests(unittest.TestCase):
         self.assertAlmostEqual(report["distance_proximity_to_gt"], 1.0, places=6)
         self.assertAlmostEqual(report["ttc_proximity_to_gt"], 1.0, places=6)
 
-    def test_cross_type_penalizes_shifted_context_distribution(self):
+    def test_cross_type_penalizes_shifted_closest_approach(self):
         gt = self.make_gt()
         selected = torch.tensor([True, False, False])
         prediction = self.make_prediction(gt)
@@ -32,23 +32,24 @@ class HetrodCrossTypeTests(unittest.TestCase):
         report = compute_cross_type_interaction(features)
 
         self.assertLess(report["distance_proximity_to_gt"], 1.0)
-        self.assertLess(
-            report["pair_type_scores"]["vehicle_pedestrian"]["distance_event_similarity"],
-            1.0,
-        )
         self.assertEqual(
             report["scoring_method"],
-            "pairwise_type_balanced_histogram_similarity",
+            "closest_approach_error",
         )
-        self.assertAlmostEqual(
-            report["pair_type_scores"]["vehicle_pedestrian"][
-                "distance_proximity_to_gt"
-            ],
-            report["pair_type_scores"]["vehicle_pedestrian"][
-                "distance_distribution_similarity"
-            ],
-            places=6,
+
+    def test_simulation_only_near_pair_is_included(self):
+        gt = self.make_gt()
+        gt["tracks"][1, :, 1] = 20.0
+        selected = torch.tensor([True, False, False])
+        prediction = self.make_prediction(gt)
+        prediction["simulated_states"][:, 1, :, 1] = 2.0
+
+        report = compute_cross_type_interaction(
+            build_feature_bundle(gt, prediction, selected)
         )
+
+        self.assertIn("vehicle_pedestrian", report["pair_type_scores"])
+        self.assertLess(report["score"], 1.0)
 
     def test_pair_types_receive_equal_weight(self):
         gt = self.make_gt()

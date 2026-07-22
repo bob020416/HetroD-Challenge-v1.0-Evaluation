@@ -105,6 +105,8 @@ Deadline: September 5, 2026 (AoE)
 
 ## Metrics
 
+The current challenge metric version is `hetrod-0.2.0`.
+
 ```text
 Base =
 0.30 Kinematic Realism
