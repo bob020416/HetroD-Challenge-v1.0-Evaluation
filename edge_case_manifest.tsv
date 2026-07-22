@@ -1,46 +1,46 @@
 index	family	metric	title	rank	scenario_id	score	overall	num_selected_agents
-0	kinematic	linear_speed	Linear speed	1	38_loc0_seg126_ego_1	0.0005346606545650687	0.6306743357761337	1
-1	kinematic	linear_speed	Linear speed	2	42_loc4_seg66_ego_1	0.0006890636219840387	0.5782153201066594	1
-2	kinematic	linear_speed	Linear speed	3	35_loc0_seg48_ego_1	0.0011797090740168596	0.7189861152723201	1
-3	kinematic	linear_speed	Linear speed	4	20_loc1_seg103_ego_1	0.0011894433436866877	0.7337777878085945	1
-4	kinematic	linear_speed	Linear speed	5	19_loc1_seg113_ego_1	0.002054819170876872	0.5039392269990641	1
-5	kinematic	linear_acceleration	Linear acceleration	1	37_loc0_seg114_ego_1	0.028063507927226273	0.45279756915309244	1
-6	kinematic	linear_acceleration	Linear acceleration	2	34_loc0_seg109_ego_1	0.04373559490048736	0.7349217394012223	1
-7	kinematic	linear_acceleration	Linear acceleration	3	19_loc1_seg113_ego_1	0.05410180196168745	0.5039392269990641	1
-8	kinematic	linear_acceleration	Linear acceleration	4	38_loc0_seg29_ego_1	0.054308467060939274	0.7802890451996831	1
-9	kinematic	linear_acceleration	Linear acceleration	5	32_loc0_seg16_ego_1	0.05431146217147673	0.7388608960709497	1
-10	kinematic	angular_speed	Angular speed	1	43_loc4_seg52_ego_1	0.012764882856543579	0.6263523410679751	1
-11	kinematic	angular_speed	Angular speed	2	38_loc0_seg14_ego_1	0.046504811559020545	0.618491520254558	1
-12	kinematic	angular_speed	Angular speed	3	37_loc0_seg114_ego_1	0.05360129271173912	0.45279756915309244	1
-13	kinematic	angular_speed	Angular speed	4	03_loc3_seg2_ego_1	0.05682269473068332	0.5710900093023924	4
-14	kinematic	angular_speed	Angular speed	5	06_loc3_seg49_ego_1	0.060443409645596295	0.7944840842983159	1
-15	kinematic	angular_acceleration	Angular acceleration	1	43_loc4_seg52_ego_1	0.013952843839543662	0.6263523410679751	1
-16	kinematic	angular_acceleration	Angular acceleration	2	46_loc4_seg64_ego_1	0.09812027119659464	0.5622063904064193	1
-17	kinematic	angular_acceleration	Angular acceleration	3	34_loc0_seg49_ego_1	0.16089309624634662	0.626042828830349	1
-18	kinematic	angular_acceleration	Angular acceleration	4	10_loc3_seg61_ego_1	0.16474029859371378	0.5847836566924786	4
-19	kinematic	angular_acceleration	Angular acceleration	5	42_loc4_seg101_ego_1	0.1838809481579559	0.6967848026321687	1
-20	safety	collision	Collision tolerance	1	48_loc4_seg34_ego_1	0.46035156250000003	0.5724694271039692	2
-21	safety	collision	Collision tolerance	2	26_loc5_seg37_ego_1	0.6734375	0.6505559915375897	1
-22	safety	collision	Collision tolerance	3	29_loc5_seg122_ego_1	0.6869140625000001	0.5971132527148821	2
-23	safety	collision	Collision tolerance	4	02_loc3_seg15_ego_1	0.7015625	0.6759501573507853	2
-24	safety	collision	Collision tolerance	5	08_loc3_seg90_ego_1	0.742578125	0.7602097272609659	1
-25	safety	valid_region	Valid-region margin	1	45_loc4_seg136_ego_1	0.6509765625	0.6242513001249766	2
-26	safety	valid_region	Valid-region margin	2	43_loc4_seg34_ego_1	0.6694010416666667	0.5420435051512009	3
-27	safety	valid_region	Valid-region margin	3	33_loc0_seg129_ego_1	0.6890625	0.6459673161779255	1
-28	safety	valid_region	Valid-region margin	4	27_loc5_seg54_ego_1	0.710546875	0.708127778649614	5
-29	safety	valid_region	Valid-region margin	5	43_loc4_seg29_ego_1	0.75	0.7000593629609732	3
-30	interaction	distance_proximity	Interaction distance	1	02_loc3_seg81_ego_1	0.10260415077209473	0.6278012133139244	1
-31	interaction	distance_proximity	Interaction distance	2	37_loc0_seg4_ego_1	0.11210939288139343	0.6292191489910011	1
-32	interaction	distance_proximity	Interaction distance	3	08_loc3_seg88_ego_1	0.1379413604736328	0.7008905075333015	1
-33	interaction	distance_proximity	Interaction distance	4	19_loc1_seg61_ego_1	0.16689454019069672	0.6366736939745945	1
-34	interaction	distance_proximity	Interaction distance	5	38_loc0_seg14_ego_1	0.26249998807907104	0.618491520254558	1
-35	interaction	time_to_proximity	Time to proximity	1	40_loc4_seg51_ego_1	0.028571367263793945	0.6213999890327511	1
-36	interaction	time_to_proximity	Time to proximity	2	39_loc0_seg2_ego_1	0.11458331346511841	0.699735188236061	1
-37	interaction	time_to_proximity	Time to proximity	3	19_loc1_seg71_ego_1	0.17208431164423624	0.644482824155378	1
-38	interaction	time_to_proximity	Time to proximity	4	37_loc0_seg114_ego_1	0.1947115659713745	0.45279756915309244	1
-39	interaction	time_to_proximity	Time to proximity	5	15_loc1_seg15_ego_1	0.21849799156188965	0.7076708834903582	1
-40	coverage	coverage	Coverage / diversity	1	33_loc0_seg7_ego_1	0.0	0.8775409021785077	1
-41	coverage	coverage	Coverage / diversity	2	43_loc4_seg52_ego_1	0.0	0.6263523410679751	1
-42	coverage	coverage	Coverage / diversity	3	45_loc4_seg33_ego_1	0.0	0.7827664711357151	1
-43	coverage	coverage	Coverage / diversity	4	46_loc4_seg64_ego_1	0.0	0.5622063904064193	1
-44	coverage	coverage	Coverage / diversity	5	47_loc4_seg140_ego_1	3.164779142475599e-05	0.7807381959056127	1
+0	kinematic	linear_speed	Linear speed	1	19_loc1_seg71_ego_1	0.06351902779502186	0.6884826914140044	3
+1	kinematic	linear_speed	Linear speed	2	45_loc4_seg45_ego_1	0.2693271613493664	0.6367804004104228	7
+2	kinematic	linear_speed	Linear speed	3	34_loc0_seg62_ego_1	0.34761318615503384	0.6684779503913665	3
+3	kinematic	linear_speed	Linear speed	4	35_loc0_seg98_ego_1	0.37712503852958645	0.6885631168895037	13
+4	kinematic	linear_speed	Linear speed	5	27_loc5_seg57_ego_1	0.3804478682797376	0.7351781884978393	15
+5	kinematic	linear_acceleration	Linear acceleration	1	44_loc4_seg50_ego_1	0.10112949210286526	0.7522976865658192	1
+6	kinematic	linear_acceleration	Linear acceleration	2	32_loc0_seg16_ego_1	0.10804407741330405	0.724000350122073	2
+7	kinematic	linear_acceleration	Linear acceleration	3	45_loc4_seg132_ego_1	0.13739832882876432	0.7603979756468406	7
+8	kinematic	linear_acceleration	Linear acceleration	4	39_loc0_seg16_ego_1	0.13799976920773552	0.7604250940008196	2
+9	kinematic	linear_acceleration	Linear acceleration	5	39_loc0_seg25_ego_1	0.143533055412759	0.7473387362726978	11
+10	kinematic	angular_speed	Angular speed	1	44_loc4_seg50_ego_1	0.2205576449625986	0.7522976865658192	1
+11	kinematic	angular_speed	Angular speed	2	46_loc4_seg57_ego_1	0.3066943452794391	0.6983729021040035	9
+12	kinematic	angular_speed	Angular speed	3	37_loc0_seg114_ego_1	0.3555633651987545	0.5623017596557474	2
+13	kinematic	angular_speed	Angular speed	4	40_loc4_seg94_ego_1	0.3635555863859278	0.7499545967608751	2
+14	kinematic	angular_speed	Angular speed	5	19_loc1_seg5_ego_1	0.36908482352920235	0.600237794096452	8
+15	kinematic	angular_acceleration	Angular acceleration	1	37_loc0_seg114_ego_1	0.4974310144012264	0.5623017596557474	2
+16	kinematic	angular_acceleration	Angular acceleration	2	42_loc4_seg111_ego_1	0.5618231678117201	0.7064486762275265	7
+17	kinematic	angular_acceleration	Angular acceleration	3	23_loc5_seg48_ego_1	0.5781732893915142	0.6434774783243983	40
+18	kinematic	angular_acceleration	Angular acceleration	4	34_loc0_seg49_ego_1	0.5796852072385257	0.7274044248805003	6
+19	kinematic	angular_acceleration	Angular acceleration	5	46_loc4_seg64_ego_1	0.5861116388871209	0.7296311671194521	3
+20	safety	collision	Rollout-level collision	1	37_loc0_seg4_ego_1	0.328125	0.5756145415728917	2
+21	safety	collision	Rollout-level collision	2	48_loc4_seg34_ego_1	0.3576388888888889	0.6516253903100011	5
+22	safety	collision	Rollout-level collision	3	20_loc1_seg84_ego_1	0.38125	0.566579585172793	7
+23	safety	collision	Rollout-level collision	4	38_loc0_seg29_ego_1	0.4166666666666667	0.6953156408834571	6
+24	safety	collision	Rollout-level collision	5	15_loc1_seg16_ego_1	0.453125	0.6883625709259508	3
+25	safety	valid_region	GT-relative valid region	1	39_loc0_seg105_ego_1	0.65390625	0.7634822951039782	4
+26	safety	valid_region	GT-relative valid region	2	07_loc3_seg84_ego_1	0.8333333333333334	0.7651048834853247	7
+27	safety	valid_region	GT-relative valid region	3	43_loc4_seg34_ego_1	0.8691450765669515	0.6461691122175678	8
+28	safety	valid_region	GT-relative valid region	4	45_loc4_seg45_ego_1	0.8755933544303798	0.6367804004104228	7
+29	safety	valid_region	GT-relative valid region	5	37_loc0_seg4_ego_1	0.8763671875	0.5756145415728917	2
+30	interaction	distance_proximity	Closest-approach distance	1	37_loc0_seg114_ego_1	0.025687266141176224	0.5623017596557474	2
+31	interaction	distance_proximity	Closest-approach distance	2	19_loc1_seg5_ego_1	0.20224819236017508	0.600237794096452	8
+32	interaction	distance_proximity	Closest-approach distance	3	45_loc4_seg12_ego_1	0.2957313023507595	0.7410197559327314	2
+33	interaction	distance_proximity	Closest-approach distance	4	39_loc0_seg29_ego_1	0.3221629932522774	0.7315094369637503	2
+34	interaction	distance_proximity	Closest-approach distance	5	42_loc4_seg66_ego_1	0.3267877617230018	0.6640493036387903	2
+35	interaction	time_to_proximity	Closest-approach time	1	37_loc0_seg4_ego_1	0.22187500540167093	0.5756145415728917	2
+36	interaction	time_to_proximity	Closest-approach time	2	02_loc3_seg128_ego_1	0.32485837855848015	0.7769702522838294	23
+37	interaction	time_to_proximity	Closest-approach time	3	26_loc5_seg103_ego_1	0.3637152711550395	0.7969075175036751	5
+38	interaction	time_to_proximity	Closest-approach time	4	08_loc3_seg126_ego_1	0.3683803023757426	0.6558396694027823	11
+39	interaction	time_to_proximity	Closest-approach time	5	05_loc3_seg16_ego_1	0.37514229379227565	0.7704907255797988	20
+40	coverage	coverage	Diversity bonus	1	45_loc4_seg33_ego_1	0.0	0.8227684899463339	2
+41	coverage	coverage	Diversity bonus	2	08_loc3_seg88_ego_1	0.0011350784620002608	0.808424428314421	7
+42	coverage	coverage	Diversity bonus	3	05_loc3_seg62_ego_1	0.002401260991354886	0.80376547642495	18
+43	coverage	coverage	Diversity bonus	4	19_loc1_seg113_ego_1	0.0031314323970044987	0.6176377090791416	2
+44	coverage	coverage	Diversity bonus	5	15_loc1_seg85_ego_1	0.003323657685049706	0.8307901833977721	2

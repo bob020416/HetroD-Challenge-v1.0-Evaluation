@@ -5,10 +5,10 @@
     "metric": "linear_speed",
     "title": "Linear speed",
     "rank": 1,
-    "scenario_id": "38_loc0_seg126_ego_1",
-    "score": 0.0005346606545650687,
-    "overall": 0.6306743357761337,
-    "num_selected_agents": 1
+    "scenario_id": "19_loc1_seg71_ego_1",
+    "score": 0.06351902779502186,
+    "overall": 0.6884826914140044,
+    "num_selected_agents": 3
   },
   {
     "index": 1,
@@ -16,10 +16,10 @@
     "metric": "linear_speed",
     "title": "Linear speed",
     "rank": 2,
-    "scenario_id": "42_loc4_seg66_ego_1",
-    "score": 0.0006890636219840387,
-    "overall": 0.5782153201066594,
-    "num_selected_agents": 1
+    "scenario_id": "45_loc4_seg45_ego_1",
+    "score": 0.2693271613493664,
+    "overall": 0.6367804004104228,
+    "num_selected_agents": 7
   },
   {
     "index": 2,
@@ -27,10 +27,10 @@
     "metric": "linear_speed",
     "title": "Linear speed",
     "rank": 3,
-    "scenario_id": "35_loc0_seg48_ego_1",
-    "score": 0.0011797090740168596,
-    "overall": 0.7189861152723201,
-    "num_selected_agents": 1
+    "scenario_id": "34_loc0_seg62_ego_1",
+    "score": 0.34761318615503384,
+    "overall": 0.6684779503913665,
+    "num_selected_agents": 3
   },
   {
     "index": 3,
@@ -38,10 +38,10 @@
     "metric": "linear_speed",
     "title": "Linear speed",
     "rank": 4,
-    "scenario_id": "20_loc1_seg103_ego_1",
-    "score": 0.0011894433436866877,
-    "overall": 0.7337777878085945,
-    "num_selected_agents": 1
+    "scenario_id": "35_loc0_seg98_ego_1",
+    "score": 0.37712503852958645,
+    "overall": 0.6885631168895037,
+    "num_selected_agents": 13
   },
   {
     "index": 4,
@@ -49,10 +49,10 @@
     "metric": "linear_speed",
     "title": "Linear speed",
     "rank": 5,
-    "scenario_id": "19_loc1_seg113_ego_1",
-    "score": 0.002054819170876872,
-    "overall": 0.5039392269990641,
-    "num_selected_agents": 1
+    "scenario_id": "27_loc5_seg57_ego_1",
+    "score": 0.3804478682797376,
+    "overall": 0.7351781884978393,
+    "num_selected_agents": 15
   },
   {
     "index": 5,
@@ -60,9 +60,9 @@
     "metric": "linear_acceleration",
     "title": "Linear acceleration",
     "rank": 1,
-    "scenario_id": "37_loc0_seg114_ego_1",
-    "score": 0.028063507927226273,
-    "overall": 0.45279756915309244,
+    "scenario_id": "44_loc4_seg50_ego_1",
+    "score": 0.10112949210286526,
+    "overall": 0.7522976865658192,
     "num_selected_agents": 1
   },
   {
@@ -71,10 +71,10 @@
     "metric": "linear_acceleration",
     "title": "Linear acceleration",
     "rank": 2,
-    "scenario_id": "34_loc0_seg109_ego_1",
-    "score": 0.04373559490048736,
-    "overall": 0.7349217394012223,
-    "num_selected_agents": 1
+    "scenario_id": "32_loc0_seg16_ego_1",
+    "score": 0.10804407741330405,
+    "overall": 0.724000350122073,
+    "num_selected_agents": 2
   },
   {
     "index": 7,
@@ -82,10 +82,10 @@
     "metric": "linear_acceleration",
     "title": "Linear acceleration",
     "rank": 3,
-    "scenario_id": "19_loc1_seg113_ego_1",
-    "score": 0.05410180196168745,
-    "overall": 0.5039392269990641,
-    "num_selected_agents": 1
+    "scenario_id": "45_loc4_seg132_ego_1",
+    "score": 0.13739832882876432,
+    "overall": 0.7603979756468406,
+    "num_selected_agents": 7
   },
   {
     "index": 8,
@@ -93,10 +93,10 @@
     "metric": "linear_acceleration",
     "title": "Linear acceleration",
     "rank": 4,
-    "scenario_id": "38_loc0_seg29_ego_1",
-    "score": 0.054308467060939274,
-    "overall": 0.7802890451996831,
-    "num_selected_agents": 1
+    "scenario_id": "39_loc0_seg16_ego_1",
+    "score": 0.13799976920773552,
+    "overall": 0.7604250940008196,
+    "num_selected_agents": 2
   },
   {
     "index": 9,
@@ -104,10 +104,10 @@
     "metric": "linear_acceleration",
     "title": "Linear acceleration",
     "rank": 5,
-    "scenario_id": "32_loc0_seg16_ego_1",
-    "score": 0.05431146217147673,
-    "overall": 0.7388608960709497,
-    "num_selected_agents": 1
+    "scenario_id": "39_loc0_seg25_ego_1",
+    "score": 0.143533055412759,
+    "overall": 0.7473387362726978,
+    "num_selected_agents": 11
   },
   {
     "index": 10,
@@ -115,9 +115,9 @@
     "metric": "angular_speed",
     "title": "Angular speed",
     "rank": 1,
-    "scenario_id": "43_loc4_seg52_ego_1",
-    "score": 0.012764882856543579,
-    "overall": 0.6263523410679751,
+    "scenario_id": "44_loc4_seg50_ego_1",
+    "score": 0.2205576449625986,
+    "overall": 0.7522976865658192,
     "num_selected_agents": 1
   },
   {
@@ -126,10 +126,10 @@
     "metric": "angular_speed",
     "title": "Angular speed",
     "rank": 2,
-    "scenario_id": "38_loc0_seg14_ego_1",
-    "score": 0.046504811559020545,
-    "overall": 0.618491520254558,
-    "num_selected_agents": 1
+    "scenario_id": "46_loc4_seg57_ego_1",
+    "score": 0.3066943452794391,
+    "overall": 0.6983729021040035,
+    "num_selected_agents": 9
   },
   {
     "index": 12,
@@ -138,9 +138,9 @@
     "title": "Angular speed",
     "rank": 3,
     "scenario_id": "37_loc0_seg114_ego_1",
-    "score": 0.05360129271173912,
-    "overall": 0.45279756915309244,
-    "num_selected_agents": 1
+    "score": 0.3555633651987545,
+    "overall": 0.5623017596557474,
+    "num_selected_agents": 2
   },
   {
     "index": 13,
@@ -148,10 +148,10 @@
     "metric": "angular_speed",
     "title": "Angular speed",
     "rank": 4,
-    "scenario_id": "03_loc3_seg2_ego_1",
-    "score": 0.05682269473068332,
-    "overall": 0.5710900093023924,
-    "num_selected_agents": 4
+    "scenario_id": "40_loc4_seg94_ego_1",
+    "score": 0.3635555863859278,
+    "overall": 0.7499545967608751,
+    "num_selected_agents": 2
   },
   {
     "index": 14,
@@ -159,10 +159,10 @@
     "metric": "angular_speed",
     "title": "Angular speed",
     "rank": 5,
-    "scenario_id": "06_loc3_seg49_ego_1",
-    "score": 0.060443409645596295,
-    "overall": 0.7944840842983159,
-    "num_selected_agents": 1
+    "scenario_id": "19_loc1_seg5_ego_1",
+    "score": 0.36908482352920235,
+    "overall": 0.600237794096452,
+    "num_selected_agents": 8
   },
   {
     "index": 15,
@@ -170,10 +170,10 @@
     "metric": "angular_acceleration",
     "title": "Angular acceleration",
     "rank": 1,
-    "scenario_id": "43_loc4_seg52_ego_1",
-    "score": 0.013952843839543662,
-    "overall": 0.6263523410679751,
-    "num_selected_agents": 1
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.4974310144012264,
+    "overall": 0.5623017596557474,
+    "num_selected_agents": 2
   },
   {
     "index": 16,
@@ -181,10 +181,10 @@
     "metric": "angular_acceleration",
     "title": "Angular acceleration",
     "rank": 2,
-    "scenario_id": "46_loc4_seg64_ego_1",
-    "score": 0.09812027119659464,
-    "overall": 0.5622063904064193,
-    "num_selected_agents": 1
+    "scenario_id": "42_loc4_seg111_ego_1",
+    "score": 0.5618231678117201,
+    "overall": 0.7064486762275265,
+    "num_selected_agents": 7
   },
   {
     "index": 17,
@@ -192,10 +192,10 @@
     "metric": "angular_acceleration",
     "title": "Angular acceleration",
     "rank": 3,
-    "scenario_id": "34_loc0_seg49_ego_1",
-    "score": 0.16089309624634662,
-    "overall": 0.626042828830349,
-    "num_selected_agents": 1
+    "scenario_id": "23_loc5_seg48_ego_1",
+    "score": 0.5781732893915142,
+    "overall": 0.6434774783243983,
+    "num_selected_agents": 40
   },
   {
     "index": 18,
@@ -203,10 +203,10 @@
     "metric": "angular_acceleration",
     "title": "Angular acceleration",
     "rank": 4,
-    "scenario_id": "10_loc3_seg61_ego_1",
-    "score": 0.16474029859371378,
-    "overall": 0.5847836566924786,
-    "num_selected_agents": 4
+    "scenario_id": "34_loc0_seg49_ego_1",
+    "score": 0.5796852072385257,
+    "overall": 0.7274044248805003,
+    "num_selected_agents": 6
   },
   {
     "index": 19,
@@ -214,284 +214,284 @@
     "metric": "angular_acceleration",
     "title": "Angular acceleration",
     "rank": 5,
-    "scenario_id": "42_loc4_seg101_ego_1",
-    "score": 0.1838809481579559,
-    "overall": 0.6967848026321687,
-    "num_selected_agents": 1
+    "scenario_id": "46_loc4_seg64_ego_1",
+    "score": 0.5861116388871209,
+    "overall": 0.7296311671194521,
+    "num_selected_agents": 3
   },
   {
     "index": 20,
     "family": "safety",
     "metric": "collision",
-    "title": "Collision tolerance",
+    "title": "Rollout-level collision",
     "rank": 1,
-    "scenario_id": "48_loc4_seg34_ego_1",
-    "score": 0.46035156250000003,
-    "overall": 0.5724694271039692,
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.328125,
+    "overall": 0.5756145415728917,
     "num_selected_agents": 2
   },
   {
     "index": 21,
     "family": "safety",
     "metric": "collision",
-    "title": "Collision tolerance",
+    "title": "Rollout-level collision",
     "rank": 2,
-    "scenario_id": "26_loc5_seg37_ego_1",
-    "score": 0.6734375,
-    "overall": 0.6505559915375897,
-    "num_selected_agents": 1
+    "scenario_id": "48_loc4_seg34_ego_1",
+    "score": 0.3576388888888889,
+    "overall": 0.6516253903100011,
+    "num_selected_agents": 5
   },
   {
     "index": 22,
     "family": "safety",
     "metric": "collision",
-    "title": "Collision tolerance",
+    "title": "Rollout-level collision",
     "rank": 3,
-    "scenario_id": "29_loc5_seg122_ego_1",
-    "score": 0.6869140625000001,
-    "overall": 0.5971132527148821,
-    "num_selected_agents": 2
+    "scenario_id": "20_loc1_seg84_ego_1",
+    "score": 0.38125,
+    "overall": 0.566579585172793,
+    "num_selected_agents": 7
   },
   {
     "index": 23,
     "family": "safety",
     "metric": "collision",
-    "title": "Collision tolerance",
+    "title": "Rollout-level collision",
     "rank": 4,
-    "scenario_id": "02_loc3_seg15_ego_1",
-    "score": 0.7015625,
-    "overall": 0.6759501573507853,
-    "num_selected_agents": 2
+    "scenario_id": "38_loc0_seg29_ego_1",
+    "score": 0.4166666666666667,
+    "overall": 0.6953156408834571,
+    "num_selected_agents": 6
   },
   {
     "index": 24,
     "family": "safety",
     "metric": "collision",
-    "title": "Collision tolerance",
+    "title": "Rollout-level collision",
     "rank": 5,
-    "scenario_id": "08_loc3_seg90_ego_1",
-    "score": 0.742578125,
-    "overall": 0.7602097272609659,
-    "num_selected_agents": 1
+    "scenario_id": "15_loc1_seg16_ego_1",
+    "score": 0.453125,
+    "overall": 0.6883625709259508,
+    "num_selected_agents": 3
   },
   {
     "index": 25,
     "family": "safety",
     "metric": "valid_region",
-    "title": "Valid-region margin",
+    "title": "GT-relative valid region",
     "rank": 1,
-    "scenario_id": "45_loc4_seg136_ego_1",
-    "score": 0.6509765625,
-    "overall": 0.6242513001249766,
-    "num_selected_agents": 2
+    "scenario_id": "39_loc0_seg105_ego_1",
+    "score": 0.65390625,
+    "overall": 0.7634822951039782,
+    "num_selected_agents": 4
   },
   {
     "index": 26,
     "family": "safety",
     "metric": "valid_region",
-    "title": "Valid-region margin",
+    "title": "GT-relative valid region",
     "rank": 2,
-    "scenario_id": "43_loc4_seg34_ego_1",
-    "score": 0.6694010416666667,
-    "overall": 0.5420435051512009,
-    "num_selected_agents": 3
+    "scenario_id": "07_loc3_seg84_ego_1",
+    "score": 0.8333333333333334,
+    "overall": 0.7651048834853247,
+    "num_selected_agents": 7
   },
   {
     "index": 27,
     "family": "safety",
     "metric": "valid_region",
-    "title": "Valid-region margin",
+    "title": "GT-relative valid region",
     "rank": 3,
-    "scenario_id": "33_loc0_seg129_ego_1",
-    "score": 0.6890625,
-    "overall": 0.6459673161779255,
-    "num_selected_agents": 1
+    "scenario_id": "43_loc4_seg34_ego_1",
+    "score": 0.8691450765669515,
+    "overall": 0.6461691122175678,
+    "num_selected_agents": 8
   },
   {
     "index": 28,
     "family": "safety",
     "metric": "valid_region",
-    "title": "Valid-region margin",
+    "title": "GT-relative valid region",
     "rank": 4,
-    "scenario_id": "27_loc5_seg54_ego_1",
-    "score": 0.710546875,
-    "overall": 0.708127778649614,
-    "num_selected_agents": 5
+    "scenario_id": "45_loc4_seg45_ego_1",
+    "score": 0.8755933544303798,
+    "overall": 0.6367804004104228,
+    "num_selected_agents": 7
   },
   {
     "index": 29,
     "family": "safety",
     "metric": "valid_region",
-    "title": "Valid-region margin",
+    "title": "GT-relative valid region",
     "rank": 5,
-    "scenario_id": "43_loc4_seg29_ego_1",
-    "score": 0.75,
-    "overall": 0.7000593629609732,
-    "num_selected_agents": 3
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.8763671875,
+    "overall": 0.5756145415728917,
+    "num_selected_agents": 2
   },
   {
     "index": 30,
     "family": "interaction",
     "metric": "distance_proximity",
-    "title": "Interaction distance",
+    "title": "Closest-approach distance",
     "rank": 1,
-    "scenario_id": "02_loc3_seg81_ego_1",
-    "score": 0.10260415077209473,
-    "overall": 0.6278012133139244,
-    "num_selected_agents": 1
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.025687266141176224,
+    "overall": 0.5623017596557474,
+    "num_selected_agents": 2
   },
   {
     "index": 31,
     "family": "interaction",
     "metric": "distance_proximity",
-    "title": "Interaction distance",
+    "title": "Closest-approach distance",
     "rank": 2,
-    "scenario_id": "37_loc0_seg4_ego_1",
-    "score": 0.11210939288139343,
-    "overall": 0.6292191489910011,
-    "num_selected_agents": 1
+    "scenario_id": "19_loc1_seg5_ego_1",
+    "score": 0.20224819236017508,
+    "overall": 0.600237794096452,
+    "num_selected_agents": 8
   },
   {
     "index": 32,
     "family": "interaction",
     "metric": "distance_proximity",
-    "title": "Interaction distance",
+    "title": "Closest-approach distance",
     "rank": 3,
-    "scenario_id": "08_loc3_seg88_ego_1",
-    "score": 0.1379413604736328,
-    "overall": 0.7008905075333015,
-    "num_selected_agents": 1
+    "scenario_id": "45_loc4_seg12_ego_1",
+    "score": 0.2957313023507595,
+    "overall": 0.7410197559327314,
+    "num_selected_agents": 2
   },
   {
     "index": 33,
     "family": "interaction",
     "metric": "distance_proximity",
-    "title": "Interaction distance",
+    "title": "Closest-approach distance",
     "rank": 4,
-    "scenario_id": "19_loc1_seg61_ego_1",
-    "score": 0.16689454019069672,
-    "overall": 0.6366736939745945,
-    "num_selected_agents": 1
+    "scenario_id": "39_loc0_seg29_ego_1",
+    "score": 0.3221629932522774,
+    "overall": 0.7315094369637503,
+    "num_selected_agents": 2
   },
   {
     "index": 34,
     "family": "interaction",
     "metric": "distance_proximity",
-    "title": "Interaction distance",
+    "title": "Closest-approach distance",
     "rank": 5,
-    "scenario_id": "38_loc0_seg14_ego_1",
-    "score": 0.26249998807907104,
-    "overall": 0.618491520254558,
-    "num_selected_agents": 1
+    "scenario_id": "42_loc4_seg66_ego_1",
+    "score": 0.3267877617230018,
+    "overall": 0.6640493036387903,
+    "num_selected_agents": 2
   },
   {
     "index": 35,
     "family": "interaction",
     "metric": "time_to_proximity",
-    "title": "Time to proximity",
+    "title": "Closest-approach time",
     "rank": 1,
-    "scenario_id": "40_loc4_seg51_ego_1",
-    "score": 0.028571367263793945,
-    "overall": 0.6213999890327511,
-    "num_selected_agents": 1
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.22187500540167093,
+    "overall": 0.5756145415728917,
+    "num_selected_agents": 2
   },
   {
     "index": 36,
     "family": "interaction",
     "metric": "time_to_proximity",
-    "title": "Time to proximity",
+    "title": "Closest-approach time",
     "rank": 2,
-    "scenario_id": "39_loc0_seg2_ego_1",
-    "score": 0.11458331346511841,
-    "overall": 0.699735188236061,
-    "num_selected_agents": 1
+    "scenario_id": "02_loc3_seg128_ego_1",
+    "score": 0.32485837855848015,
+    "overall": 0.7769702522838294,
+    "num_selected_agents": 23
   },
   {
     "index": 37,
     "family": "interaction",
     "metric": "time_to_proximity",
-    "title": "Time to proximity",
+    "title": "Closest-approach time",
     "rank": 3,
-    "scenario_id": "19_loc1_seg71_ego_1",
-    "score": 0.17208431164423624,
-    "overall": 0.644482824155378,
-    "num_selected_agents": 1
+    "scenario_id": "26_loc5_seg103_ego_1",
+    "score": 0.3637152711550395,
+    "overall": 0.7969075175036751,
+    "num_selected_agents": 5
   },
   {
     "index": 38,
     "family": "interaction",
     "metric": "time_to_proximity",
-    "title": "Time to proximity",
+    "title": "Closest-approach time",
     "rank": 4,
-    "scenario_id": "37_loc0_seg114_ego_1",
-    "score": 0.1947115659713745,
-    "overall": 0.45279756915309244,
-    "num_selected_agents": 1
+    "scenario_id": "08_loc3_seg126_ego_1",
+    "score": 0.3683803023757426,
+    "overall": 0.6558396694027823,
+    "num_selected_agents": 11
   },
   {
     "index": 39,
     "family": "interaction",
     "metric": "time_to_proximity",
-    "title": "Time to proximity",
+    "title": "Closest-approach time",
     "rank": 5,
-    "scenario_id": "15_loc1_seg15_ego_1",
-    "score": 0.21849799156188965,
-    "overall": 0.7076708834903582,
-    "num_selected_agents": 1
+    "scenario_id": "05_loc3_seg16_ego_1",
+    "score": 0.37514229379227565,
+    "overall": 0.7704907255797988,
+    "num_selected_agents": 20
   },
   {
     "index": 40,
     "family": "coverage",
     "metric": "coverage",
-    "title": "Coverage / diversity",
+    "title": "Diversity bonus",
     "rank": 1,
-    "scenario_id": "33_loc0_seg7_ego_1",
+    "scenario_id": "45_loc4_seg33_ego_1",
     "score": 0.0,
-    "overall": 0.8775409021785077,
-    "num_selected_agents": 1
+    "overall": 0.8227684899463339,
+    "num_selected_agents": 2
   },
   {
     "index": 41,
     "family": "coverage",
     "metric": "coverage",
-    "title": "Coverage / diversity",
+    "title": "Diversity bonus",
     "rank": 2,
-    "scenario_id": "43_loc4_seg52_ego_1",
-    "score": 0.0,
-    "overall": 0.6263523410679751,
-    "num_selected_agents": 1
+    "scenario_id": "08_loc3_seg88_ego_1",
+    "score": 0.0011350784620002608,
+    "overall": 0.808424428314421,
+    "num_selected_agents": 7
   },
   {
     "index": 42,
     "family": "coverage",
     "metric": "coverage",
-    "title": "Coverage / diversity",
+    "title": "Diversity bonus",
     "rank": 3,
-    "scenario_id": "45_loc4_seg33_ego_1",
-    "score": 0.0,
-    "overall": 0.7827664711357151,
-    "num_selected_agents": 1
+    "scenario_id": "05_loc3_seg62_ego_1",
+    "score": 0.002401260991354886,
+    "overall": 0.80376547642495,
+    "num_selected_agents": 18
   },
   {
     "index": 43,
     "family": "coverage",
     "metric": "coverage",
-    "title": "Coverage / diversity",
+    "title": "Diversity bonus",
     "rank": 4,
-    "scenario_id": "46_loc4_seg64_ego_1",
-    "score": 0.0,
-    "overall": 0.5622063904064193,
-    "num_selected_agents": 1
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.0031314323970044987,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2
   },
   {
     "index": 44,
     "family": "coverage",
     "metric": "coverage",
-    "title": "Coverage / diversity",
+    "title": "Diversity bonus",
     "rank": 5,
-    "scenario_id": "47_loc4_seg140_ego_1",
-    "score": 3.164779142475599e-05,
-    "overall": 0.7807381959056127,
-    "num_selected_agents": 1
+    "scenario_id": "15_loc1_seg85_ego_1",
+    "score": 0.003323657685049706,
+    "overall": 0.8307901833977721,
+    "num_selected_agents": 2
   }
 ]
