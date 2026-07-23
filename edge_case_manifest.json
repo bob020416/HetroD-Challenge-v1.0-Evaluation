@@ -7,8 +7,9 @@
     "rank": 1,
     "scenario_id": "19_loc1_seg71_ego_1",
     "score": 0.06351902779502186,
-    "overall": 0.6884826914140044,
-    "num_selected_agents": 3
+    "overall": 0.6851058494126646,
+    "num_selected_agents": 3,
+    "agent_type": null
   },
   {
     "index": 1,
@@ -18,8 +19,9 @@
     "rank": 2,
     "scenario_id": "45_loc4_seg45_ego_1",
     "score": 0.2693271613493664,
-    "overall": 0.6367804004104228,
-    "num_selected_agents": 7
+    "overall": 0.6405533469601283,
+    "num_selected_agents": 7,
+    "agent_type": null
   },
   {
     "index": 2,
@@ -29,8 +31,9 @@
     "rank": 3,
     "scenario_id": "34_loc0_seg62_ego_1",
     "score": 0.34761318615503384,
-    "overall": 0.6684779503913665,
-    "num_selected_agents": 3
+    "overall": 0.674993650856249,
+    "num_selected_agents": 3,
+    "agent_type": null
   },
   {
     "index": 3,
@@ -40,8 +43,9 @@
     "rank": 4,
     "scenario_id": "35_loc0_seg98_ego_1",
     "score": 0.37712503852958645,
-    "overall": 0.6885631168895037,
-    "num_selected_agents": 13
+    "overall": 0.6887310229905381,
+    "num_selected_agents": 13,
+    "agent_type": null
   },
   {
     "index": 4,
@@ -51,8 +55,9 @@
     "rank": 5,
     "scenario_id": "27_loc5_seg57_ego_1",
     "score": 0.3804478682797376,
-    "overall": 0.7351781884978393,
-    "num_selected_agents": 15
+    "overall": 0.733380936685551,
+    "num_selected_agents": 15,
+    "agent_type": null
   },
   {
     "index": 5,
@@ -63,7 +68,8 @@
     "scenario_id": "44_loc4_seg50_ego_1",
     "score": 0.10112949210286526,
     "overall": 0.7522976865658192,
-    "num_selected_agents": 1
+    "num_selected_agents": 1,
+    "agent_type": null
   },
   {
     "index": 6,
@@ -73,8 +79,9 @@
     "rank": 2,
     "scenario_id": "32_loc0_seg16_ego_1",
     "score": 0.10804407741330405,
-    "overall": 0.724000350122073,
-    "num_selected_agents": 2
+    "overall": 0.7240780819032092,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 7,
@@ -84,8 +91,9 @@
     "rank": 3,
     "scenario_id": "45_loc4_seg132_ego_1",
     "score": 0.13739832882876432,
-    "overall": 0.7603979756468406,
-    "num_selected_agents": 7
+    "overall": 0.7581620775019724,
+    "num_selected_agents": 7,
+    "agent_type": null
   },
   {
     "index": 8,
@@ -95,8 +103,9 @@
     "rank": 4,
     "scenario_id": "39_loc0_seg16_ego_1",
     "score": 0.13799976920773552,
-    "overall": 0.7604250940008196,
-    "num_selected_agents": 2
+    "overall": 0.7327303523016699,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 9,
@@ -106,8 +115,9 @@
     "rank": 5,
     "scenario_id": "39_loc0_seg25_ego_1",
     "score": 0.143533055412759,
-    "overall": 0.7473387362726978,
-    "num_selected_agents": 11
+    "overall": 0.7452804372297342,
+    "num_selected_agents": 11,
+    "agent_type": null
   },
   {
     "index": 10,
@@ -118,7 +128,8 @@
     "scenario_id": "44_loc4_seg50_ego_1",
     "score": 0.2205576449625986,
     "overall": 0.7522976865658192,
-    "num_selected_agents": 1
+    "num_selected_agents": 1,
+    "agent_type": null
   },
   {
     "index": 11,
@@ -128,8 +139,9 @@
     "rank": 2,
     "scenario_id": "46_loc4_seg57_ego_1",
     "score": 0.3066943452794391,
-    "overall": 0.6983729021040035,
-    "num_selected_agents": 9
+    "overall": 0.6917393902280167,
+    "num_selected_agents": 9,
+    "agent_type": null
   },
   {
     "index": 12,
@@ -139,8 +151,9 @@
     "rank": 3,
     "scenario_id": "37_loc0_seg114_ego_1",
     "score": 0.3555633651987545,
-    "overall": 0.5623017596557474,
-    "num_selected_agents": 2
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 13,
@@ -151,7 +164,8 @@
     "scenario_id": "40_loc4_seg94_ego_1",
     "score": 0.3635555863859278,
     "overall": 0.7499545967608751,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 14,
@@ -161,8 +175,9 @@
     "rank": 5,
     "scenario_id": "19_loc1_seg5_ego_1",
     "score": 0.36908482352920235,
-    "overall": 0.600237794096452,
-    "num_selected_agents": 8
+    "overall": 0.5770638990461611,
+    "num_selected_agents": 8,
+    "agent_type": null
   },
   {
     "index": 15,
@@ -172,8 +187,9 @@
     "rank": 1,
     "scenario_id": "37_loc0_seg114_ego_1",
     "score": 0.4974310144012264,
-    "overall": 0.5623017596557474,
-    "num_selected_agents": 2
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 16,
@@ -184,7 +200,8 @@
     "scenario_id": "42_loc4_seg111_ego_1",
     "score": 0.5618231678117201,
     "overall": 0.7064486762275265,
-    "num_selected_agents": 7
+    "num_selected_agents": 7,
+    "agent_type": null
   },
   {
     "index": 17,
@@ -194,8 +211,9 @@
     "rank": 3,
     "scenario_id": "23_loc5_seg48_ego_1",
     "score": 0.5781732893915142,
-    "overall": 0.6434774783243983,
-    "num_selected_agents": 40
+    "overall": 0.6434282785543755,
+    "num_selected_agents": 40,
+    "agent_type": null
   },
   {
     "index": 18,
@@ -206,7 +224,8 @@
     "scenario_id": "34_loc0_seg49_ego_1",
     "score": 0.5796852072385257,
     "overall": 0.7274044248805003,
-    "num_selected_agents": 6
+    "num_selected_agents": 6,
+    "agent_type": null
   },
   {
     "index": 19,
@@ -217,7 +236,8 @@
     "scenario_id": "46_loc4_seg64_ego_1",
     "score": 0.5861116388871209,
     "overall": 0.7296311671194521,
-    "num_selected_agents": 3
+    "num_selected_agents": 3,
+    "agent_type": null
   },
   {
     "index": 20,
@@ -225,10 +245,11 @@
     "metric": "collision",
     "title": "Rollout-level collision",
     "rank": 1,
-    "scenario_id": "37_loc0_seg4_ego_1",
-    "score": 0.328125,
-    "overall": 0.5756145415728917,
-    "num_selected_agents": 2
+    "scenario_id": "17_loc1_seg61_ego_1",
+    "score": 0.15625,
+    "overall": 0.558289418194083,
+    "num_selected_agents": 9,
+    "agent_type": null
   },
   {
     "index": 21,
@@ -236,10 +257,11 @@
     "metric": "collision",
     "title": "Rollout-level collision",
     "rank": 2,
-    "scenario_id": "48_loc4_seg34_ego_1",
-    "score": 0.3576388888888889,
-    "overall": 0.6516253903100011,
-    "num_selected_agents": 5
+    "scenario_id": "39_loc0_seg44_ego_1",
+    "score": 0.15625,
+    "overall": 0.6709630282881537,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 22,
@@ -247,10 +269,11 @@
     "metric": "collision",
     "title": "Rollout-level collision",
     "rank": 3,
-    "scenario_id": "20_loc1_seg84_ego_1",
-    "score": 0.38125,
-    "overall": 0.566579585172793,
-    "num_selected_agents": 7
+    "scenario_id": "38_loc0_seg20_ego_1",
+    "score": 0.203125,
+    "overall": 0.7429335662897015,
+    "num_selected_agents": 4,
+    "agent_type": null
   },
   {
     "index": 23,
@@ -258,10 +281,11 @@
     "metric": "collision",
     "title": "Rollout-level collision",
     "rank": 4,
-    "scenario_id": "38_loc0_seg29_ego_1",
-    "score": 0.4166666666666667,
-    "overall": 0.6953156408834571,
-    "num_selected_agents": 6
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.328125,
+    "overall": 0.5629918411623925,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 24,
@@ -269,10 +293,11 @@
     "metric": "collision",
     "title": "Rollout-level collision",
     "rank": 5,
-    "scenario_id": "15_loc1_seg16_ego_1",
-    "score": 0.453125,
-    "overall": 0.6883625709259508,
-    "num_selected_agents": 3
+    "scenario_id": "48_loc4_seg34_ego_1",
+    "score": 0.3541666666666667,
+    "overall": 0.6206874225238057,
+    "num_selected_agents": 5,
+    "agent_type": null
   },
   {
     "index": 25,
@@ -280,10 +305,11 @@
     "metric": "valid_region",
     "title": "GT-relative valid region",
     "rank": 1,
-    "scenario_id": "39_loc0_seg105_ego_1",
-    "score": 0.65390625,
-    "overall": 0.7634822951039782,
-    "num_selected_agents": 4
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.81484375,
+    "overall": 0.5629918411623925,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 26,
@@ -291,10 +317,11 @@
     "metric": "valid_region",
     "title": "GT-relative valid region",
     "rank": 2,
-    "scenario_id": "07_loc3_seg84_ego_1",
-    "score": 0.8333333333333334,
-    "overall": 0.7651048834853247,
-    "num_selected_agents": 7
+    "scenario_id": "48_loc4_seg34_ego_1",
+    "score": 0.820703125,
+    "overall": 0.6206874225238057,
+    "num_selected_agents": 5,
+    "agent_type": null
   },
   {
     "index": 27,
@@ -302,10 +329,11 @@
     "metric": "valid_region",
     "title": "GT-relative valid region",
     "rank": 3,
-    "scenario_id": "43_loc4_seg34_ego_1",
-    "score": 0.8691450765669515,
-    "overall": 0.6461691122175678,
-    "num_selected_agents": 8
+    "scenario_id": "44_loc4_seg37_ego_1",
+    "score": 0.8284942639614968,
+    "overall": 0.6797063401339176,
+    "num_selected_agents": 10,
+    "agent_type": null
   },
   {
     "index": 28,
@@ -313,10 +341,11 @@
     "metric": "valid_region",
     "title": "GT-relative valid region",
     "rank": 4,
-    "scenario_id": "45_loc4_seg45_ego_1",
-    "score": 0.8755933544303798,
-    "overall": 0.6367804004104228,
-    "num_selected_agents": 7
+    "scenario_id": "21_loc1_seg58_ego_1",
+    "score": 0.8468478040882412,
+    "overall": 0.7122261021562303,
+    "num_selected_agents": 5,
+    "agent_type": null
   },
   {
     "index": 29,
@@ -324,10 +353,11 @@
     "metric": "valid_region",
     "title": "GT-relative valid region",
     "rank": 5,
-    "scenario_id": "37_loc0_seg4_ego_1",
-    "score": 0.8763671875,
-    "overall": 0.5756145415728917,
-    "num_selected_agents": 2
+    "scenario_id": "09_loc3_seg132_ego_1",
+    "score": 0.8597964610367667,
+    "overall": 0.648253325086585,
+    "num_selected_agents": 35,
+    "agent_type": null
   },
   {
     "index": 30,
@@ -337,8 +367,9 @@
     "rank": 1,
     "scenario_id": "37_loc0_seg114_ego_1",
     "score": 0.025687266141176224,
-    "overall": 0.5623017596557474,
-    "num_selected_agents": 2
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 31,
@@ -348,8 +379,9 @@
     "rank": 2,
     "scenario_id": "19_loc1_seg5_ego_1",
     "score": 0.20224819236017508,
-    "overall": 0.600237794096452,
-    "num_selected_agents": 8
+    "overall": 0.5770638990461611,
+    "num_selected_agents": 8,
+    "agent_type": null
   },
   {
     "index": 32,
@@ -360,7 +392,8 @@
     "scenario_id": "45_loc4_seg12_ego_1",
     "score": 0.2957313023507595,
     "overall": 0.7410197559327314,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 33,
@@ -370,8 +403,9 @@
     "rank": 4,
     "scenario_id": "39_loc0_seg29_ego_1",
     "score": 0.3221629932522774,
-    "overall": 0.7315094369637503,
-    "num_selected_agents": 2
+    "overall": 0.7300921169628051,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 34,
@@ -382,7 +416,8 @@
     "scenario_id": "42_loc4_seg66_ego_1",
     "score": 0.3267877617230018,
     "overall": 0.6640493036387903,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 35,
@@ -392,8 +427,9 @@
     "rank": 1,
     "scenario_id": "37_loc0_seg4_ego_1",
     "score": 0.22187500540167093,
-    "overall": 0.5756145415728917,
-    "num_selected_agents": 2
+    "overall": 0.5629918411623925,
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 36,
@@ -403,8 +439,9 @@
     "rank": 2,
     "scenario_id": "02_loc3_seg128_ego_1",
     "score": 0.32485837855848015,
-    "overall": 0.7769702522838294,
-    "num_selected_agents": 23
+    "overall": 0.7769992289981272,
+    "num_selected_agents": 23,
+    "agent_type": null
   },
   {
     "index": 37,
@@ -415,7 +452,8 @@
     "scenario_id": "26_loc5_seg103_ego_1",
     "score": 0.3637152711550395,
     "overall": 0.7969075175036751,
-    "num_selected_agents": 5
+    "num_selected_agents": 5,
+    "agent_type": null
   },
   {
     "index": 38,
@@ -425,8 +463,9 @@
     "rank": 4,
     "scenario_id": "08_loc3_seg126_ego_1",
     "score": 0.3683803023757426,
-    "overall": 0.6558396694027823,
-    "num_selected_agents": 11
+    "overall": 0.6480645786957775,
+    "num_selected_agents": 11,
+    "agent_type": null
   },
   {
     "index": 39,
@@ -437,7 +476,8 @@
     "scenario_id": "05_loc3_seg16_ego_1",
     "score": 0.37514229379227565,
     "overall": 0.7704907255797988,
-    "num_selected_agents": 20
+    "num_selected_agents": 20,
+    "agent_type": null
   },
   {
     "index": 40,
@@ -448,7 +488,8 @@
     "scenario_id": "45_loc4_seg33_ego_1",
     "score": 0.0,
     "overall": 0.8227684899463339,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 41,
@@ -459,7 +500,8 @@
     "scenario_id": "08_loc3_seg88_ego_1",
     "score": 0.0011350784620002608,
     "overall": 0.808424428314421,
-    "num_selected_agents": 7
+    "num_selected_agents": 7,
+    "agent_type": null
   },
   {
     "index": 42,
@@ -470,7 +512,8 @@
     "scenario_id": "05_loc3_seg62_ego_1",
     "score": 0.002401260991354886,
     "overall": 0.80376547642495,
-    "num_selected_agents": 18
+    "num_selected_agents": 18,
+    "agent_type": null
   },
   {
     "index": 43,
@@ -481,7 +524,8 @@
     "scenario_id": "19_loc1_seg113_ego_1",
     "score": 0.0031314323970044987,
     "overall": 0.6176377090791416,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
   },
   {
     "index": 44,
@@ -492,6 +536,1267 @@
     "scenario_id": "15_loc1_seg85_ego_1",
     "score": 0.003323657685049706,
     "overall": 0.8307901833977721,
-    "num_selected_agents": 2
+    "num_selected_agents": 2,
+    "agent_type": null
+  },
+  {
+    "index": 45,
+    "family": "type_vehicle",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 1,
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.021075750969091245,
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 46,
+    "family": "type_vehicle",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 2,
+    "scenario_id": "46_loc4_seg101_ego_1",
+    "score": 0.05015870696084481,
+    "overall": 0.7683884910950918,
+    "num_selected_agents": 14,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 47,
+    "family": "type_vehicle",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 3,
+    "scenario_id": "19_loc1_seg71_ego_1",
+    "score": 0.06351902779502186,
+    "overall": 0.6851058494126646,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 48,
+    "family": "type_vehicle",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 4,
+    "scenario_id": "27_loc5_seg90_ego_1",
+    "score": 0.08274899901044311,
+    "overall": 0.6508726257427038,
+    "num_selected_agents": 28,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 49,
+    "family": "type_vehicle",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 5,
+    "scenario_id": "25_loc5_seg53_ego_1",
+    "score": 0.09435086723607153,
+    "overall": 0.7894930994931156,
+    "num_selected_agents": 6,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 50,
+    "family": "type_vehicle",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 1,
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.028063507927226273,
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 51,
+    "family": "type_vehicle",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 2,
+    "scenario_id": "39_loc0_seg115_ego_1",
+    "score": 0.0963886060673657,
+    "overall": 0.7511038337536012,
+    "num_selected_agents": 10,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 52,
+    "family": "type_vehicle",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 3,
+    "scenario_id": "36_loc0_seg46_ego_1",
+    "score": 0.09799139689720195,
+    "overall": 0.7358773362323187,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 53,
+    "family": "type_vehicle",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 4,
+    "scenario_id": "46_loc4_seg42_ego_1",
+    "score": 0.09965043887378904,
+    "overall": 0.775664502086887,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 54,
+    "family": "type_vehicle",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 5,
+    "scenario_id": "39_loc0_seg9_ego_1",
+    "score": 0.10049232577658986,
+    "overall": 0.7637866485601632,
+    "num_selected_agents": 8,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 55,
+    "family": "type_vehicle",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 1,
+    "scenario_id": "46_loc4_seg57_ego_1",
+    "score": 0.049535804871078386,
+    "overall": 0.6917393902280167,
+    "num_selected_agents": 9,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 56,
+    "family": "type_vehicle",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 2,
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.05360129271173912,
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 57,
+    "family": "type_vehicle",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 3,
+    "scenario_id": "46_loc4_seg73_ego_1",
+    "score": 0.08061799058799733,
+    "overall": 0.732562484652236,
+    "num_selected_agents": 6,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 58,
+    "family": "type_vehicle",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 4,
+    "scenario_id": "29_loc5_seg42_ego_1",
+    "score": 0.08438482044348888,
+    "overall": 0.7566674316523855,
+    "num_selected_agents": 5,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 59,
+    "family": "type_vehicle",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 5,
+    "scenario_id": "39_loc0_seg105_ego_1",
+    "score": 0.13131169809283516,
+    "overall": 0.8246188533292979,
+    "num_selected_agents": 4,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 60,
+    "family": "type_vehicle",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 1,
+    "scenario_id": "25_loc5_seg77_ego_1",
+    "score": 0.21882796765007742,
+    "overall": 0.7262003266924918,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 61,
+    "family": "type_vehicle",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 2,
+    "scenario_id": "37_loc0_seg114_ego_1",
+    "score": 0.3133568181057588,
+    "overall": 0.5632637872694606,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 62,
+    "family": "type_vehicle",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 3,
+    "scenario_id": "43_loc4_seg34_ego_1",
+    "score": 0.44377045276033633,
+    "overall": 0.668798508253881,
+    "num_selected_agents": 8,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 63,
+    "family": "type_vehicle",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 4,
+    "scenario_id": "46_loc4_seg57_ego_1",
+    "score": 0.4983778056505089,
+    "overall": 0.6917393902280167,
+    "num_selected_agents": 9,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 64,
+    "family": "type_vehicle",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 5,
+    "scenario_id": "10_loc3_seg40_ego_1",
+    "score": 0.5384693580367004,
+    "overall": 0.7457488294853835,
+    "num_selected_agents": 6,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 65,
+    "family": "type_vehicle",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 1,
+    "scenario_id": "15_loc1_seg16_ego_1",
+    "score": 0.0,
+    "overall": 0.6883655002232,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 66,
+    "family": "type_vehicle",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 2,
+    "scenario_id": "38_loc0_seg111_ego_1",
+    "score": 0.0,
+    "overall": 0.7730715371598682,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 67,
+    "family": "type_vehicle",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 3,
+    "scenario_id": "38_loc0_seg20_ego_1",
+    "score": 0.0,
+    "overall": 0.7429335662897015,
+    "num_selected_agents": 4,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 68,
+    "family": "type_vehicle",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 4,
+    "scenario_id": "38_loc0_seg35_ego_1",
+    "score": 0.0,
+    "overall": 0.7063216181336963,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 69,
+    "family": "type_vehicle",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 5,
+    "scenario_id": "48_loc4_seg34_ego_1",
+    "score": 0.0,
+    "overall": 0.6206874225238057,
+    "num_selected_agents": 5,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 70,
+    "family": "type_vehicle",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 1,
+    "scenario_id": "21_loc1_seg58_ego_1",
+    "score": 0.6854508196721312,
+    "overall": 0.7122261021562303,
+    "num_selected_agents": 5,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 71,
+    "family": "type_vehicle",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 2,
+    "scenario_id": "43_loc4_seg25_ego_1",
+    "score": 0.76015625,
+    "overall": 0.8322404229884813,
+    "num_selected_agents": 3,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 72,
+    "family": "type_vehicle",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 3,
+    "scenario_id": "13_loc1_seg46_ego_1",
+    "score": 0.7778645833333333,
+    "overall": 0.7164372881337386,
+    "num_selected_agents": 8,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 73,
+    "family": "type_vehicle",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 4,
+    "scenario_id": "45_loc4_seg45_ego_1",
+    "score": 0.8070938818565401,
+    "overall": 0.6405533469601283,
+    "num_selected_agents": 7,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 74,
+    "family": "type_vehicle",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 5,
+    "scenario_id": "44_loc4_seg20_ego_1",
+    "score": 0.8331801470588236,
+    "overall": 0.7790346164326907,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 75,
+    "family": "type_vehicle",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 1,
+    "scenario_id": "08_loc3_seg102_ego_1",
+    "score": 0.0,
+    "overall": 0.8100326070932787,
+    "num_selected_agents": 9,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 76,
+    "family": "type_vehicle",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 2,
+    "scenario_id": "15_loc1_seg85_ego_1",
+    "score": 0.0,
+    "overall": 0.8307901833977721,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 77,
+    "family": "type_vehicle",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 3,
+    "scenario_id": "16_loc1_seg32_ego_1",
+    "score": 0.0,
+    "overall": 0.7288839574463353,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 78,
+    "family": "type_vehicle",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 4,
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.0,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 79,
+    "family": "type_vehicle",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 5,
+    "scenario_id": "20_loc1_seg103_ego_1",
+    "score": 0.0,
+    "overall": 0.7393344457591676,
+    "num_selected_agents": 2,
+    "agent_type": "vehicle"
+  },
+  {
+    "index": 80,
+    "family": "type_two_wheeler",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 1,
+    "scenario_id": "38_loc0_seg126_ego_1",
+    "score": 0.0005346606545650687,
+    "overall": 0.6064638010110063,
+    "num_selected_agents": 4,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 81,
+    "family": "type_two_wheeler",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 2,
+    "scenario_id": "42_loc4_seg66_ego_1",
+    "score": 0.0006890636219840387,
+    "overall": 0.6640493036387903,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 82,
+    "family": "type_two_wheeler",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 3,
+    "scenario_id": "20_loc1_seg103_ego_1",
+    "score": 0.0011894433436866877,
+    "overall": 0.7393344457591676,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 83,
+    "family": "type_two_wheeler",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 4,
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.002054819170876872,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 84,
+    "family": "type_two_wheeler",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 5,
+    "scenario_id": "27_loc5_seg97_ego_1",
+    "score": 0.02812325304831921,
+    "overall": 0.7340955853182795,
+    "num_selected_agents": 5,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 85,
+    "family": "type_two_wheeler",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 1,
+    "scenario_id": "34_loc0_seg109_ego_1",
+    "score": 0.04373559490048736,
+    "overall": 0.7834954012157557,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 86,
+    "family": "type_two_wheeler",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 2,
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.05410180196168745,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 87,
+    "family": "type_two_wheeler",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 3,
+    "scenario_id": "38_loc0_seg29_ego_1",
+    "score": 0.054308467060939274,
+    "overall": 0.6954159840179822,
+    "num_selected_agents": 6,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 88,
+    "family": "type_two_wheeler",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 4,
+    "scenario_id": "32_loc0_seg16_ego_1",
+    "score": 0.05431146217147673,
+    "overall": 0.7240780819032092,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 89,
+    "family": "type_two_wheeler",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 5,
+    "scenario_id": "37_loc0_seg34_ego_1",
+    "score": 0.05828092905089118,
+    "overall": 0.8352701096462146,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 90,
+    "family": "type_two_wheeler",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 1,
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.08197342720238752,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 91,
+    "family": "type_two_wheeler",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 2,
+    "scenario_id": "46_loc4_seg42_ego_1",
+    "score": 0.12006267868209686,
+    "overall": 0.775664502086887,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 92,
+    "family": "type_two_wheeler",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 3,
+    "scenario_id": "46_loc4_seg64_ego_1",
+    "score": 0.12561135851936692,
+    "overall": 0.7296311671194521,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 93,
+    "family": "type_two_wheeler",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 4,
+    "scenario_id": "09_loc3_seg34_ego_1",
+    "score": 0.15352374690382273,
+    "overall": 0.7114121432703775,
+    "num_selected_agents": 18,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 94,
+    "family": "type_two_wheeler",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 5,
+    "scenario_id": "38_loc0_seg12_ego_1",
+    "score": 0.15788076570046064,
+    "overall": 0.6976036544572977,
+    "num_selected_agents": 4,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 95,
+    "family": "type_two_wheeler",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 1,
+    "scenario_id": "34_loc0_seg49_ego_1",
+    "score": 0.16089309624634662,
+    "overall": 0.7274044248805003,
+    "num_selected_agents": 6,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 96,
+    "family": "type_two_wheeler",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 2,
+    "scenario_id": "46_loc4_seg64_ego_1",
+    "score": 0.17222327777424193,
+    "overall": 0.7296311671194521,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 97,
+    "family": "type_two_wheeler",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 3,
+    "scenario_id": "43_loc4_seg52_ego_1",
+    "score": 0.20282249480226291,
+    "overall": 0.7175154099690754,
+    "num_selected_agents": 5,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 98,
+    "family": "type_two_wheeler",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 4,
+    "scenario_id": "19_loc1_seg113_ego_1",
+    "score": 0.266081689513381,
+    "overall": 0.6176377090791416,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 99,
+    "family": "type_two_wheeler",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 5,
+    "scenario_id": "46_loc4_seg42_ego_1",
+    "score": 0.3136472602142851,
+    "overall": 0.775664502086887,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 100,
+    "family": "type_two_wheeler",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 1,
+    "scenario_id": "17_loc1_seg61_ego_1",
+    "score": 0.0,
+    "overall": 0.558289418194083,
+    "num_selected_agents": 9,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 101,
+    "family": "type_two_wheeler",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 2,
+    "scenario_id": "34_loc0_seg62_ego_1",
+    "score": 0.0,
+    "overall": 0.674993650856249,
+    "num_selected_agents": 3,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 102,
+    "family": "type_two_wheeler",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 3,
+    "scenario_id": "20_loc1_seg84_ego_1",
+    "score": 0.125,
+    "overall": 0.5658630549821553,
+    "num_selected_agents": 7,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 103,
+    "family": "type_two_wheeler",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 4,
+    "scenario_id": "20_loc1_seg25_ego_1",
+    "score": 0.203125,
+    "overall": 0.6745825082008908,
+    "num_selected_agents": 14,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 104,
+    "family": "type_two_wheeler",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 5,
+    "scenario_id": "02_loc3_seg21_ego_1",
+    "score": 0.375,
+    "overall": 0.7619677531746535,
+    "num_selected_agents": 17,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 105,
+    "family": "type_two_wheeler",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 1,
+    "scenario_id": "48_loc4_seg34_ego_1",
+    "score": 0.46210937500000004,
+    "overall": 0.6206874225238057,
+    "num_selected_agents": 5,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 106,
+    "family": "type_two_wheeler",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 2,
+    "scenario_id": "33_loc0_seg129_ego_1",
+    "score": 0.597265625,
+    "overall": 0.7947190118881977,
+    "num_selected_agents": 4,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 107,
+    "family": "type_two_wheeler",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 3,
+    "scenario_id": "37_loc0_seg4_ego_1",
+    "score": 0.6296875,
+    "overall": 0.5629918411623925,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 108,
+    "family": "type_two_wheeler",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 4,
+    "scenario_id": "21_loc1_seg79_ego_1",
+    "score": 0.6625,
+    "overall": 0.7511880738257833,
+    "num_selected_agents": 7,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 109,
+    "family": "type_two_wheeler",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 5,
+    "scenario_id": "19_loc1_seg5_ego_1",
+    "score": 0.737109375,
+    "overall": 0.5770638990461611,
+    "num_selected_agents": 8,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 110,
+    "family": "type_two_wheeler",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 1,
+    "scenario_id": "09_loc3_seg139_ego_1",
+    "score": 0.0,
+    "overall": 0.8360360824115625,
+    "num_selected_agents": 6,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 111,
+    "family": "type_two_wheeler",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 2,
+    "scenario_id": "32_loc0_seg106_ego_1",
+    "score": 0.0,
+    "overall": 0.7623504081636489,
+    "num_selected_agents": 5,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 112,
+    "family": "type_two_wheeler",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 3,
+    "scenario_id": "45_loc4_seg33_ego_1",
+    "score": 0.0,
+    "overall": 0.8227684899463339,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 113,
+    "family": "type_two_wheeler",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 4,
+    "scenario_id": "02_loc3_seg56_ego_1",
+    "score": 0.00031757421799567744,
+    "overall": 0.7502616761380501,
+    "num_selected_agents": 15,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 114,
+    "family": "type_two_wheeler",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 5,
+    "scenario_id": "47_loc4_seg127_ego_1",
+    "score": 0.0006720430107526881,
+    "overall": 0.84710551888019,
+    "num_selected_agents": 2,
+    "agent_type": "two_wheeler"
+  },
+  {
+    "index": 115,
+    "family": "type_pedestrian",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 1,
+    "scenario_id": "20_loc1_seg59_ego_1",
+    "score": 0.02426257408782132,
+    "overall": 0.6228336557883117,
+    "num_selected_agents": 12,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 116,
+    "family": "type_pedestrian",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 2,
+    "scenario_id": "40_loc4_seg14_ego_1",
+    "score": 0.09846849496042455,
+    "overall": 0.7705297702110375,
+    "num_selected_agents": 11,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 117,
+    "family": "type_pedestrian",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 3,
+    "scenario_id": "44_loc4_seg108_ego_1",
+    "score": 0.18663900167073155,
+    "overall": 0.687686039399417,
+    "num_selected_agents": 8,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 118,
+    "family": "type_pedestrian",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 4,
+    "scenario_id": "28_loc5_seg115_ego_1",
+    "score": 0.2402149178875026,
+    "overall": 0.7190566335121172,
+    "num_selected_agents": 34,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 119,
+    "family": "type_pedestrian",
+    "metric": "linear_speed",
+    "title": "Linear speed",
+    "rank": 5,
+    "scenario_id": "11_loc3_seg130_ego_1",
+    "score": 0.33466261740847475,
+    "overall": 0.7018201727916824,
+    "num_selected_agents": 28,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 120,
+    "family": "type_pedestrian",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 1,
+    "scenario_id": "25_loc5_seg87_ego_1",
+    "score": 0.051258046782438546,
+    "overall": 0.6286184545044536,
+    "num_selected_agents": 25,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 121,
+    "family": "type_pedestrian",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 2,
+    "scenario_id": "20_loc1_seg59_ego_1",
+    "score": 0.07283173125327728,
+    "overall": 0.6228336557883117,
+    "num_selected_agents": 12,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 122,
+    "family": "type_pedestrian",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 3,
+    "scenario_id": "27_loc5_seg45_ego_1",
+    "score": 0.0786981918917452,
+    "overall": 0.7539005054608181,
+    "num_selected_agents": 16,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 123,
+    "family": "type_pedestrian",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 4,
+    "scenario_id": "27_loc5_seg76_ego_1",
+    "score": 0.08070638817162562,
+    "overall": 0.7737797497445655,
+    "num_selected_agents": 18,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 124,
+    "family": "type_pedestrian",
+    "metric": "linear_acceleration",
+    "title": "Linear acceleration",
+    "rank": 5,
+    "scenario_id": "25_loc5_seg58_ego_1",
+    "score": 0.08465156674534229,
+    "overall": 0.7591781182434787,
+    "num_selected_agents": 16,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 125,
+    "family": "type_pedestrian",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 1,
+    "scenario_id": "21_loc1_seg57_ego_1",
+    "score": 0.003544373970408321,
+    "overall": 0.7043117114532049,
+    "num_selected_agents": 9,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 126,
+    "family": "type_pedestrian",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 2,
+    "scenario_id": "39_loc0_seg37_ego_1",
+    "score": 0.004392619704461091,
+    "overall": 0.7062323369389965,
+    "num_selected_agents": 9,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 127,
+    "family": "type_pedestrian",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 3,
+    "scenario_id": "12_loc1_seg16_ego_1",
+    "score": 0.006830371422945746,
+    "overall": 0.678186634519171,
+    "num_selected_agents": 43,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 128,
+    "family": "type_pedestrian",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 4,
+    "scenario_id": "38_loc0_seg86_ego_1",
+    "score": 0.007624221898266866,
+    "overall": 0.6950932654034291,
+    "num_selected_agents": 2,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 129,
+    "family": "type_pedestrian",
+    "metric": "angular_speed",
+    "title": "Angular speed",
+    "rank": 5,
+    "scenario_id": "13_loc1_seg81_ego_1",
+    "score": 0.012912376524339426,
+    "overall": 0.7325149296691255,
+    "num_selected_agents": 48,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 130,
+    "family": "type_pedestrian",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 1,
+    "scenario_id": "30_loc5_seg95_ego_1",
+    "score": 0.07208267780604664,
+    "overall": 0.759375309038218,
+    "num_selected_agents": 17,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 131,
+    "family": "type_pedestrian",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 2,
+    "scenario_id": "32_loc0_seg52_ego_1",
+    "score": 0.07377876610856508,
+    "overall": 0.6857543262779638,
+    "num_selected_agents": 49,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 132,
+    "family": "type_pedestrian",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 3,
+    "scenario_id": "39_loc0_seg37_ego_1",
+    "score": 0.08052485898110791,
+    "overall": 0.7062323369389965,
+    "num_selected_agents": 9,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 133,
+    "family": "type_pedestrian",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 4,
+    "scenario_id": "23_loc5_seg48_ego_1",
+    "score": 0.09481067200368766,
+    "overall": 0.6434282785543755,
+    "num_selected_agents": 40,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 134,
+    "family": "type_pedestrian",
+    "metric": "angular_acceleration",
+    "title": "Angular acceleration",
+    "rank": 5,
+    "scenario_id": "29_loc5_seg135_ego_1",
+    "score": 0.09814977230943522,
+    "overall": 0.6688503177959446,
+    "num_selected_agents": 17,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 135,
+    "family": "type_pedestrian",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 1,
+    "scenario_id": "04_loc3_seg142_ego_1",
+    "score": 0.0,
+    "overall": 0.7166184692684361,
+    "num_selected_agents": 44,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 136,
+    "family": "type_pedestrian",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 2,
+    "scenario_id": "06_loc3_seg91_ego_1",
+    "score": 0.0,
+    "overall": 0.7866271541449739,
+    "num_selected_agents": 8,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 137,
+    "family": "type_pedestrian",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 3,
+    "scenario_id": "08_loc3_seg32_ego_1",
+    "score": 0.0,
+    "overall": 0.7211348806999798,
+    "num_selected_agents": 15,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 138,
+    "family": "type_pedestrian",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 4,
+    "scenario_id": "09_loc3_seg132_ego_1",
+    "score": 0.0,
+    "overall": 0.648253325086585,
+    "num_selected_agents": 35,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 139,
+    "family": "type_pedestrian",
+    "metric": "collision",
+    "title": "Rollout-level collision",
+    "rank": 5,
+    "scenario_id": "09_loc3_seg28_ego_1",
+    "score": 0.0,
+    "overall": 0.7683828148026045,
+    "num_selected_agents": 22,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 140,
+    "family": "type_pedestrian",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 1,
+    "scenario_id": "44_loc4_seg37_ego_1",
+    "score": 0.48604368932038833,
+    "overall": 0.6797063401339176,
+    "num_selected_agents": 10,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 141,
+    "family": "type_pedestrian",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 2,
+    "scenario_id": "09_loc3_seg132_ego_1",
+    "score": 0.580859375,
+    "overall": 0.648253325086585,
+    "num_selected_agents": 35,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 142,
+    "family": "type_pedestrian",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 3,
+    "scenario_id": "22_loc5_seg60_ego_1",
+    "score": 0.616796875,
+    "overall": 0.7122096482580471,
+    "num_selected_agents": 13,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 143,
+    "family": "type_pedestrian",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 4,
+    "scenario_id": "11_loc3_seg109_ego_1",
+    "score": 0.675,
+    "overall": 0.6977953318323075,
+    "num_selected_agents": 30,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 144,
+    "family": "type_pedestrian",
+    "metric": "valid_region",
+    "title": "GT-relative valid region",
+    "rank": 5,
+    "scenario_id": "12_loc1_seg16_ego_1",
+    "score": 0.7125,
+    "overall": 0.678186634519171,
+    "num_selected_agents": 43,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 145,
+    "family": "type_pedestrian",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 1,
+    "scenario_id": "07_loc3_seg90_ego_1",
+    "score": 0.0,
+    "overall": 0.7342175122322296,
+    "num_selected_agents": 32,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 146,
+    "family": "type_pedestrian",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 2,
+    "scenario_id": "08_loc3_seg1_ego_1",
+    "score": 0.0,
+    "overall": 0.8276229818975637,
+    "num_selected_agents": 18,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 147,
+    "family": "type_pedestrian",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 3,
+    "scenario_id": "10_loc3_seg105_ego_1",
+    "score": 0.0,
+    "overall": 0.743829954193803,
+    "num_selected_agents": 11,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 148,
+    "family": "type_pedestrian",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 4,
+    "scenario_id": "11_loc3_seg78_ego_1",
+    "score": 0.0,
+    "overall": 0.7791810160667086,
+    "num_selected_agents": 13,
+    "agent_type": "pedestrian"
+  },
+  {
+    "index": 149,
+    "family": "type_pedestrian",
+    "metric": "coverage",
+    "title": "Diversity bonus",
+    "rank": 5,
+    "scenario_id": "12_loc1_seg16_ego_1",
+    "score": 0.0,
+    "overall": 0.678186634519171,
+    "num_selected_agents": 43,
+    "agent_type": "pedestrian"
   }
 ]
