@@ -1,0 +1,1632 @@
+{
+  "03_loc3_seg66_ego_1": {
+    "agent_ids": [
+      781,
+      793,
+      800,
+      814,
+      862,
+      889,
+      897,
+      915
+    ],
+    "count": 8,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          10,
+          20
+        ],
+        "agent_ids": [
+          800,
+          862
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "vehicle"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.4076305761529624,
+        "path_distance_m": 0.17359693348407745,
+        "conflict_distance_m": 1.6945031881332397,
+        "clearance_m": 1.7970000207424164,
+        "arrival_gap_s": 1.0,
+        "arrival_indices": [
+          29,
+          19
+        ],
+        "min_synchronous_distance_m": 2.5684871673583984,
+        "future_path_only": false,
+        "motion_response_score": 1.0,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.8083837032318115,
+            "turn_response": 1.0,
+            "score": 1.0
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.041454315185546875,
+            "turn_response": 0.052781273394153644,
+            "score": 0.052781273394153644
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          13,
+          20
+        ],
+        "agent_ids": [
+          814,
+          862
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "vehicle"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3745990514248061,
+        "path_distance_m": 0.2239903211593628,
+        "conflict_distance_m": 1.691497564315796,
+        "clearance_m": 1.7815000116825104,
+        "arrival_gap_s": 1.1,
+        "arrival_indices": [
+          34,
+          23
+        ],
+        "min_synchronous_distance_m": 2.5234696865081787,
+        "future_path_only": false,
+        "motion_response_score": 0.8066750902468909,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.6335611343383789,
+            "turn_response": 0.8066750902468909,
+            "score": 0.8066750902468909
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.0639047622680664,
+            "turn_response": 0.08136607041660168,
+            "score": 0.08136607041660168
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          5,
+          44
+        ],
+        "agent_ids": [
+          781,
+          915
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.362922433451752,
+        "path_distance_m": 0.25892776250839233,
+        "conflict_distance_m": 1.6783332824707031,
+        "clearance_m": 1.7479499876499176,
+        "arrival_gap_s": 0.9,
+        "arrival_indices": [
+          16,
+          25
+        ],
+        "min_synchronous_distance_m": 5.12233304977417,
+        "future_path_only": true,
+        "motion_response_score": 1.0,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.880605936050415,
+            "turn_response": 1.0,
+            "score": 1.0
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.22976922988891602,
+            "turn_response": 0.2925512696579124,
+            "score": 0.2925512696579124
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          9,
+          13
+        ],
+        "agent_ids": [
+          793,
+          814
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.2899668661438919,
+        "path_distance_m": 0.028237268328666687,
+        "conflict_distance_m": 1.6424349546432495,
+        "clearance_m": 1.825899988412857,
+        "arrival_gap_s": 1.3,
+        "arrival_indices": [
+          79,
+          66
+        ],
+        "min_synchronous_distance_m": 4.628395080566406,
+        "future_path_only": false,
+        "motion_response_score": 0.38985778734147136,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.30619359016418457,
+            "turn_response": 0.38985778734147136,
+            "score": 0.38985778734147136
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.27176332473754883,
+            "turn_response": 0.3460198118645509,
+            "score": 0.3460198118645509
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          5,
+          30
+        ],
+        "agent_ids": [
+          781,
+          889
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.28346553064478713,
+        "path_distance_m": 0.5035383105278015,
+        "conflict_distance_m": 1.7059359550476074,
+        "clearance_m": 1.7446999847888947,
+        "arrival_gap_s": 1.3,
+        "arrival_indices": [
+          7,
+          20
+        ],
+        "min_synchronous_distance_m": 6.271154880523682,
+        "future_path_only": true,
+        "motion_response_score": 0.7513402367950418,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5901012420654297,
+            "turn_response": 0.7513402367950418,
+            "score": 0.7513402367950418
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.2780284881591797,
+            "turn_response": 0.3539968656871995,
+            "score": 0.3539968656871995
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          5,
+          33
+        ],
+        "agent_ids": [
+          781,
+          897
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.2293258143727006,
+        "path_distance_m": 0.255561500787735,
+        "conflict_distance_m": 1.6121809482574463,
+        "clearance_m": 1.7588499784469604,
+        "arrival_gap_s": 2.0,
+        "arrival_indices": [
+          7,
+          27
+        ],
+        "min_synchronous_distance_m": 8.78026008605957,
+        "future_path_only": true,
+        "motion_response_score": 0.7513402367950418,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5901012420654297,
+            "turn_response": 0.7513402367950418,
+            "score": 0.7513402367950418
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.11852884292602539,
+            "turn_response": 0.1509156100051182,
+            "score": 0.1509156100051182
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          9,
+          10
+        ],
+        "agent_ids": [
+          793,
+          800
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.17365527366484101,
+        "path_distance_m": 0.5192553997039795,
+        "conflict_distance_m": 1.6640857458114624,
+        "clearance_m": 1.841399997472763,
+        "arrival_gap_s": 2.5,
+        "arrival_indices": [
+          72,
+          47
+        ],
+        "min_synchronous_distance_m": 7.941005706787109,
+        "future_path_only": true,
+        "motion_response_score": 0.7199001171355652,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5066831111907959,
+            "turn_response": 0.6451289738175648,
+            "score": 0.6451289738175648
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5654082298278809,
+            "turn_response": 0.7199001171355652,
+            "score": 0.7199001171355652
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "15_loc1_seg16_ego_1": {
+    "agent_ids": [
+      110,
+      111
+    ],
+    "count": 2,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [],
+    "selection_mode": "fallback"
+  },
+  "21_loc1_seg79_ego_1": {
+    "agent_ids": [
+      490,
+      491
+    ],
+    "count": 2,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          6,
+          7
+        ],
+        "agent_ids": [
+          490,
+          491
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.29973583535890996,
+        "path_distance_m": 0.46444761753082275,
+        "conflict_distance_m": 1.5579302310943604,
+        "clearance_m": 1.7038500010967255,
+        "arrival_gap_s": 1.2000000000000002,
+        "arrival_indices": [
+          31,
+          43
+        ],
+        "min_synchronous_distance_m": 3.8693130016326904,
+        "future_path_only": false,
+        "motion_response_score": 0.2858355241019927,
+        "responses": [
+          {
+            "speed_drop": 0.11818488849985662,
+            "heading_change_rad": 0.22449469566345215,
+            "turn_response": 0.2858355241019927,
+            "score": 0.2858355241019927
+          },
+          {
+            "speed_drop": 0.2193998537408563,
+            "heading_change_rad": 0.1508469581604004,
+            "turn_response": 0.19206431233283233,
+            "score": 0.2193998537408563
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "23_loc5_seg119_ego_1": {
+    "agent_ids": [
+      994,
+      1839,
+      1967,
+      1973,
+      1975,
+      1977,
+      1978
+    ],
+    "count": 7,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          2,
+          16
+        ],
+        "agent_ids": [
+          994,
+          1967
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.5405353612087719,
+        "path_distance_m": 1.0833548307418823,
+        "conflict_distance_m": 1.1202610731124878,
+        "clearance_m": 1.3396999835968018,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          41,
+          41
+        ],
+        "min_synchronous_distance_m": 1.1202610731124878,
+        "future_path_only": false,
+        "motion_response_score": 0.39231908395438087,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.07242584228515625,
+            "turn_response": 0.09221544645821304,
+            "score": 0.09221544645821304
+          },
+          {
+            "speed_drop": 0.020425027982276914,
+            "heading_change_rad": 0.30812668800354004,
+            "turn_response": 0.39231908395438087,
+            "score": 0.39231908395438087
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          16,
+          23
+        ],
+        "agent_ids": [
+          1967,
+          1975
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "vehicle"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3770471131881196,
+        "path_distance_m": 0.46893730759620667,
+        "conflict_distance_m": 1.7602953910827637,
+        "clearance_m": 1.76910001039505,
+        "arrival_gap_s": 0.5,
+        "arrival_indices": [
+          8,
+          3
+        ],
+        "min_synchronous_distance_m": 2.4954476356506348,
+        "future_path_only": false,
+        "motion_response_score": 0.33049797930272456,
+        "responses": [
+          {
+            "speed_drop": 0.22788389152673175,
+            "heading_change_rad": 0.25957250595092773,
+            "turn_response": 0.33049797930272456,
+            "score": 0.33049797930272456
+          },
+          {
+            "speed_drop": 0.02420807051917625,
+            "heading_change_rad": 0.030987024307250977,
+            "turn_response": 0.03945390472166165,
+            "score": 0.03945390472166165
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          23,
+          25
+        ],
+        "agent_ids": [
+          1975,
+          1977
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3199727971748959,
+        "path_distance_m": 0.11021274328231812,
+        "conflict_distance_m": 1.6378021240234375,
+        "clearance_m": 1.798850029706955,
+        "arrival_gap_s": 0.9,
+        "arrival_indices": [
+          35,
+          44
+        ],
+        "min_synchronous_distance_m": 4.762223243713379,
+        "future_path_only": false,
+        "motion_response_score": 0.29929546919632166,
+        "responses": [
+          {
+            "speed_drop": 0.07286033246251189,
+            "heading_change_rad": 0.15852618217468262,
+            "turn_response": 0.20184180402069637,
+            "score": 0.20184180402069637
+          },
+          {
+            "speed_drop": 0.29929546919632166,
+            "heading_change_rad": 0.21985960006713867,
+            "turn_response": 0.2799339370951386,
+            "score": 0.29929546919632166
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          23,
+          26
+        ],
+        "agent_ids": [
+          1975,
+          1978
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3044345019659692,
+        "path_distance_m": 0.056612394750118256,
+        "conflict_distance_m": 1.5492205619812012,
+        "clearance_m": 1.8129000067710876,
+        "arrival_gap_s": 1.3,
+        "arrival_indices": [
+          43,
+          56
+        ],
+        "min_synchronous_distance_m": 7.8592610359191895,
+        "future_path_only": true,
+        "motion_response_score": 0.4065037172587002,
+        "responses": [
+          {
+            "speed_drop": 0.05875643990561816,
+            "heading_change_rad": 0.31926727294921875,
+            "turn_response": 0.4065037172587002,
+            "score": 0.4065037172587002
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.10305500030517578,
+            "turn_response": 0.13121370167124408,
+            "score": 0.13121370167124408
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          6,
+          22
+        ],
+        "agent_ids": [
+          1839,
+          1973
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.26682625692675427,
+        "path_distance_m": 1.2565504312515259,
+        "conflict_distance_m": 1.602960467338562,
+        "clearance_m": 1.6132000088691711,
+        "arrival_gap_s": 1.1,
+        "arrival_indices": [
+          21,
+          10
+        ],
+        "min_synchronous_distance_m": 4.0690016746521,
+        "future_path_only": false,
+        "motion_response_score": 0.23683317242194166,
+        "responses": [
+          {
+            "speed_drop": 0.23683317242194166,
+            "heading_change_rad": 0.06731557846069336,
+            "turn_response": 0.08570885647287733,
+            "score": 0.23683317242194166
+          },
+          {
+            "speed_drop": 0.1812902771679197,
+            "heading_change_rad": 0.07413387298583984,
+            "turn_response": 0.0943901786899451,
+            "score": 0.1812902771679197
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "23_loc5_seg83_ego_1": {
+    "agent_ids": [
+      1306,
+      1307,
+      1341,
+      1348,
+      1351,
+      1361,
+      1380,
+      1428,
+      1432,
+      1433,
+      1438,
+      1439,
+      1441
+    ],
+    "count": 13,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          12,
+          19
+        ],
+        "agent_ids": [
+          1307,
+          1348
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.5394477700069062,
+        "path_distance_m": 1.4456852674484253,
+        "conflict_distance_m": 1.4557594060897827,
+        "clearance_m": 1.7123999893665314,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          54,
+          54
+        ],
+        "min_synchronous_distance_m": 1.4557594060897827,
+        "future_path_only": false,
+        "motion_response_score": 0.5112061802610738,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 5.0067901611328125e-06,
+            "turn_response": 6.3748432253452345e-06,
+            "score": 6.3748432253452345e-06
+          },
+          {
+            "speed_drop": 0.5112061802610738,
+            "heading_change_rad": 0.04765772819519043,
+            "turn_response": 0.060679704150356395,
+            "score": 0.5112061802610738
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          11,
+          12
+        ],
+        "agent_ids": [
+          1306,
+          1307
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "vehicle"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.4626694385368805,
+        "path_distance_m": 1.5560191869735718,
+        "conflict_distance_m": 1.5601023435592651,
+        "clearance_m": 1.6546500027179718,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          15,
+          15
+        ],
+        "min_synchronous_distance_m": 1.5601023435592651,
+        "future_path_only": false,
+        "motion_response_score": 0.1815822486865861,
+        "responses": [
+          {
+            "speed_drop": 0.16712116238489313,
+            "heading_change_rad": 0.14261436462402344,
+            "turn_response": 0.1815822486865861,
+            "score": 0.1815822486865861
+          },
+          {
+            "speed_drop": 0.008005049079656601,
+            "heading_change_rad": 1.6689300537109375e-06,
+            "turn_response": 2.124947741781745e-06,
+            "score": 0.008005049079656601
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          21,
+          43
+        ],
+        "agent_ids": [
+          1361,
+          1439
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.40366454078901376,
+        "path_distance_m": 1.0534019470214844,
+        "conflict_distance_m": 1.615099549293518,
+        "clearance_m": 1.667600005865097,
+        "arrival_gap_s": 0.4,
+        "arrival_indices": [
+          58,
+          62
+        ],
+        "min_synchronous_distance_m": 1.9535331726074219,
+        "future_path_only": false,
+        "motion_response_score": 0.25234681309532714,
+        "responses": [
+          {
+            "speed_drop": 0.25234681309532714,
+            "heading_change_rad": 0.04979085922241211,
+            "turn_response": 0.06339569092831657,
+            "score": 0.25234681309532714
+          },
+          {
+            "speed_drop": 0.19472667937429675,
+            "heading_change_rad": 0.18454384803771973,
+            "turn_response": 0.2349685250592213,
+            "score": 0.2349685250592213
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          21,
+          39
+        ],
+        "agent_ids": [
+          1361,
+          1433
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.40224379356976175,
+        "path_distance_m": 1.6481908559799194,
+        "conflict_distance_m": 1.671189546585083,
+        "clearance_m": 1.7423000037670135,
+        "arrival_gap_s": 0.30000000000000004,
+        "arrival_indices": [
+          3,
+          0
+        ],
+        "min_synchronous_distance_m": 1.9888126850128174,
+        "future_path_only": false,
+        "motion_response_score": 0.08653689201555537,
+        "responses": [
+          {
+            "speed_drop": 0.08653689201555537,
+            "heading_change_rad": 0.016430377960205078,
+            "turn_response": 0.020919806953878167,
+            "score": 0.08653689201555537
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.061278343200683594,
+            "turn_response": 0.07802200979896344,
+            "score": 0.07802200979896344
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          21,
+          42
+        ],
+        "agent_ids": [
+          1361,
+          1438
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3494061467401502,
+        "path_distance_m": 1.600388526916504,
+        "conflict_distance_m": 1.632820725440979,
+        "clearance_m": 1.648800015449524,
+        "arrival_gap_s": 0.8,
+        "arrival_indices": [
+          2,
+          10
+        ],
+        "min_synchronous_distance_m": 1.9323251247406006,
+        "future_path_only": false,
+        "motion_response_score": 0.270248226723304,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.015318870544433594,
+            "turn_response": 0.019504591757851523,
+            "score": 0.019504591757851523
+          },
+          {
+            "speed_drop": 0.270248226723304,
+            "heading_change_rad": 0.09310269355773926,
+            "turn_response": 0.1185420311590733,
+            "score": 0.270248226723304
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          20,
+          38
+        ],
+        "agent_ids": [
+          1351,
+          1432
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.34385290562154486,
+        "path_distance_m": 1.1641484498977661,
+        "conflict_distance_m": 1.6645488739013672,
+        "clearance_m": 1.691349983215332,
+        "arrival_gap_s": 0.8,
+        "arrival_indices": [
+          22,
+          30
+        ],
+        "min_synchronous_distance_m": 2.4600322246551514,
+        "future_path_only": false,
+        "motion_response_score": 0.2925618943966213,
+        "responses": [
+          {
+            "speed_drop": 0.1422870279413063,
+            "heading_change_rad": 0.18728423118591309,
+            "turn_response": 0.23845768925122696,
+            "score": 0.23845768925122696
+          },
+          {
+            "speed_drop": 0.1724866171324487,
+            "heading_change_rad": 0.22977757453918457,
+            "turn_response": 0.2925618943966213,
+            "score": 0.2925618943966213
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          18,
+          38
+        ],
+        "agent_ids": [
+          1341,
+          1432
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.32555301270945913,
+        "path_distance_m": 0.046959422528743744,
+        "conflict_distance_m": 1.6045565605163574,
+        "clearance_m": 1.732200026512146,
+        "arrival_gap_s": 1.2000000000000002,
+        "arrival_indices": [
+          31,
+          43
+        ],
+        "min_synchronous_distance_m": 4.654120445251465,
+        "future_path_only": false,
+        "motion_response_score": 0.7547553313800481,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5927834510803223,
+            "turn_response": 0.7547553313800481,
+            "score": 0.7547553313800481
+          },
+          {
+            "speed_drop": 0.01840229257751043,
+            "heading_change_rad": 0.18574309349060059,
+            "turn_response": 0.23649545179367307,
+            "score": 0.23649545179367307
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          23,
+          45
+        ],
+        "agent_ids": [
+          1380,
+          1441
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.2495938954054917,
+        "path_distance_m": 1.444577693939209,
+        "conflict_distance_m": 1.6756950616836548,
+        "clearance_m": 1.7321500182151794,
+        "arrival_gap_s": 1.7000000000000002,
+        "arrival_indices": [
+          76,
+          59
+        ],
+        "min_synchronous_distance_m": 1.8907690048217773,
+        "future_path_only": false,
+        "motion_response_score": 0.21076020969295434,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.01912713050842285,
+            "turn_response": 0.024353418940634353,
+            "score": 0.024353418940634353
+          },
+          {
+            "speed_drop": 0.030269046653310167,
+            "heading_change_rad": 0.16553068161010742,
+            "turn_response": 0.21076020969295434,
+            "score": 0.21076020969295434
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          18,
+          35
+        ],
+        "agent_ids": [
+          1341,
+          1428
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.16919819495821342,
+        "path_distance_m": 1.1195106506347656,
+        "conflict_distance_m": 1.742233157157898,
+        "clearance_m": 1.7495500147342682,
+        "arrival_gap_s": 2.3000000000000003,
+        "arrival_indices": [
+          41,
+          64
+        ],
+        "min_synchronous_distance_m": 4.23381233215332,
+        "future_path_only": false,
+        "motion_response_score": 0.7032581335498569,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.5104317665100098,
+            "turn_response": 0.6499019100095698,
+            "score": 0.6499019100095698
+          },
+          {
+            "speed_drop": 0.38779184136558426,
+            "heading_change_rad": 0.552337646484375,
+            "turn_response": 0.7032581335498569,
+            "score": 0.7032581335498569
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "27_loc5_seg134_ego_1": {
+    "agent_ids": [
+      1183,
+      1380
+    ],
+    "count": 2,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          1,
+          19
+        ],
+        "agent_ids": [
+          1183,
+          1380
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "pedestrian"
+        ],
+        "pair_type": "pedestrian_two_wheeler",
+        "score": 0.67464471207739,
+        "path_distance_m": 0.8216366767883301,
+        "conflict_distance_m": 0.8217455744743347,
+        "clearance_m": 1.2143999874591827,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          20,
+          20
+        ],
+        "min_synchronous_distance_m": 0.8217455744743347,
+        "future_path_only": false,
+        "motion_response_score": 0.955802101381355,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.08347702026367188,
+            "turn_response": 0.10628624327636553,
+            "score": 0.10628624327636553
+          },
+          {
+            "speed_drop": 0.002353191375732422,
+            "heading_change_rad": 0.7506852149963379,
+            "turn_response": 0.955802101381355,
+            "score": 0.955802101381355
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "28_loc5_seg113_ego_1": {
+    "agent_ids": [
+      652,
+      702,
+      708,
+      821,
+      847,
+      981,
+      993,
+      997,
+      999,
+      1001,
+      1003,
+      1030,
+      1032,
+      1039
+    ],
+    "count": 14,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          6,
+          23
+        ],
+        "agent_ids": [
+          847,
+          1003
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "pedestrian"
+        ],
+        "pair_type": "pedestrian_two_wheeler",
+        "score": 0.6969059671439569,
+        "path_distance_m": 0.569401204586029,
+        "conflict_distance_m": 0.56963050365448,
+        "clearance_m": 1.2646999895572661,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          0,
+          0
+        ],
+        "min_synchronous_distance_m": 0.56963050365448,
+        "future_path_only": false,
+        "motion_response_score": 0.10982003137094858,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.08625245094299316,
+            "turn_response": 0.10982003137094858,
+            "score": 0.10982003137094858
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.0,
+            "turn_response": 0.0,
+            "score": 0.0
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          1,
+          26
+        ],
+        "agent_ids": [
+          652,
+          1030
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "pedestrian"
+        ],
+        "pair_type": "pedestrian_two_wheeler",
+        "score": 0.6865694440236072,
+        "path_distance_m": 0.6247954964637756,
+        "conflict_distance_m": 0.8210238218307495,
+        "clearance_m": 1.272999995946884,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          4,
+          4
+        ],
+        "min_synchronous_distance_m": 0.8210238218307495,
+        "future_path_only": false,
+        "motion_response_score": 0.9321829516577331,
+        "responses": [
+          {
+            "speed_drop": 0.9321829516577331,
+            "heading_change_rad": 0.22315120697021484,
+            "turn_response": 0.2841249411698584,
+            "score": 0.9321829516577331
+          },
+          {
+            "speed_drop": 0.299609899520874,
+            "heading_change_rad": 0.6418275833129883,
+            "turn_response": 0.817200259975899,
+            "score": 0.817200259975899
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          5,
+          32
+        ],
+        "agent_ids": [
+          821,
+          1039
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "pedestrian"
+        ],
+        "pair_type": "pedestrian_two_wheeler",
+        "score": 0.6364072130238426,
+        "path_distance_m": 0.9629936814308167,
+        "conflict_distance_m": 0.9656294584274292,
+        "clearance_m": 1.2621500134468078,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          79,
+          79
+        ],
+        "min_synchronous_distance_m": 0.9656294584274292,
+        "future_path_only": false,
+        "motion_response_score": 1.0,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.0,
+            "turn_response": 0.0,
+            "score": 0.0
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.9577353000640869,
+            "turn_response": 1.0,
+            "score": 1.0
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          5,
+          27
+        ],
+        "agent_ids": [
+          821,
+          1032
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "pedestrian"
+        ],
+        "pair_type": "pedestrian_two_wheeler",
+        "score": 0.5737552585263459,
+        "path_distance_m": 0.8490747809410095,
+        "conflict_distance_m": 1.1320204734802246,
+        "clearance_m": 1.2621500134468078,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          9,
+          9
+        ],
+        "min_synchronous_distance_m": 1.1320204734802246,
+        "future_path_only": false,
+        "motion_response_score": 1.0,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 1.239776611328125e-05,
+            "turn_response": 1.5785326081807246e-05,
+            "score": 1.5785326081807246e-05
+          },
+          {
+            "speed_drop": 0.7348995804786682,
+            "heading_change_rad": 3.085113525390625,
+            "turn_response": 1.0,
+            "score": 1.0
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          15,
+          21
+        ],
+        "agent_ids": [
+          981,
+          999
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.457487567433139,
+        "path_distance_m": 1.5189056396484375,
+        "conflict_distance_m": 1.7111588716506958,
+        "clearance_m": 1.7991999983787537,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          43,
+          43
+        ],
+        "min_synchronous_distance_m": 1.7111588716506958,
+        "future_path_only": false,
+        "motion_response_score": 0.19690676467238982,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.11695623397827148,
+            "turn_response": 0.14891330210443354,
+            "score": 0.14891330210443354
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.15465021133422852,
+            "turn_response": 0.19690676467238982,
+            "score": 0.19690676467238982
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          15,
+          20
+        ],
+        "agent_ids": [
+          981,
+          997
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.3536965028510025,
+        "path_distance_m": 1.660810947418213,
+        "conflict_distance_m": 1.6886813640594482,
+        "clearance_m": 1.754150003194809,
+        "arrival_gap_s": 0.9,
+        "arrival_indices": [
+          79,
+          70
+        ],
+        "min_synchronous_distance_m": 1.7802188396453857,
+        "future_path_only": false,
+        "motion_response_score": 0.2750591481350489,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.030719757080078125,
+            "turn_response": 0.039113609519013465,
+            "score": 0.039113609519013465
+          },
+          {
+            "speed_drop": 0.2750591481350489,
+            "heading_change_rad": 0.04756784439086914,
+            "turn_response": 0.060565260536263286,
+            "score": 0.2750591481350489
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          2,
+          18
+        ],
+        "agent_ids": [
+          702,
+          993
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.23337703264186374,
+        "path_distance_m": 1.678914189338684,
+        "conflict_distance_m": 1.8006114959716797,
+        "clearance_m": 1.823250025510788,
+        "arrival_gap_s": 1.4000000000000001,
+        "arrival_indices": [
+          17,
+          31
+        ],
+        "min_synchronous_distance_m": 3.9367988109588623,
+        "future_path_only": false,
+        "motion_response_score": 0.19858881259199163,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.15597128868103027,
+            "turn_response": 0.19858881259199163,
+            "score": 0.19858881259199163
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.1534719467163086,
+            "turn_response": 0.1954065515666919,
+            "score": 0.1954065515666919
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          15,
+          18
+        ],
+        "agent_ids": [
+          981,
+          993
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.19391347257438465,
+        "path_distance_m": 1.690413236618042,
+        "conflict_distance_m": 1.8510398864746094,
+        "clearance_m": 1.865550011396408,
+        "arrival_gap_s": 2.0,
+        "arrival_indices": [
+          51,
+          31
+        ],
+        "min_synchronous_distance_m": 2.289695978164673,
+        "future_path_only": false,
+        "motion_response_score": 0.1954065515666919,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.09516763687133789,
+            "turn_response": 0.12117119864358354,
+            "score": 0.12117119864358354
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.1534719467163086,
+            "turn_response": 0.1954065515666919,
+            "score": 0.1954065515666919
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          3,
+          22
+        ],
+        "agent_ids": [
+          708,
+          1001
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.16545576760390032,
+        "path_distance_m": 1.855790138244629,
+        "conflict_distance_m": 1.8827773332595825,
+        "clearance_m": 1.9067000150680542,
+        "arrival_gap_s": 2.1,
+        "arrival_indices": [
+          0,
+          21
+        ],
+        "min_synchronous_distance_m": 5.981931686401367,
+        "future_path_only": true,
+        "motion_response_score": 0.5480977886485481,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.011441946029663086,
+            "turn_response": 0.014568338153692531,
+            "score": 0.014568338153692531
+          },
+          {
+            "speed_drop": 0.38043397034650167,
+            "heading_change_rad": 0.43047499656677246,
+            "turn_response": 0.5480977886485481,
+            "score": 0.5480977886485481
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "40_loc4_seg23_ego_1": {
+    "agent_ids": [
+      101,
+      102
+    ],
+    "count": 2,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          5,
+          6
+        ],
+        "agent_ids": [
+          101,
+          102
+        ],
+        "agent_types": [
+          "pedestrian",
+          "vehicle"
+        ],
+        "pair_type": "pedestrian_vehicle",
+        "score": 0.5120789477869538,
+        "path_distance_m": 1.534849762916565,
+        "conflict_distance_m": 1.6411681175231934,
+        "clearance_m": 1.8966999888420104,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          40,
+          40
+        ],
+        "min_synchronous_distance_m": 1.6411681175231934,
+        "future_path_only": false,
+        "motion_response_score": 0.34276305619079606,
+        "responses": [
+          {
+            "speed_drop": 0.34276305619079606,
+            "heading_change_rad": 0.03521156311035156,
+            "turn_response": 0.044832754584037474,
+            "score": 0.34276305619079606
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.03468680381774902,
+            "turn_response": 0.044164610301228674,
+            "score": 0.044164610301228674
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "45_loc4_seg45_ego_1": {
+    "agent_ids": [
+      187,
+      201,
+      202,
+      203
+    ],
+    "count": 4,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [
+      {
+        "agent_indices": [
+          8,
+          9
+        ],
+        "agent_ids": [
+          202,
+          203
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.4528806186412767,
+        "path_distance_m": 1.57589852809906,
+        "conflict_distance_m": 1.7308340072631836,
+        "clearance_m": 1.7341499626636505,
+        "arrival_gap_s": 0.0,
+        "arrival_indices": [
+          73,
+          73
+        ],
+        "min_synchronous_distance_m": 1.7308340072631836,
+        "future_path_only": false,
+        "motion_response_score": 0.3663683114398528,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.07890129089355469,
+            "turn_response": 0.10046024369632621,
+            "score": 0.10046024369632621
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.28774499893188477,
+            "turn_response": 0.3663683114398528,
+            "score": 0.3663683114398528
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          7,
+          9
+        ],
+        "agent_ids": [
+          201,
+          203
+        ],
+        "agent_types": [
+          "vehicle",
+          "two_wheeler"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.26295844481105846,
+        "path_distance_m": 0.3440561592578888,
+        "conflict_distance_m": 1.4114856719970703,
+        "clearance_m": 1.6354499757289886,
+        "arrival_gap_s": 1.5,
+        "arrival_indices": [
+          29,
+          44
+        ],
+        "min_synchronous_distance_m": 4.8391923904418945,
+        "future_path_only": false,
+        "motion_response_score": 0.23117701115995645,
+        "responses": [
+          {
+            "speed_drop": 0.05892533756970103,
+            "heading_change_rad": 0.03024005889892578,
+            "turn_response": 0.03850283882523277,
+            "score": 0.05892533756970103
+          },
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.1815659999847412,
+            "turn_response": 0.23117701115995645,
+            "score": 0.23117701115995645
+          }
+        ]
+      },
+      {
+        "agent_indices": [
+          1,
+          7
+        ],
+        "agent_ids": [
+          187,
+          201
+        ],
+        "agent_types": [
+          "two_wheeler",
+          "vehicle"
+        ],
+        "pair_type": "two_wheeler_vehicle",
+        "score": 0.24865059684584767,
+        "path_distance_m": 0.14085450768470764,
+        "conflict_distance_m": 1.5062808990478516,
+        "clearance_m": 1.6332499980926514,
+        "arrival_gap_s": 1.7000000000000002,
+        "arrival_indices": [
+          43,
+          26
+        ],
+        "min_synchronous_distance_m": 4.6192145347595215,
+        "future_path_only": false,
+        "motion_response_score": 0.543851535932542,
+        "responses": [
+          {
+            "speed_drop": 0.0,
+            "heading_change_rad": 0.4271399974822998,
+            "turn_response": 0.543851535932542,
+            "score": 0.543851535932542
+          },
+          {
+            "speed_drop": 0.3444803955843541,
+            "heading_change_rad": 0.02670907974243164,
+            "turn_response": 0.03400705653154882,
+            "score": 0.3444803955843541
+          }
+        ]
+      }
+    ],
+    "selection_mode": "interactive_pairs"
+  },
+  "47_loc4_seg29_ego_1": {
+    "agent_ids": [
+      153,
+      155
+    ],
+    "count": 2,
+    "legacy_agent_count": null,
+    "overlap_with_legacy": null,
+    "pairs": [],
+    "selection_mode": "fallback"
+  }
+}

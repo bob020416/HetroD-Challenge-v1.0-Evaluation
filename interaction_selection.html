@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HetroD Interactive-pair Agent Selection</title>
+  <style>
+    :root{--ink:#17202a;--muted:#61707c;--paper:#f4f1e9;--card:#fffdfa;--line:#d8d1c4;--blue:#165b7a;--green:#17663f;--orange:#a75b17}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,system-ui,"Noto Sans TC",sans-serif}
+    header{padding:56px max(5vw,24px) 38px;color:#fff;background:linear-gradient(125deg,#102a3a,#1c5d7d 58%,#347b67)}
+    h1{margin:.2rem 0;font:700 clamp(2.1rem,5vw,4rem)/1.05 Georgia,serif}header p{max-width:930px}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:800;opacity:.78}
+    nav{position:sticky;top:0;z-index:5;padding:12px max(3vw,18px);background:#f4f1e9ee;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+    nav a{text-decoration:none;color:var(--blue);font-weight:800;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+    main{width:min(1480px,94vw);margin:36px auto 70px}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:32px}
+    .stat,.case{border:1px solid var(--line);border-radius:15px;background:var(--card)}.stat{padding:16px}.stat strong{display:block;color:var(--blue);font:700 1.8rem Georgia,serif}.stat span,.note,.ids{color:var(--muted)}
+    .note{max-width:980px;margin:0 0 28px}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px}.case{overflow:hidden;box-shadow:0 8px 22px #2222}
+    .head{display:flex;align-items:start;gap:12px;padding:14px 15px 10px}.rank{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:50%;color:#fff;background:var(--blue);font-weight:800}
+    h2,p{margin:.1rem 0}.meta{font-size:.82rem;color:var(--muted)}.badge{display:inline-block;margin-top:5px;padding:2px 8px;border-radius:999px;color:#fff;background:var(--green);font-size:.74rem;font-weight:800}.badge.fallback{background:var(--orange)}
+    video{display:block;width:100%;aspect-ratio:2/1;object-fit:contain;background:#e5e3dd}.picker{display:flex;gap:7px;padding:10px 14px 7px}.picker button{flex:1;cursor:pointer;padding:6px;color:var(--blue);background:#edf5f7;border:1px solid #b8cdd5;border-radius:7px;font-weight:800}.picker button.active{color:#fff;background:var(--blue)}
+    .ids{padding:2px 14px 15px;font-size:.82rem}.ids b{color:var(--green)}footer{padding:28px;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
+  </style>
+</head>
+<body>
+<header>
+  <p class="eyebrow">HetroD validation · deterministic random sample · seed 0</p>
+  <h1>Interactive-pair Agent Selection</h1>
+  <p>Validation 隨機抽樣 10 個場景。亮綠色框為新版 selector 選出的 agents；每場可切換 5 個固定視角 CAT-K rollouts。</p>
+</header>
+<nav><a href="index.html">← 回到 Metrics Edge Cases</a></nav>
+<main>
+  <section class="summary">
+    <div class="stat"><strong>10</strong><span>random scenarios</span></div>
+    <div class="stat"><strong>8</strong><span>with interactive pairs</span></div>
+    <div class="stat"><strong>2</strong><span>two-agent fallbacks</span></div>
+    <div class="stat"><strong>56</strong><span>selected endpoints</span></div>
+  </section>
+  <p class="note">Interactive pair 必須是 cross-type、future swept paths 相交、抵達衝突區時間差小於 3 秒，且具有同步接近或 motion-response 證據。找不到可信 pair 時只選 future motion 最大的兩個 fallback agents；它們不會被當成 interactive pair 計分。</p>
+  <section class="gallery" id="gallery"></section>
+</main>
+<footer>Generated 2026-07-24 CST · pair-first selector · 2-agent fallback</footer>
+<script>
+const cases = [
+  ["03_loc3_seg66_ego_1","interactive_pairs",7,[781,793,800,814,862,889,897,915]],
+  ["15_loc1_seg16_ego_1","fallback",0,[110,111]],
+  ["21_loc1_seg79_ego_1","interactive_pairs",1,[490,491]],
+  ["23_loc5_seg119_ego_1","interactive_pairs",5,[994,1839,1967,1973,1975,1977,1978]],
+  ["23_loc5_seg83_ego_1","interactive_pairs",9,[1306,1307,1341,1348,1351,1361,1380,1428,1432,1433,1438,1439,1441]],
+  ["27_loc5_seg134_ego_1","interactive_pairs",1,[1183,1380]],
+  ["28_loc5_seg113_ego_1","interactive_pairs",9,[652,702,708,821,847,981,993,997,999,1001,1003,1030,1032,1039]],
+  ["40_loc4_seg23_ego_1","interactive_pairs",1,[101,102]],
+  ["45_loc4_seg45_ego_1","interactive_pairs",3,[187,201,202,203]],
+  ["47_loc4_seg29_ego_1","fallback",0,[153,155]]
+];
+const root = "interaction_random10/rollouts";
+const videoPath = (id,index) => `${root}/${id}/${id}_baseline_rollout_${String(index).padStart(2,"0")}.mp4`;
+document.querySelector("#gallery").innerHTML = cases.map(([id,mode,pairs,ids],rank) => `
+  <article class="case">
+    <div class="head"><span class="rank">#${rank+1}</span><div>
+      <h2>${id}</h2>
+      <p class="meta">${ids.length} selected agents · ${pairs} interactive pairs</p>
+      <span class="badge ${mode === "fallback" ? "fallback" : ""}">${mode === "fallback" ? "2-agent fallback" : "interactive pairs"}</span>
+    </div></div>
+    <video src="${videoPath(id,0)}" controls loop muted playsinline preload="metadata"></video>
+    <div class="picker">${[0,1,2,3,4].map(i => `<button class="${i===0?"active":""}" data-src="${videoPath(id,i)}">R${i+1}</button>`).join("")}</div>
+    <p class="ids"><b>Selected IDs:</b> ${ids.join(", ")}</p>
+  </article>`).join("");
+document.addEventListener("click", event => {
+  const button = event.target.closest(".picker button");
+  if (!button) return;
+  const card = button.closest(".case");
+  card.querySelectorAll(".picker button").forEach(item => item.classList.remove("active"));
+  button.classList.add("active");
+  const player = card.querySelector("video");
+  player.src = button.dataset.src;
+  player.play().catch(() => {});
+});
+</script>
+</body>
+</html>
