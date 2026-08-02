@@ -1,0 +1,149 @@
+{
+  "version": "v0.8-competition-candidate",
+  "num_scenarios": 955,
+  "num_scenarios_with_pairs": 809,
+  "num_fallback_noninteractive_scenarios": 146,
+  "num_scenarios_with_cross_type_pairs": 677,
+  "selected_agents": {
+    "total": 3818,
+    "mean": 3.9979057591623035,
+    "median": 4,
+    "max": 8
+  },
+  "selected_agent_type_counts": {
+    "pedestrian": 427,
+    "two_wheeler": 2305,
+    "vehicle": 1086
+  },
+  "selected_pairs": {
+    "total": 2102,
+    "mean": 2.201047120418848,
+    "median": 2,
+    "max": 4
+  },
+  "pair_endpoints": {
+    "mean": 3.943455497382199,
+    "median": 4,
+    "max": 8
+  },
+  "behavior_counts": {
+    "crossing_merge": 504,
+    "following": 323,
+    "head_on": 279,
+    "moving_static": 493,
+    "overtake": 326,
+    "parallel": 177
+  },
+  "behavior_fractions": {
+    "crossing_merge": 0.23977164605137963,
+    "following": 0.15366317792578496,
+    "head_on": 0.13273073263558516,
+    "moving_static": 0.23453853472882968,
+    "overtake": 0.15509039010466222,
+    "parallel": 0.08420551855375832
+  },
+  "rank_one_behavior_counts": {
+    "crossing_merge": 289,
+    "following": 43,
+    "head_on": 138,
+    "moving_static": 146,
+    "overtake": 170,
+    "parallel": 23
+  },
+  "tier_counts": {
+    "A": 626,
+    "B": 1476
+  },
+  "pair_type_counts": {
+    "pedestrian_pedestrian": 109,
+    "pedestrian_two_wheeler": 163,
+    "pedestrian_vehicle": 53,
+    "two_wheeler_two_wheeler": 711,
+    "two_wheeler_vehicle": 854,
+    "vehicle_vehicle": 212
+  },
+  "strength_score": {
+    "median": 0.4623366397414761,
+    "p90": 0.647520739447637
+  },
+  "scenario_behavior_audit": {
+    "multi_behavior": 557,
+    "contains_complex": 597,
+    "following_only": 26,
+    "moving_static_only": 111
+  },
+  "pair_evidence_flag_counts": {
+    "1": 20,
+    "2": 356,
+    "3": 1039,
+    "4": 687
+  },
+  "by_location": {
+    "loc0": {
+      "anchors": 673,
+      "crossing_merge": 17,
+      "fallback": 49,
+      "following": 72,
+      "head_on": 13,
+      "interactive": 132,
+      "moving_static": 68,
+      "overtake": 112,
+      "parallel": 42,
+      "scenarios": 181
+    },
+    "loc1": {
+      "anchors": 739,
+      "crossing_merge": 105,
+      "fallback": 12,
+      "following": 72,
+      "head_on": 58,
+      "interactive": 180,
+      "moving_static": 126,
+      "overtake": 63,
+      "parallel": 35,
+      "scenarios": 192
+    },
+    "loc3": {
+      "anchors": 944,
+      "crossing_merge": 199,
+      "fallback": 14,
+      "following": 58,
+      "head_on": 96,
+      "interactive": 192,
+      "moving_static": 134,
+      "overtake": 45,
+      "parallel": 39,
+      "scenarios": 206
+    },
+    "loc4": {
+      "anchors": 650,
+      "crossing_merge": 101,
+      "fallback": 46,
+      "following": 45,
+      "head_on": 40,
+      "interactive": 141,
+      "moving_static": 60,
+      "overtake": 32,
+      "parallel": 21,
+      "scenarios": 187
+    },
+    "loc5": {
+      "anchors": 812,
+      "crossing_merge": 82,
+      "fallback": 25,
+      "following": 76,
+      "head_on": 72,
+      "interactive": 164,
+      "moving_static": 105,
+      "overtake": 74,
+      "parallel": 40,
+      "scenarios": 189
+    }
+  },
+  "v06_comparison": {
+    "retained_pair_occurrences": 1154,
+    "v06_pair_occurrences": 2995,
+    "new_pair_occurrences": 2102,
+    "scenarios_changed": 817
+  }
+}
