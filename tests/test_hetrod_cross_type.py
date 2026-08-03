@@ -20,9 +20,9 @@ class HetrodCrossTypeTests(unittest.TestCase):
         self.assertEqual(report["num_cross_type_pairs"], 2)
         self.assertAlmostEqual(report["score"], 1.0, places=6)
         self.assertAlmostEqual(report["distance_proximity_to_gt"], 1.0, places=6)
-        self.assertAlmostEqual(report["ttc_proximity_to_gt"], 1.0, places=6)
+        self.assertAlmostEqual(report["time_to_proximity_to_gt"], 1.0, places=6)
 
-    def test_cross_type_penalizes_shifted_context_distribution(self):
+    def test_cross_type_penalizes_shifted_closest_approach(self):
         gt = self.make_gt()
         selected = torch.tensor([True, False, False])
         prediction = self.make_prediction(gt)
@@ -32,23 +32,24 @@ class HetrodCrossTypeTests(unittest.TestCase):
         report = compute_cross_type_interaction(features)
 
         self.assertLess(report["distance_proximity_to_gt"], 1.0)
-        self.assertLess(
-            report["pair_type_scores"]["vehicle_pedestrian"]["distance_event_similarity"],
-            1.0,
-        )
         self.assertEqual(
             report["scoring_method"],
-            "pairwise_type_balanced_histogram_similarity",
+            "closest_approach_error",
         )
-        self.assertAlmostEqual(
-            report["pair_type_scores"]["vehicle_pedestrian"][
-                "distance_proximity_to_gt"
-            ],
-            report["pair_type_scores"]["vehicle_pedestrian"][
-                "distance_distribution_similarity"
-            ],
-            places=6,
+
+    def test_simulation_only_near_pair_is_included(self):
+        gt = self.make_gt()
+        gt["tracks"][1, :, 1] = 20.0
+        selected = torch.tensor([True, False, False])
+        prediction = self.make_prediction(gt)
+        prediction["simulated_states"][:, 1, :, 1] = 2.0
+
+        report = compute_cross_type_interaction(
+            build_feature_bundle(gt, prediction, selected)
         )
+
+        self.assertIn("vehicle_pedestrian", report["pair_type_scores"])
+        self.assertLess(report["score"], 1.0)
 
     def test_pair_types_receive_equal_weight(self):
         gt = self.make_gt()
@@ -67,8 +68,8 @@ class HetrodCrossTypeTests(unittest.TestCase):
         expected_distance = sum(
             item["distance_proximity_to_gt"] for item in type_scores.values()
         ) / len(type_scores)
-        expected_ttc = sum(
-            item["ttc_proximity_to_gt"] for item in type_scores.values()
+        expected_time = sum(
+            item["time_to_proximity_to_gt"] for item in type_scores.values()
         ) / len(type_scores)
         self.assertAlmostEqual(
             report["distance_proximity_to_gt"],
@@ -76,8 +77,8 @@ class HetrodCrossTypeTests(unittest.TestCase):
             places=6,
         )
         self.assertAlmostEqual(
-            report["ttc_proximity_to_gt"],
-            expected_ttc,
+            report["time_to_proximity_to_gt"],
+            expected_time,
             places=6,
         )
 
@@ -124,6 +125,47 @@ class HetrodCrossTypeTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "exactly match all GT object_ids"):
             build_feature_bundle(gt, prediction, selected)
+
+    def test_explicit_pair_selection_excludes_unrelated_cross_type_context(self):
+        gt = self.make_gt()
+        selected = torch.tensor([True, False, False])
+        prediction = self.make_prediction(gt)
+        # Disturb the cyclist heavily. It must not affect a metric whose
+        # The reference-selected pair is vehicle-pedestrian only.
+        prediction["simulated_states"][:, 2, :, 0] += 30.0
+        features = build_feature_bundle(
+            gt,
+            prediction,
+            selected,
+            interaction_pair_object_ids=[[10, 20]],
+        )
+
+        report = compute_cross_type_interaction(features)
+
+        self.assertTrue(report["applicable"])
+        self.assertEqual(report["num_cross_type_pairs"], 1)
+        self.assertEqual(
+            set(report["pair_type_scores"]),
+            {"vehicle_pedestrian"},
+        )
+        self.assertAlmostEqual(report["score"], 1.0, places=6)
+
+    def test_same_type_only_explicit_selection_reports_not_applicable(self):
+        gt = self.make_gt()
+        gt["object_types"][1] = gt["object_types"][0]
+        selected = torch.tensor([True, False, False])
+        features = build_feature_bundle(
+            gt,
+            self.make_prediction(gt),
+            selected,
+            interaction_pair_object_ids=[[10, 20]],
+        )
+
+        report = compute_cross_type_interaction(features)
+
+        self.assertFalse(report["applicable"])
+        self.assertIsNone(report["score"])
+        self.assertEqual(report["pair_type_scores"], {})
 
     def make_gt(self) -> dict:
         tracks = torch.zeros(3, 91, 9, dtype=torch.float32)

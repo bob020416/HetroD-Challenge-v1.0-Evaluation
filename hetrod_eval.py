@@ -56,8 +56,11 @@ def resolve_rollout_files(rollout_dir: Path, gt_dir: Path) -> tuple[list[tuple[s
             errors.append(
                 {
                     "scenario_id": scenario_id,
-                    "rollout_file": str(rollout_path),
-                    "error": f"Duplicate rollout file for scenario_id; first file is {rollout_map[scenario_id]}",
+                    "rollout_file": rollout_path.name,
+                    "error": (
+                        "Duplicate rollout file for scenario_id; first file is "
+                        f"{rollout_map[scenario_id].name}"
+                    ),
                 }
             )
             continue
@@ -75,7 +78,7 @@ def resolve_rollout_files(rollout_dir: Path, gt_dir: Path) -> tuple[list[tuple[s
             errors.append(
                 {
                     "scenario_id": scenario_id,
-                    "gt_file": str(gt_path),
+                    "gt_file": gt_path.name,
                     "error": "Missing rollout pickle.",
                 }
             )
@@ -87,7 +90,7 @@ def resolve_rollout_files(rollout_dir: Path, gt_dir: Path) -> tuple[list[tuple[s
             errors.append(
                 {
                     "scenario_id": scenario_id,
-                    "rollout_file": str(rollout_path),
+                    "rollout_file": rollout_path.name,
                     "error": "Missing GT pickle.",
                 }
             )
@@ -136,6 +139,7 @@ def evaluate_directory(
                 load_pickle(rollout_path),
                 device=device,
                 rollout_key=rollout_key,
+                apply_sim_agent_mask=False,
             )
             scenario_reports.append(
                 to_jsonable_cpu(evaluate_scenario(eval_config, gt_scenario, prediction))
@@ -148,8 +152,8 @@ def evaluate_directory(
             errors.append(
                 {
                     "scenario_id": scenario_id,
-                    "rollout_file": str(rollout_path),
-                    "gt_file": str(gt_path),
+                    "rollout_file": rollout_path.name,
+                    "gt_file": gt_path.name,
                     "error": f"{type(error).__name__}: {error}",
                 }
             )

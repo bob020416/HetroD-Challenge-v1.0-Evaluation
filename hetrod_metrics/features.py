@@ -22,7 +22,11 @@ class HetrodFeatureBundle:
     context_gt_tracks: torch.Tensor
     context_simulated_future: torch.Tensor
     context_future_validity: torch.Tensor
+    interaction_pair_object_ids: torch.Tensor
+    interaction_pair_selection_applied: bool
     road_edges: list[torch.Tensor]
+    valid_regions: dict
+    valid_region_definition: dict
     future_validity: torch.Tensor
     speed_validity: torch.Tensor
     acceleration_validity: torch.Tensor
@@ -102,6 +106,7 @@ def build_feature_bundle(
     prediction: dict[str, torch.Tensor],
     selected_mask: torch.Tensor,
     config: HetrodMetricConfig = DEFAULT_CONFIG,
+    interaction_pair_object_ids: list[list[int]] | torch.Tensor | None = None,
 ) -> HetrodFeatureBundle:
     """Build aligned GT/simulation kinematic features for selected HetroD agents."""
     validate_prediction(gt_scenario, prediction, config)
@@ -123,6 +128,28 @@ def build_feature_bundle(
     context_simulated_future = simulated_states[:, prediction_order]
     context_anchor_mask = selected_mask.bool()
     simulated_future = context_simulated_future[:, context_anchor_mask]
+    if interaction_pair_object_ids is None:
+        pair_object_ids = torch.empty(
+            (0, 2),
+            dtype=all_object_ids.dtype,
+            device=all_object_ids.device,
+        )
+    else:
+        pair_object_ids = torch.as_tensor(
+            interaction_pair_object_ids,
+            dtype=all_object_ids.dtype,
+            device=all_object_ids.device,
+        )
+        if pair_object_ids.numel() == 0:
+            pair_object_ids = pair_object_ids.reshape(0, 2)
+        if pair_object_ids.ndim != 2 or pair_object_ids.shape[1] != 2:
+            raise ValueError(
+                "interaction_pair_object_ids must have shape [num_pairs, 2]."
+            )
+        if not torch.isin(pair_object_ids, all_object_ids).all():
+            raise ValueError(
+                "interaction_pair_object_ids contains an ID absent from GT."
+            )
 
     gt_selected = tracks[selected_indices]
     gt_xyzyaw = gt_selected[..., [0, 1, 2, 6]].float()
@@ -166,7 +193,13 @@ def build_feature_bundle(
         context_gt_tracks=context_gt_tracks,
         context_simulated_future=context_simulated_future,
         context_future_validity=track_masks[:, future_slice].bool(),
+        interaction_pair_object_ids=pair_object_ids,
+        interaction_pair_selection_applied=(
+            interaction_pair_object_ids is not None
+        ),
         road_edges=gt_scenario.get("road_edges", []),
+        valid_regions=gt_scenario.get("valid_regions", {}),
+        valid_region_definition=gt_scenario.get("valid_region_definition", {}),
         future_validity=future_validity,
         speed_validity=speed_validity,
         acceleration_validity=acceleration_validity,

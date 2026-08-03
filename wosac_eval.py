@@ -92,6 +92,8 @@ def normalize_prediction(
     predict: dict[str, Any],
     device: str,
     rollout_key: str,
+    *,
+    apply_sim_agent_mask: bool = True,
 ) -> dict[str, torch.Tensor]:
     if 'agent_id' in predict and 'simulated_states' in predict:
         return {
@@ -114,7 +116,7 @@ def normalize_prediction(
         agent_id = torch.as_tensor(predict['agents_id'], device=device)
         simulated_states = torch.as_tensor(rollout_branch['rollouts'], device=device)
         sim_agent_mask = predict.get('sim_agent_mask')
-        if sim_agent_mask is not None:
+        if sim_agent_mask is not None and apply_sim_agent_mask:
             valid_agent_mask = torch.as_tensor(sim_agent_mask, device=device, dtype=torch.bool)
             agent_id = agent_id[valid_agent_mask]
             simulated_states = simulated_states[:, valid_agent_mask]

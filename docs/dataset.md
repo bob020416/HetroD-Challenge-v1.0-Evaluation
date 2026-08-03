@@ -2,9 +2,8 @@
 
 ## Download
 
-```text
-Public data link: TBD
-```
+Download the public package from the
+[HetroD dataset page](https://levelxdata.com/hetrod-dataset/).
 
 ## Layout
 
@@ -80,6 +79,8 @@ predict_agent_ids
 lane_ids
 lane_polylines
 traffic_signals
+valid_regions
+valid_region_definition
 ```
 
 Shapes:
@@ -99,6 +100,15 @@ x, y, z, length, width, height, yaw, velocity_x, velocity_y
 
 `object_ids`, `sim_agent_ids`, and `predict_agent_ids` are the required
 submitted agent set.
+
+`valid_regions` stores schema 1.3 polygons for `vehicle`, `cyclist`,
+`pedestrian_core`, `pedestrian_crosswalk`, and `pedestrian_road`; a legacy
+`pedestrian` union remains for compatible map consumers. Each polygon record
+contains an `exterior` tensor and a list of `holes`. Standard margins are
+vehicle/cyclist/core `0.75 m`, crosswalk `1.5 m`, and raw road `0.0 m`.
+Evaluation constructs a `1.5 m` agent-specific road corridor from hidden GT
+and permits the GT transition duration plus `1.0 s`. GT frames outside every
+semantic layer are excluded locally and reported as map unsupported.
 
 ## Test Input
 
@@ -122,7 +132,5 @@ your_team_submission.zip
     ...
 ```
 
-```text
-Submission Google Form: TBD
-Deadline: September 5, 2026 (AoE)
-```
+The submission portal, schedule, and current challenge rules are maintained on
+the [HetroD dataset page](https://levelxdata.com/hetrod-dataset/).

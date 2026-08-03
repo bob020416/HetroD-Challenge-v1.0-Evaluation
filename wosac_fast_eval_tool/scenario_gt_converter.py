@@ -89,14 +89,16 @@ def extract_gt_scenario(scenario: scenario_pb2.Scenario, device='cpu') -> Dict:
     
 def gt_scenario_to_device(x, device):
     if isinstance(x, torch.Tensor):
-        x = x.to(device)
-    if isinstance(x, list) and len(x) > 0 and isinstance(x[0], torch.Tensor):
-        for i in range(len(x)):
-            x[i] = gt_scenario_to_device(x[i], device)
+        return x.to(device)
+    if isinstance(x, list):
+        return [gt_scenario_to_device(value, device) for value in x]
+    if isinstance(x, tuple):
+        return tuple(gt_scenario_to_device(value, device) for value in x)
     if isinstance(x, dict):
-        for k, v in x.items():
-            x[k] = gt_scenario_to_device(v, device)
+        return {
+            key: gt_scenario_to_device(value, device)
+            for key, value in x.items()
+        }
     return x
-
 
 

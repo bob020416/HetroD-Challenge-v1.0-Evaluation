@@ -1,6 +1,9 @@
 # HetroD Challenge Evaluation Toolkit
 
 Offline HetroD Challenge evaluator built on the fast WOSAC metric backend.
+This repository contains the public `hetrod-0.8.0` metric contract used for
+local validation. Test ground truth remains private and is evaluated with the
+same code and configuration.
 
 ## Install
 
@@ -14,9 +17,8 @@ pip install --no-deps waymo-open-dataset-tf-2-12-0==1.6.7
 
 ## Data
 
-```text
-Public data link:  https://levelxdata.com/hetrod-dataset/ 
-```
+Download the public dataset from the
+[HetroD dataset page](https://levelxdata.com/hetrod-dataset/).
 
 Public package layout:
 
@@ -96,14 +98,13 @@ your_team_submission.zip
     ...
 ```
 
-Submit via Google Form before the deadline:
-
-```text
-Submission Google Form: TBD
-Deadline: September 5, 2026 (AoE)
-```
+The current submission portal, schedule, and challenge rules are published on
+the [HetroD dataset page](https://levelxdata.com/hetrod-dataset/). Keeping that
+information in one location avoids stale links or dates in evaluator releases.
 
 ## Metrics
+
+The current challenge metric version is `hetrod-0.8.0`.
 
 ```text
 Base =
@@ -133,5 +134,12 @@ python wosac_eval.py /path/to/rollout_dir \
 ## Tests
 
 ```bash
-python -m unittest discover -s tests -p 'test_hetrod*.py'
+python -m unittest discover -s tests -p 'test_*.py'
 ```
+
+## Release boundary
+
+Only source code, documentation, tests, and small configuration files belong
+in this repository. Dataset archives, ground-truth pickles, submissions,
+reports, media, checkpoints, scheduler logs, and private test data are ignored
+and must not be committed.
