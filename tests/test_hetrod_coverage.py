@@ -80,6 +80,43 @@ class HetrodCoverageTests(unittest.TestCase):
         self.assertIsNotNone(report["by_type"]["pedestrian"])
         self.assertGreater(report["by_type"]["pedestrian"]["score"], 0.0)
 
+    def test_polygon_regions_work_without_road_edges(self):
+        gt = self.make_gt()
+        gt["road_edges"] = []
+        gt["valid_regions"] = {
+            "vehicle": [self.region(-20.0, -8.0, 20.0, -2.0)],
+            "cyclist": [self.region(-20.0, -3.0, 20.0, 3.0)],
+            "pedestrian": [self.region(-20.0, 2.0, 20.0, 8.0)],
+        }
+        features = build_feature_bundle(
+            gt,
+            self.make_prediction(gt),
+            torch.tensor([True, True, True]),
+        )
+
+        report = compute_coverage(features)
+
+        self.assertEqual(report["valid_region_source"], "type_specific_polygon")
+        self.assertTrue(report["missing_road_edges"])
+        for type_report in report["by_type"].values():
+            self.assertGreater(type_report["mean_valid_occupancy_fraction"], 0.9)
+
+    @staticmethod
+    def region(min_x: float, min_y: float, max_x: float, max_y: float) -> dict:
+        return {
+            "exterior": torch.tensor(
+                [
+                    [min_x, min_y],
+                    [max_x, min_y],
+                    [max_x, max_y],
+                    [min_x, max_y],
+                    [min_x, min_y],
+                ],
+                dtype=torch.float32,
+            ),
+            "holes": [],
+        }
+
     def make_gt(self) -> dict:
         tracks = torch.zeros(3, 13, 9, dtype=torch.float32)
         track_masks = torch.ones(3, 13, dtype=torch.bool)

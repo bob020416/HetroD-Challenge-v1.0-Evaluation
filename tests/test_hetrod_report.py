@@ -23,6 +23,26 @@ class HetrodReportTests(unittest.TestCase):
             + 0.10 * 0.6 * 0.8 * 0.9,
             places=6,
         )
+
+    def test_overall_renormalizes_non_applicable_cross_type_weight(self):
+        report = compute_overall_score(
+            {"score": 0.8},
+            {"score": 0.9},
+            {"score": None, "applicable": False},
+            {"score": 0.6},
+        )
+
+        quality_scale = 0.90 / 0.65
+        self.assertAlmostEqual(
+            report["score"],
+            quality_scale * (0.30 * 0.8 + 0.35 * 0.9)
+            + 0.10 * 0.6 * 0.8 * 0.9,
+            places=6,
+        )
+        self.assertEqual(
+            report["weighted_components"]["cross_type_interaction"],
+            0.0,
+        )
         self.assertAlmostEqual(
             report["weighted_components"]["coverage_bonus"],
             0.10 * 0.6 * 0.8 * 0.9,
@@ -171,7 +191,6 @@ class HetrodReportTests(unittest.TestCase):
             },
             "safety": {
                 "collision_rollout_rate": {"by_type": safety_type},
-                "collision_with_annotation_tolerance": {"by_type": safety_type},
                 "valid_region_margin": {"by_type": safety_type},
             },
             "cross_type_interaction": {

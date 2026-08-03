@@ -58,17 +58,64 @@ def _pair_type_name(
     return names[pair]
 
 
-def _empty_report(num_cross_type_pairs: int = 0) -> dict[str, Any]:
+def _empty_report(
+    num_cross_type_pairs: int = 0,
+    *,
+    applicable: bool = True,
+) -> dict[str, Any]:
     return {
-        "score": 1.0,
-        "distance_proximity_to_gt": 1.0,
-        "time_to_proximity_to_gt": 1.0,
-        "ttc_proximity_to_gt": 1.0,
+        "score": 1.0 if applicable else None,
+        "distance_proximity_to_gt": 1.0 if applicable else None,
+        "time_to_proximity_to_gt": 1.0 if applicable else None,
+        "applicable": applicable,
         "num_cross_type_pairs": num_cross_type_pairs,
         "num_included_pairs": 0,
         "pair_type_scores": {},
         "scoring_method": "closest_approach_error",
+        "pair_source": (
+            "anchor_context_distance_union"
+            if applicable
+            else "reference_gt_interaction_selector"
+        ),
     }
+
+
+def _explicit_selected_pair_mask(
+    features: HetrodFeatureBundle,
+    config: HetrodMetricConfig,
+) -> torch.Tensor:
+    """Map reference-selected physical pair IDs to anchor×context indices."""
+    shape = (
+        features.object_ids.shape[0],
+        features.context_object_ids.shape[0],
+    )
+    pair_mask = torch.zeros(
+        shape,
+        dtype=torch.bool,
+        device=features.object_ids.device,
+    )
+    for pair_ids in features.interaction_pair_object_ids:
+        first_id, second_id = pair_ids[0], pair_ids[1]
+        pair_mask |= (
+            (features.object_ids[:, None] == first_id)
+            & (features.context_object_ids[None, :] == second_id)
+        ) | (
+            (features.object_ids[:, None] == second_id)
+            & (features.context_object_ids[None, :] == first_id)
+        )
+    pair_mask &= _cross_type_anchor_context_pair_mask(
+        features.object_ids,
+        features.object_types,
+        features.context_object_ids,
+        features.context_object_types,
+        config,
+    )
+    return _deduplicate_bidirectional_pairs(
+        pair_mask,
+        features.object_ids,
+        features.context_object_ids,
+        features.context_anchor_mask,
+    )
 
 
 def _minimum_and_time(
@@ -85,27 +132,31 @@ def compute_cross_type_interaction(
     features: HetrodFeatureBundle,
     config: HetrodMetricConfig = DEFAULT_CONFIG,
 ) -> dict[str, Any]:
-    """Score cross-type interaction using closest distance and its timing.
+    """Score selected cross-type pairs using closest distance and its timing.
 
-    A physical pair is included when either GT or at least one rollout comes
-    within the distance gate. This union gate penalizes invented interactions
-    while keeping the metric independent of a fragile constant-velocity TTP.
+    The official selector supplies explicit reference-GT pairs. The distance
+    union gate is retained only for callers that omit explicit pair selection.
     """
-    base_pair_mask = _cross_type_anchor_context_pair_mask(
-        features.object_ids,
-        features.object_types,
-        features.context_object_ids,
-        features.context_object_types,
-        config,
-    )
-    base_pair_mask = _deduplicate_bidirectional_pairs(
-        base_pair_mask,
-        features.object_ids,
-        features.context_object_ids,
-        features.context_anchor_mask,
-    )
+    if features.interaction_pair_selection_applied:
+        base_pair_mask = _explicit_selected_pair_mask(features, config)
+    else:
+        base_pair_mask = _cross_type_anchor_context_pair_mask(
+            features.object_ids,
+            features.object_types,
+            features.context_object_ids,
+            features.context_object_types,
+            config,
+        )
+        base_pair_mask = _deduplicate_bidirectional_pairs(
+            base_pair_mask,
+            features.object_ids,
+            features.context_object_ids,
+            features.context_anchor_mask,
+        )
     if not base_pair_mask.any():
-        return _empty_report()
+        return _empty_report(
+            applicable=not features.interaction_pair_selection_applied
+        )
 
     future_steps = features.simulated_future.shape[2]
     future_end = config.future_start_index + future_steps
@@ -146,9 +197,12 @@ def compute_cross_type_interaction(
         sim_min, sim_time = _minimum_and_time(
             sim_distances, sim_validity, config.seconds_per_step
         )
-        included = (gt_min < config.cross_type_pair_distance_gate_m) | (
-            sim_min < config.cross_type_pair_distance_gate_m
-        ).any(dim=0)
+        if features.interaction_pair_selection_applied:
+            included = torch.ones_like(gt_min, dtype=torch.bool)
+        else:
+            included = (gt_min < config.cross_type_pair_distance_gate_m) | (
+                sim_min < config.cross_type_pair_distance_gate_m
+            ).any(dim=0)
         if not included.any():
             continue
 
@@ -175,7 +229,10 @@ def compute_cross_type_interaction(
             metrics["time"].append(time)
 
     if not pair_type_metrics:
-        return _empty_report(num_base_pairs)
+        return _empty_report(
+            num_base_pairs,
+            applicable=not features.interaction_pair_selection_applied,
+        )
 
     pair_type_scores = {}
     for type_name, metrics in pair_type_metrics.items():
@@ -185,7 +242,6 @@ def compute_cross_type_interaction(
             "score": 0.5 * (distance + time),
             "distance_proximity_to_gt": distance,
             "time_to_proximity_to_gt": time,
-            "ttc_proximity_to_gt": time,
             "num_pairs": len(metrics["distance"]),
         }
 
@@ -197,15 +253,24 @@ def compute_cross_type_interaction(
     ) / len(pair_type_scores)
     return {
         "score": 0.5 * (distance_score + time_score),
+        "applicable": True,
         "distance_proximity_to_gt": distance_score,
         "time_to_proximity_to_gt": time_score,
-        "ttc_proximity_to_gt": time_score,
         "num_cross_type_pairs": num_base_pairs,
         "num_included_pairs": sum(item["num_pairs"] for item in pair_type_scores.values()),
-        "pair_distance_gate_m": config.cross_type_pair_distance_gate_m,
+        "pair_distance_gate_m": (
+            None
+            if features.interaction_pair_selection_applied
+            else config.cross_type_pair_distance_gate_m
+        ),
         "distance_error_scale_m": 5.0,
         "time_error_scale_s": 4.0,
         "scoring_method": "closest_approach_error",
+        "pair_source": (
+            "reference_gt_interaction_selector"
+            if features.interaction_pair_selection_applied
+            else "anchor_context_distance_union"
+        ),
         "interaction_definition": "minimum_distance_and_time_of_closest_approach",
         "pair_type_scores": pair_type_scores,
     }

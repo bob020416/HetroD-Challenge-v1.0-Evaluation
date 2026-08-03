@@ -15,6 +15,11 @@ from wosac_fast_eval_tool.fast_sim_agents_metrics.map_metric_features import (
 
 from .config import DEFAULT_CONFIG, HetrodMetricConfig
 from .features import HetrodFeatureBundle
+from .valid_region import (
+    has_type_specific_valid_regions,
+    points_in_valid_region,
+    region_key_for_object_type,
+)
 
 
 @dataclass(frozen=True)
@@ -206,6 +211,35 @@ def _valid_grid_keys_by_type(
     return valid_keys
 
 
+def _valid_grid_keys_by_polygon_type(
+    records: list[_OccupancyRecord],
+    valid_regions: dict,
+    config: HetrodMetricConfig,
+) -> dict[int, set[tuple[int, int]]]:
+    valid_keys = {}
+    for object_type in config.evaluated_object_types:
+        type_cells = [
+            record.occupancy[:, 1:]
+            for record in records
+            if record.object_type == object_type
+        ]
+        if not type_cells:
+            continue
+        cells = torch.unique(torch.cat(type_cells, dim=0), dim=0)
+        centers = (
+            cells.to(torch.float32) + 0.5
+        ) * config.coverage_grid_resolution_m
+        region_key = region_key_for_object_type(object_type, config)
+        inside = points_in_valid_region(
+            centers,
+            valid_regions[region_key],
+            chunk_size=config.valid_region_query_chunk_size,
+        )
+        valid_cells = cells[inside].detach().cpu().tolist()
+        valid_keys[object_type] = {tuple(cell) for cell in valid_cells}
+    return valid_keys
+
+
 def _record_coverage(
     record: _OccupancyRecord,
     valid_keys: set[tuple[int, int]],
@@ -246,7 +280,11 @@ def compute_coverage(
     config: HetrodMetricConfig = DEFAULT_CONFIG,
 ) -> dict[str, Any]:
     """Compute type-balanced rollout occupancy diversity in the valid region."""
-    if not features.road_edges:
+    has_polygon_regions = has_type_specific_valid_regions(
+        features.valid_regions,
+        config,
+    )
+    if not has_polygon_regions and not features.road_edges:
         return {
             "score": 0.0,
             "by_type": {},
@@ -254,7 +292,16 @@ def compute_coverage(
             "missing_road_edges": True,
         }
     records = _build_occupancy_records(features, config)
-    valid_keys = _valid_grid_keys_by_type(records, features.road_edges, config)
+    if has_polygon_regions:
+        valid_keys = _valid_grid_keys_by_polygon_type(
+            records,
+            features.valid_regions,
+            config,
+        )
+        valid_region_source = "type_specific_polygon"
+    else:
+        valid_keys = _valid_grid_keys_by_type(records, features.road_edges, config)
+        valid_region_source = "road_edge_margin_fallback"
     per_agent = {}
     for record in records:
         score, union_area, valid_fraction = _record_coverage(
@@ -310,6 +357,6 @@ def compute_coverage(
         "grid_resolution_m": config.coverage_grid_resolution_m,
         "num_rollouts": int(features.simulated_future.shape[0]),
         "scoring_method": "normalized_incremental_box_union",
-        "missing_road_edges": False,
-        "valid_region_source": "road_edge_margin_fallback",
+        "missing_road_edges": not bool(features.road_edges),
+        "valid_region_source": valid_region_source,
     }

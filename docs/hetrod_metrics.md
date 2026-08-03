@@ -1,24 +1,46 @@
-# HetroD Metrics (`hetrod-0.2.0`)
+# HetroD Metrics (`hetrod-0.8.0`)
 
 ## Agent Selection
 
-Evaluate agent `i` if:
+Selection first finds GT interaction pairs, then separates moving scoring
+**anchors** from non-scored **context**. An agent can be an anchor if:
 
 ```text
 type_i in {vehicle, two_wheeler, pedestrian}
 AND current_frame_valid(i)
-AND full_history_valid(i)
+AND history_valid_frames(i) >= 5
 AND future_valid_frames(i) >= 20
-AND (
-  min_cross_type_distance(i) < 5.0 m
-  OR min_cross_type_TTP(i) < 4.0 s
-)
+AND valid_future_path_length(i) >= 2.0 m
+AND belongs_to_a_qualified_interaction_pair(i)
 ```
 
-The interaction gate is computed from GT and only decides which agents are
-relevant. TTP is constant-velocity time to enter a 5 m proximity radius.
-Partial future tracks remain eligible; every metric ignores GT-invalid frames.
-Selection does not depend on motion amount or map position.
+A qualified pair uses full oriented footprints and requires temporal
+relevance plus interpretable evidence from swept-path arrival time, direct
+proximity, closing motion, or braking/turning response. Swept-path conflicts
+use an arrival gap below `3.0 s`; the selection-only footprint margin is
+`0.5 m`. Same-type pairs are allowed for selecting anchors.
+
+The `hetrod-0.8.0` selector ranks only Tier A/B candidates and keeps at most
+four pairs, eight endpoints, and degree two per endpoint. It first preserves
+the strongest complex and cross-type evidence, then prefers unseen behavior
+and pair types. Following and overtake require persistent same-corridor
+geometry; an overtake additionally requires an order swap and uses a dedicated
+Tier-B gate. Static means local speed at the interaction is at most `0.30 m/s`,
+not merely a short full trajectory. Low-motion pairs are not interaction
+targets. A slow/static member remains collision context when it is not itself
+a moving scoring anchor.
+
+Following and parallel are capped at one pair per scenario. Moving-static is
+also capped at one, except that a second pair may be retained when it adds a
+previously uncovered scoring agent type. Complex behavior families are capped
+at two pairs each.
+
+If no qualified pair exists, two to four eligible agents are selected as
+`fallback_noninteractive`, preferring type diversity and then future motion.
+This keeps kinematic/safety evaluation defined without inventing an
+interaction. Cross-type interaction is N/A for such a scenario and its quality
+weight is redistributed proportionally across kinematic and safety. Selection
+uses reference GT only and is identical for every submission.
 
 ## Score
 
@@ -28,10 +50,10 @@ Base =
 + 0.35 Safety
 + 0.25 Cross-type
 
-Diversity Bonus =
-0.10 * Diversity * Kinematic * Safety
+Coverage Bonus =
+0.10 * Coverage * Kinematic * Safety
 
-Overall = Base + Diversity Bonus
+Overall = Base + Coverage Bonus
 ```
 
 ## Kinematic
@@ -55,33 +77,60 @@ macro-average vehicle / two-wheeler / pedestrian.
 Safety = 0.5 Collision + 0.5 Valid Region
 ```
 
-Collision has no tolerance. For each selected agent and rollout, it is `1` if
-the oriented box strictly overlaps any other valid agent at least once on a
-frame where both GT tracks are valid. Therefore:
+Collision has no tolerance. A collision is new when a simulated pair strictly
+overlaps on a frame where the same physical GT pair does not overlap. For each
+selected agent and rollout, any new pair/frame overlap marks that rollout as
+collided. Therefore:
 
 ```text
 Collision score =
-1 - collided_agent_rollouts / valid_agent_rollouts
+1 - newly_collided_agent_rollouts / valid_agent_rollouts
 ```
 
-Valid region uses road-edge signed distance with type margins: vehicle `0 m`,
-two-wheeler `1 m`, pedestrian `2 m`. It penalizes only excess outside-region
-frequency relative to the annotation:
+This pair/frame GT conditioning prevents annotation overlaps already present in
+GT from lowering a perfect replay's score. It does not add geometric tolerance
+or exempt collisions with a different partner or at a different frame.
+
+Valid region uses schema 1.3 semantic layers embedded in HetroD GT:
+
+- vehicle: road/intersection/parking/emergency-lane surfaces with a `0.75 m`
+  boundary margin;
+- two-wheeler: vehicle surfaces plus bicycle-specific surfaces with a `0.75 m`
+  boundary margin;
+- pedestrian permanent core: walkway/footway/pedestrian/freespace surfaces
+  with a `0.75 m` boundary margin;
+- pedestrian transition: expanded crosswalk surfaces and that pedestrian's
+  own GT-supported road corridor with a `1.5 m` margin.
+
+Vehicle and two-wheeler footprints use the static type-specific rule.
+Pedestrian core is always valid. Crosswalk/corridor occupancy is valid up to
+the pedestrian's GT transition duration plus `1.0 s`; additional transition
+frames are penalized. A simulated pedestrian is spatially offroad when its
+full footprint is in neither core, crosswalk, nor its own GT corridor.
 
 ```text
-Valid-region score =
-1 - max(sim_outside_rate - GT_outside_rate, 0)
+pedestrian penalty =
+  spatial_offroad_frames
+  + max(0, simulated_transition_frames - GT_transition_frames - 10)
+
+Pedestrian valid-region score =
+1 - pedestrian_penalty / map_supported_GT_valid_frames
 ```
 
-This prevents known map/annotation disagreement from lowering a perfect GT
-replay's score.
+GT frames outside every mapped semantic layer are `map_unsupported`: they are
+excluded locally from both numerator and denominator and reported as
+`excluded_map_unsupported_rate`. They are not automatically turned into valid
+corridors. Missing annotated dimensions use stable type defaults. GT files
+without schema 1.3 remain supported through the schema 1.2 polygon or legacy
+road-edge fallback.
 
 ## Cross-Type Interaction
 
-For each unique physical cross-type pair and rollout, find closest center
-distance `d_min` and its time `t*`. Include a pair if GT or any simulated
-rollout comes within 10 m; the union catches both missed and invented
-interactions.
+For each reference-selected physical pair whose two types differ, find closest
+center distance `d_min` and its time `t*` in every rollout. Same-type selection
+pairs still inform anchor/context and collision evaluation but never enter this
+component. Unselected nearby agents are not silently added to the cross-type
+metric.
 
 ```text
 distance score = max(0, 1 - |sim_d_min - GT_d_min| / 5 m)
@@ -89,16 +138,18 @@ time score     = max(0, 1 - |sim_t* - GT_t*| / 4 s)
 pair score     = 0.5 * distance score + 0.5 * time score
 ```
 
-Scores are averaged over rollouts and pairs, then macro-averaged across
+All explicitly selected cross-type pairs are included. Scores are averaged
+over rollouts and pairs, then macro-averaged across
 vehicle-pedestrian, vehicle-two-wheeler, and pedestrian-two-wheeler. This
 metric does not use histogram bins or a second constant-velocity TTP model.
 
-## Diversity Bonus
+## Coverage Bonus
 
-Rasterize selected-agent oriented boxes on a `0.5 m` BEV grid. Identical
-rollouts score `0`; separated valid footprints increase the score. Diversity
-remains a bonus gated by Kinematic and Safety, so unrealistic or unsafe spread
-cannot compensate for poor base quality.
+Rasterize selected-agent oriented boxes on a `0.5 m` BEV grid and retain only
+cells inside the corresponding type-specific polygon. Identical rollouts score
+`0`; separated valid footprints increase the coverage score. Coverage remains
+a bonus gated by Kinematic and Safety, so unrealistic or unsafe spread cannot
+compensate for poor base quality.
 
 ## Aggregation
 
