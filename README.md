@@ -51,6 +51,16 @@ test:   955
 Test GT is hidden. Test input keeps history/map data and masks future targets.
 See [docs/dataset.md](docs/dataset.md).
 
+Validate an extracted public package:
+
+```bash
+python scripts/validate_public_dataset.py \
+  --public-root /path/to/HetroD-Challenge-v1.0-public
+```
+
+The release archive is accompanied by a `.sha256` file. Verify it before
+extracting with `sha256sum -c <archive-name>.sha256`.
+
 ## Validate Rollouts
 
 Run inference on `valid/scenarionet`, write rollout pickles, then evaluate:
