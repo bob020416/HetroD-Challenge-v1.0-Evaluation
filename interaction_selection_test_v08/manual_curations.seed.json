@@ -1,0 +1,84 @@
+{
+  "schema_version": "hetrod-human-curation-v1",
+  "dataset": "HetroD-Challenge-v1.0-test",
+  "seed_version": 1,
+  "records": {
+    "00_loc2_seg100_ego_1": {
+      "decision": "curated",
+      "agents": [51, 1515, 1522, 1523],
+      "pairs": [[1523, 1522], [51, 1515]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection: two interaction pairs."
+    },
+    "00_loc2_seg103_ego_1": {
+      "decision": "curated",
+      "agents": [1429, 1451],
+      "pairs": [[1429, 1451]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg106_ego_1": {
+      "decision": "curated",
+      "agents": [1614],
+      "pairs": [],
+      "tags": ["interesting"],
+      "notes": "Interesting target agent; pair not assigned yet."
+    },
+    "00_loc2_seg108_ego_1": {
+      "decision": "curated",
+      "agents": [1580, 1623],
+      "pairs": [[1623, 1580]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg10_ego_1": {
+      "decision": "flagged",
+      "agents": [],
+      "pairs": [],
+      "tags": ["data_quality"],
+      "notes": "Data-quality problem near the lower-right area."
+    },
+    "00_loc2_seg110_ego_1": {
+      "decision": "curated",
+      "agents": [1621, 1688],
+      "pairs": [[1621, 1688]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg115_ego_1": {
+      "decision": "skipped",
+      "agents": [],
+      "pairs": [],
+      "tags": ["too_short"],
+      "notes": "Agent interaction is too short for reliable evaluation."
+    },
+    "00_loc2_seg117_ego_1": {
+      "decision": "curated",
+      "agents": [1675, 1792],
+      "pairs": [[1675, 1792]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg12_ego_1": {
+      "decision": "curated",
+      "agents": [203, 212],
+      "pairs": [[212, 203]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg26_ego_1": {
+      "decision": "curated",
+      "agents": [251, 362],
+      "pairs": [[251, 362]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    },
+    "00_loc2_seg30_ego_1": {
+      "decision": "curated",
+      "agents": [367, 496],
+      "pairs": [[367, 496]],
+      "tags": ["interesting"],
+      "notes": "Initial human selection."
+    }
+  }
+}
