@@ -1,7 +1,45 @@
 {
   "schema_version": "hetrod-human-curation-v1",
   "dataset": "HetroD-Challenge-v1.0-test",
-  "seed_version": 1,
+  "seed_version": 2,
+  "exclusions": {
+    "00_loc2_seg10_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "13_loc1_seg131_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "16_loc1_seg58_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "16_loc1_seg148_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "17_loc1_seg34_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "19_loc1_seg47_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "20_loc1_seg148_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc1 review."
+    },
+    "19_loc1_seg152_ego_1": {
+      "reason": "data_quality",
+      "notes": "Excluded because of a GT data-quality problem."
+    },
+    "02_loc3_seg89_ego_1": {
+      "reason": "manual_delete",
+      "notes": "Excluded by organizer during Loc3 review."
+    }
+  },
   "records": {
     "00_loc2_seg100_ego_1": {
       "decision": "curated",
@@ -32,11 +70,11 @@
       "notes": "Initial human selection."
     },
     "00_loc2_seg10_ego_1": {
-      "decision": "flagged",
+      "decision": "skipped",
       "agents": [],
       "pairs": [],
       "tags": ["data_quality"],
-      "notes": "Data-quality problem near the lower-right area."
+      "notes": "Excluded by organizer during Loc1 review."
     },
     "00_loc2_seg110_ego_1": {
       "decision": "curated",
