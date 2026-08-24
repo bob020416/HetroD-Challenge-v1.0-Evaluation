@@ -42,6 +42,12 @@ interaction. Cross-type interaction is N/A for such a scenario and its quality
 weight is redistributed proportionally across kinematic and safety. Selection
 uses reference GT only and is identical for every submission.
 
+For hidden test scoring, the frozen v0.8 automatic anchors/pairs are always
+retained. Blind organizer review may add eligible human-curated targets and
+explicit pairs; it never removes or replaces an automatic selection. The
+frozen union is identical for every submission and remains private with test
+GT. Public validation uses the automatic v0.8 selector directly.
+
 ## Score
 
 ```text

@@ -35,11 +35,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--rollout-key", default="joint_future")
     parser.add_argument("--preflight-only", action="store_true")
     parser.add_argument(
-        "--allow-unsafe-pickle",
-        action="store_true",
-        help="Allow executable legacy .pkl input. Use only in a hardened sandbox.",
-    )
-    parser.add_argument(
         "--work-dir",
         type=Path,
         help="Temporary extraction parent, preferably node-local scratch.",
@@ -71,31 +66,10 @@ def write_report(path: Path, report: dict) -> None:
 def main() -> int:
     args = parse_args()
     entries, resolution_errors = resolve_submission_entries(args.submission)
-    unsafe_pickle_count = sum(entry.suffix == ".pkl" for entry in entries.values())
     if resolution_errors:
         write_report(
             args.output,
             {"preflight": {"status": "failed", "errors": resolution_errors}, "evaluation": None},
-        )
-        return 1
-    if unsafe_pickle_count and not args.allow_unsafe_pickle:
-        write_report(
-            args.output,
-            {
-                "preflight": {
-                    "status": "failed",
-                    "errors": [
-                        {
-                            "error": (
-                                f"Submission contains {unsafe_pickle_count} executable .pkl "
-                                "files. Convert to .npz or explicitly use "
-                                "--allow-unsafe-pickle inside a hardened sandbox."
-                            )
-                        }
-                    ],
-                },
-                "evaluation": None,
-            },
         )
         return 1
     preflight = preflight_submission(args.submission, args.public_root)

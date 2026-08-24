@@ -20,15 +20,6 @@ REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 if str(REPOSITORY_ROOT) not in sys.path:
     sys.path.insert(0, str(REPOSITORY_ROOT))
 
-if not hasattr(np, "_core"):
-    import numpy.core
-    import numpy.core.multiarray
-    import numpy.core.numeric
-
-    sys.modules.setdefault("numpy._core", numpy.core)
-    sys.modules.setdefault("numpy._core.multiarray", numpy.core.multiarray)
-    sys.modules.setdefault("numpy._core.numeric", numpy.core.numeric)
-
 from hetrod_metrics import __version__
 from hetrod_metrics.config import DEFAULT_CONFIG
 from hetrod_metrics.selection_manifest import SCHEMA_VERSION, validate_manifest_record
@@ -36,7 +27,7 @@ from hetrod_metrics.selection_manifest import SCHEMA_VERSION, validate_manifest_
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Merge reviewed targets with v0.8 fallback selections."
+        description="Union reviewed targets with frozen v0.8 selections."
     )
     parser.add_argument("--curations", type=Path, required=True)
     parser.add_argument("--automatic-selection", type=Path, required=True)
@@ -55,7 +46,7 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Drop human targets that are not official required/eligible agents, "
-            "record an audit, and use v0.8 fallback if none remain."
+            "record an audit, and retain the v0.8 selection in every case."
         ),
     )
     return parser.parse_args()
@@ -122,8 +113,8 @@ def human_selections(
         )
         result[scenario_id] = {
             "selected_agent_ids": agents,
-            # Null deliberately enables target-to-neighborhood cross-type fallback
-            # when humans chose targets but did not identify a specific pair.
+            # Null means the reviewer added targets but no additional explicit pair.
+            # Frozen automatic pairs are merged later and always remain present.
             "interaction_pair_object_ids": pairs or None,
             "curators": sorted({item["curator"] for item in selections}),
         }
@@ -131,8 +122,50 @@ def human_selections(
 
 
 def load_gt(path: Path) -> dict[str, Any]:
+    if not hasattr(np, "_core"):
+        import numpy.core
+        import numpy.core.multiarray
+        import numpy.core.numeric
+
+        sys.modules.setdefault("numpy._core", numpy.core)
+        sys.modules.setdefault("numpy._core.multiarray", numpy.core.multiarray)
+        sys.modules.setdefault("numpy._core.numeric", numpy.core.numeric)
     with path.open("rb") as handle:
         return pickle.load(handle)
+
+
+def merge_with_automatic_selection(
+    automatic: dict[str, Any],
+    human: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Union frozen v0.8 targets/pairs with optional reviewed additions."""
+    automatic_agents = sorted({int(value) for value in automatic["anchors"]})
+    automatic_pairs = normalize_pairs(
+        [pair["ids"] for pair in automatic.get("pairs", [])]
+    )
+    human_agents = [] if human is None else human["selected_agent_ids"]
+    human_pairs = (
+        []
+        if human is None or human.get("interaction_pair_object_ids") is None
+        else human["interaction_pair_object_ids"]
+    )
+    record = {
+        "status": "score",
+        "source": (
+            "automatic_v0.8+human_curated"
+            if human is not None
+            else "automatic_v0.8"
+        ),
+        "selected_agent_ids": sorted(set(automatic_agents) | set(human_agents)),
+        "interaction_pair_object_ids": normalize_pairs(
+            automatic_pairs + human_pairs
+        ),
+        "automatic_selected_agent_ids": automatic_agents,
+        "human_selected_agent_ids": sorted(set(human_agents)),
+    }
+    if human is not None:
+        record["curators"] = human["curators"]
+    return record
 
 
 def human_target_eligibility(
@@ -194,7 +227,7 @@ def human_target_eligibility(
                 str(agent_id): reasons[agent_id] for agent_id in sorted(reasons)
             },
             "removed_interaction_pairs": removed_pairs,
-            "fallback_to_automatic": not kept,
+            "all_human_targets_removed": not kept,
         }
     if not kept:
         return None, audit
@@ -309,25 +342,13 @@ def main() -> int:
                 "reason": str(exclusion["reason"]),
                 "notes": str(exclusion.get("notes", "")),
             }
-        elif scenario_id in human:
-            record = {
-                "status": "score",
-                "source": "human_curated",
-                **human[scenario_id],
-            }
-            if scenario_id in human_adjustments:
-                record["curation_adjustment"] = human_adjustments[scenario_id]
         else:
             auto = automatic.get(scenario_id)
             if auto is None:
-                raise ValueError(f"{scenario_id}: missing automatic fallback selection.")
-            pairs = normalize_pairs([pair["ids"] for pair in auto.get("pairs", [])])
-            record = {
-                "status": "score",
-                "source": "automatic_v0.8",
-                "selected_agent_ids": sorted({int(value) for value in auto["anchors"]}),
-                "interaction_pair_object_ids": pairs,
-            }
+                raise ValueError(f"{scenario_id}: missing frozen automatic selection.")
+            record = merge_with_automatic_selection(auto, human.get(scenario_id))
+            if scenario_id in human_adjustments:
+                record["curation_adjustment"] = human_adjustments[scenario_id]
         validate_against_gt(scenario_id, record, args.gt_dir)
         scenarios[scenario_id] = record
         sources[record["source"]] += 1
@@ -347,8 +368,20 @@ def main() -> int:
             for record in scenarios.values()
         ),
         "num_human_selection_adjustments": len(human_adjustments),
-        "num_human_fallbacks_after_adjustment": sum(
-            value["fallback_to_automatic"]
+        "num_scenarios_with_human_additions": sum(
+            bool(record.get("human_selected_agent_ids"))
+            for record in scenarios.values()
+        ),
+        "num_automatic_selected_agents": sum(
+            len(record.get("automatic_selected_agent_ids", []))
+            for record in scenarios.values()
+        ),
+        "num_human_added_agent_entries": sum(
+            len(record.get("human_selected_agent_ids", []))
+            for record in scenarios.values()
+        ),
+        "num_human_selections_fully_removed": sum(
+            value["all_human_targets_removed"]
             for value in human_adjustments.values()
         ),
     }
@@ -359,9 +392,10 @@ def main() -> int:
         "split": "test",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "policy": {
-            "human_target_precedence": True,
-            "human_target_without_pair": "automatic_cross_type_neighborhood_pairing",
-            "empty_human_target": "automatic_v0.8_fallback",
+            "target_agents": "union_of_automatic_v0.8_and_human_curated",
+            "interaction_pairs": "union_of_automatic_v0.8_and_human_curated",
+            "human_target_without_pair": "retain_automatic_v0.8_pairs",
+            "empty_human_target": "retain_automatic_v0.8_selection",
             "submission_completeness": "all_manifest_scenarios_including_exclusions",
             "scoring": "exclude_organizer_exclusions",
         },

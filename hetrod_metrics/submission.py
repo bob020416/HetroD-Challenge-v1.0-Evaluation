@@ -171,9 +171,6 @@ def validate_rollout_payload(
     missing_keys = {"agent_id", "simulated_states"} - payload.keys()
     if missing_keys:
         raise KeyError(f"Missing keys: {sorted(missing_keys)}")
-    extra_keys = payload.keys() - {"agent_id", "simulated_states"}
-    if extra_keys:
-        raise KeyError(f"Unexpected keys: {sorted(extra_keys)}")
     agent_ids = torch.as_tensor(payload["agent_id"]).int().cpu()
     states = torch.as_tensor(payload["simulated_states"]).cpu()
     if agent_ids.ndim != 1:
@@ -262,10 +259,11 @@ def preflight_submission(
         },
         "errors": errors,
         "security": {
-            "safe_official_format": ".npz with allow_pickle=False",
+            "official_format": ".pkl (numeric .npz is also accepted)",
             "pickle_warning": (
-                "Legacy .pkl can execute code and is for trusted/local use only. "
-                "Organizer scoring rejects it by default."
+                "Official .pkl submissions can execute code when loaded. "
+                "Organizers must score them in an isolated worker without "
+                "network access, credentials, or unrelated writable mounts."
             ),
         },
     }

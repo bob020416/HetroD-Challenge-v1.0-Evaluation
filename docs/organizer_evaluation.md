@@ -14,9 +14,10 @@ Keep these artifacts read-only and record their SHA-256 values with every run:
 - original participant archive.
 
 The private selection manifest contains all 955 test scenario IDs. Scored
-records provide selected targets and optional explicit pairs; organizer
-exclusions remain in the submission completeness check but are omitted from
-the 946-scenario score aggregation.
+records use the union of frozen automatic v0.8 targets/pairs and valid
+human-curated additions; human review supplements rather than replaces the
+automatic selection. Organizer exclusions remain in the submission
+completeness check but are omitted from the 946-scenario score aggregation.
 
 Before accepting submissions, validate the frozen bundle once:
 
@@ -42,10 +43,10 @@ or horizon dimensions, non-floating states, and NaN/Inf.
 
 ## Official scoring
 
-Official submissions should use numeric `.npz` files, which are loaded with
-`allow_pickle=False`. Reject `.pkl` by default. If legacy pickle must be used,
-load it only inside a disposable worker with networking disabled, no
-credentials, and only these mounts:
+The original and official submission format is `.pkl`; numeric `.npz` is also
+accepted. Because loading pickle can execute code, run every participant
+submission inside a disposable worker with networking disabled, no credentials,
+and only these mounts:
 
 - participant archive: read-only;
 - public package: read-only;

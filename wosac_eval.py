@@ -16,6 +16,9 @@ from wosac_fast_eval_tool.fast_sim_agents_metrics import metrics as sim_agents_m
 from wosac_fast_eval_tool.scenario_gt_converter import gt_scenario_to_device
 
 
+REPOSITORY_ROOT = Path(__file__).resolve().parent
+
+
 BASE_METRIC_NAMES = [
     'metametric',
     'average_displacement_error',
@@ -57,9 +60,15 @@ def get_metric_names(version: str) -> list[str]:
 
 def load_eval_config(version: str) -> sim_agents_metrics_pb2.SimAgentMetricsConfig:
     if version == '2024':
-        proto_path = Path('wosac_fast_eval_tool/fast_sim_agents_metrics/challenge_2024_config.textproto')
+        proto_path = REPOSITORY_ROOT / (
+            'wosac_fast_eval_tool/fast_sim_agents_metrics/'
+            'challenge_2024_config.textproto'
+        )
     elif version == '2025':
-        proto_path = Path('wosac_fast_eval_tool/fast_sim_agents_metrics/challenge_2025_sim_agents_config.textproto')
+        proto_path = REPOSITORY_ROOT / (
+            'wosac_fast_eval_tool/fast_sim_agents_metrics/'
+            'challenge_2025_sim_agents_config.textproto'
+        )
     else:
         raise ValueError(f'Unsupported WOSAC version: {version}')
 

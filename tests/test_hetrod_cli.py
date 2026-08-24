@@ -1,13 +1,21 @@
 from __future__ import annotations
 
+from contextlib import chdir
 from pathlib import Path
 import tempfile
 import unittest
 
 from hetrod_eval import resolve_rollout_files
+from wosac_eval import load_eval_config
 
 
 class HetrodCliTests(unittest.TestCase):
+    def test_metric_config_loads_outside_repository_working_directory(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with chdir(directory):
+                config = load_eval_config("2025")
+        self.assertIsNotNone(config)
+
     def test_resolution_reports_portable_filenames_only(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

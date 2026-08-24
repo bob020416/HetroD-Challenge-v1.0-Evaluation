@@ -75,28 +75,28 @@ python hetrod_eval.py /path/to/valid_rollouts \
 
 ## Submission
 
-Official rollout file name:
+Official rollout pickle name:
 
 ```text
-<scenario_id>.npz
+<scenario_id>.pkl
 ```
 
-Create it without object arrays:
+Rollout pickle content:
 
 ```python
-np.savez(
-    output_path,
-    agent_id=agent_id,                  # [num_agents]
-    simulated_states=simulated_states,  # [32, num_agents, 80, 4]
-)
+{
+    "agent_id": ...,          # [num_agents]
+    "simulated_states": ...,  # [32, num_agents, 80, 4]
+}
 ```
 
-The evaluator also accepts legacy `.pkl` dictionaries with the same two keys
-for trusted local validation. Official organizer scoring rejects executable
-pickle submissions by default.
+Numeric `.npz` files containing the same two keys are also accepted, but are
+optional. Existing participants submitting the originally specified `.pkl`
+format do not need to convert or regenerate their rollouts.
 
 `simulated_states` contains exactly 32 rollouts in global `(x, y, z, yaw)` for
-future timesteps 11..90.
+future timesteps 11..90. Positions use meters and yaw uses radians, matching
+the ScenarioNet input convention.
 
 For public test input:
 
@@ -109,8 +109,8 @@ Final archive:
 ```text
 your_team_submission.zip
   your_team_submission/
-    <scenario_id_0>.npz
-    <scenario_id_1>.npz
+    <scenario_id_0>.pkl
+    <scenario_id_1>.pkl
     ...
 ```
 
