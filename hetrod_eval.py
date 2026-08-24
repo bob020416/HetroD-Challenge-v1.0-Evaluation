@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import torch
 
 from hetrod_metrics.report import (
@@ -13,6 +14,7 @@ from hetrod_metrics.report import (
     evaluate_scenario,
     skipped_no_selected_agents_report,
 )
+from hetrod_metrics.selection_manifest import load_selection_manifest
 from wosac_eval import (
     infer_scenario_id_from_name,
     load_eval_config,
@@ -32,6 +34,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--version", choices=("2024", "2025"), default="2025")
     parser.add_argument("--rollout-key", default="joint_future")
+    parser.add_argument(
+        "--selection-manifest",
+        type=Path,
+        help="Organizer-only private target/exclusion manifest.",
+    )
     return parser.parse_args()
 
 
@@ -44,9 +51,15 @@ def find_gt_path(gt_dir: Path, scenario_id: str) -> Path | None:
 
 
 def resolve_rollout_files(rollout_dir: Path, gt_dir: Path) -> tuple[list[tuple[str, Path, Path]], list[dict[str, str]]]:
-    rollout_paths = sorted(rollout_dir.glob("*.pkl"))
+    rollout_paths = sorted(
+        path
+        for path in rollout_dir.iterdir()
+        if path.is_file() and path.suffix.lower() in {".npz", ".pkl"}
+    )
     if not rollout_paths:
-        raise FileNotFoundError(f"No rollout pickle files found in {rollout_dir}.")
+        raise FileNotFoundError(
+            f"No .npz or .pkl rollout files found in {rollout_dir}."
+        )
 
     rollout_map: dict[str, Path] = {}
     errors = []
@@ -98,6 +111,20 @@ def resolve_rollout_files(rollout_dir: Path, gt_dir: Path) -> tuple[list[tuple[s
     return matched, errors
 
 
+def load_rollout(path: Path) -> Any:
+    if path.suffix.lower() == ".npz":
+        with np.load(path, allow_pickle=False) as payload:
+            return {key: payload[key] for key in payload.files}
+    return load_pickle(path)
+
+
+def rollout_file_count(rollout_dir: Path) -> int:
+    return sum(
+        path.is_file() and path.suffix.lower() in {".npz", ".pkl"}
+        for path in rollout_dir.iterdir()
+    )
+
+
 def resolve_device(device: str) -> str:
     if device.startswith("cuda") and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but torch.cuda.is_available() is false.")
@@ -125,24 +152,69 @@ def evaluate_directory(
     device: str,
     version: str,
     rollout_key: str,
+    selection_manifest: dict[str, Any] | None = None,
+    selection_manifest_sha256: str | None = None,
 ) -> dict[str, Any]:
     eval_config = load_eval_config(version)
     scenario_reports = []
     skipped = []
+    excluded = []
     matched_files, errors = resolve_rollout_files(rollout_dir, gt_dir)
+
+    manifest_scenarios = None
+    if selection_manifest is not None:
+        manifest_scenarios = selection_manifest["scenarios"]
+        gt_ids = {
+            infer_scenario_id_from_name(path.name)
+            for path in gt_dir.glob("*.pkl")
+        }
+        manifest_ids = set(manifest_scenarios)
+        missing = sorted(gt_ids - manifest_ids)
+        extra = sorted(manifest_ids - gt_ids)
+        if missing or extra:
+            errors.append(
+                {
+                    "error": "Selection manifest scenario coverage mismatch.",
+                    "missing_scenario_ids": missing,
+                    "extra_scenario_ids": extra,
+                }
+            )
 
     device = resolve_device(device)
     for scenario_id, rollout_path, gt_path in matched_files:
+        selection_record = (
+            manifest_scenarios.get(scenario_id)
+            if manifest_scenarios is not None
+            else None
+        )
+        if selection_record is None and manifest_scenarios is not None:
+            continue
+        if selection_record is not None and selection_record["status"] == "exclude":
+            excluded.append(
+                {
+                    "scenario_id": scenario_id,
+                    "status": "excluded_by_selection_manifest",
+                    "reason": selection_record["reason"],
+                }
+            )
+            continue
         try:
             gt_scenario = gt_scenario_to_device(load_pickle(gt_path), device=device)
             prediction = normalize_prediction(
-                load_pickle(rollout_path),
+                load_rollout(rollout_path),
                 device=device,
                 rollout_key=rollout_key,
                 apply_sim_agent_mask=False,
             )
             scenario_reports.append(
-                to_jsonable_cpu(evaluate_scenario(eval_config, gt_scenario, prediction))
+                to_jsonable_cpu(
+                    evaluate_scenario(
+                        eval_config,
+                        gt_scenario,
+                        prediction,
+                        selection_record=selection_record,
+                    )
+                )
             )
         except NoSelectedAgentsError:
             skipped.append(
@@ -167,27 +239,38 @@ def evaluate_directory(
         "dataset": dataset_report,
         "scenarios": scenario_reports,
         "skipped_scenarios": skipped,
+        "excluded_scenarios": excluded,
         "errors": errors,
         "summary": {
-            "num_rollout_files": len(list(rollout_dir.glob("*.pkl"))),
+            "num_rollout_files": rollout_file_count(rollout_dir),
             "num_gt_files": len(list(gt_dir.glob("*.pkl"))),
             "num_matched_files": len(matched_files),
             "num_successful_scenarios": len(scenario_reports),
             "num_skipped_no_selected_agents": len(skipped),
+            "num_excluded_by_manifest": len(excluded),
             "num_errors": len(errors),
             "device": device,
+            "selection_manifest_sha256": selection_manifest_sha256,
         },
     }
 
 
 def main() -> int:
     args = parse_args()
+    selection_manifest = None
+    selection_manifest_sha256 = None
+    if args.selection_manifest is not None:
+        selection_manifest, selection_manifest_sha256 = load_selection_manifest(
+            args.selection_manifest
+        )
     report = evaluate_directory(
         args.rollout_dir,
         args.gt_dir,
         device=args.device,
         version=args.version,
         rollout_key=args.rollout_key,
+        selection_manifest=selection_manifest,
+        selection_manifest_sha256=selection_manifest_sha256,
     )
     output_path = args.output or args.rollout_dir / "hetrod_metrics_report.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)

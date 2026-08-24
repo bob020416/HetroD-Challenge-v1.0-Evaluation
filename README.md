@@ -12,6 +12,7 @@ conda create -y -n wosac_eval python=3.11.9
 conda activate wosac_eval
 pip install -r requirements.txt
 pip install --no-deps waymo-open-dataset-tf-2-12-0==1.6.7
+python scripts/check_environment.py
 ```
 
 
@@ -74,20 +75,25 @@ python hetrod_eval.py /path/to/valid_rollouts \
 
 ## Submission
 
-Rollout pickle name:
+Official rollout file name:
 
 ```text
-<scenario_id>.pkl
+<scenario_id>.npz
 ```
 
-Rollout pickle content:
+Create it without object arrays:
 
 ```python
-{
-    "agent_id": ...,          # [num_agents]
-    "simulated_states": ...,  # [32, num_agents, 80, 4]
-}
+np.savez(
+    output_path,
+    agent_id=agent_id,                  # [num_agents]
+    simulated_states=simulated_states,  # [32, num_agents, 80, 4]
+)
 ```
+
+The evaluator also accepts legacy `.pkl` dictionaries with the same two keys
+for trusted local validation. Official organizer scoring rejects executable
+pickle submissions by default.
 
 `simulated_states` contains exactly 32 rollouts in global `(x, y, z, yaw)` for
 future timesteps 11..90.
@@ -103,10 +109,22 @@ Final archive:
 ```text
 your_team_submission.zip
   your_team_submission/
-    <scenario_id_0>.pkl
-    <scenario_id_1>.pkl
+    <scenario_id_0>.npz
+    <scenario_id_1>.npz
     ...
 ```
+
+Before uploading, run the public preflight against the extracted dataset:
+
+```bash
+python scripts/validate_submission.py your_team_submission.zip \
+  --public-root /path/to/HetroD-Challenge-v1.0-public \
+  --output submission_preflight.json
+```
+
+Preflight requires all 955 scenario files and checks exact required agent IDs,
+32 rollouts, 80 future frames, `(x, y, z, yaw)`, floating-point dtype, and
+finite values. It does not require or expose test GT.
 
 The current submission portal, schedule, and challenge rules are published on
 the [HetroD dataset page](https://levelxdata.com/hetrod-dataset/). Keeping that
@@ -146,6 +164,31 @@ python wosac_eval.py /path/to/rollout_dir \
 ```bash
 python -m unittest discover -s tests -p 'test_*.py'
 ```
+
+## Organizer evaluation
+
+The public evaluator uses the deterministic v0.8 reference-GT selector for
+train/validation. Official test scoring may additionally load a versioned,
+private selection/exclusion manifest; the manifest and test GT are never
+committed. This keeps metric code identical while preventing leakage of
+future-derived test targets.
+
+```bash
+python scripts/score_submission.py your_team_submission.zip \
+  --public-root /path/to/HetroD-Challenge-v1.0-public \
+  --private-gt-dir /private/path/test_gt \
+  --selection-manifest /private/path/test_selection.json \
+  --output /private/path/team_metrics.json \
+  --device cuda
+```
+
+The command performs complete public-data preflight before loading private GT
+or starting metric computation. See
+[docs/organizer_evaluation.md](docs/organizer_evaluation.md).
+
+> **Security:** pickle can execute arbitrary code. Organizer scoring must run
+> each untrusted submission in a disposable, no-network worker with no
+> credentials and no unrelated filesystem mounts.
 
 ## Release boundary
 

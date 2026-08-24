@@ -65,7 +65,14 @@ def load_eval_config(version: str) -> sim_agents_metrics_pb2.SimAgentMetricsConf
 
     config = sim_agents_metrics_pb2.SimAgentMetricsConfig()
     with open(proto_path, 'r', encoding='utf-8') as handle:
-        text_format.Parse(handle.read(), config)
+        try:
+            text_format.Parse(handle.read(), config)
+        except text_format.ParseError as error:
+            raise RuntimeError(
+                "Installed Waymo Open Dataset protobufs are incompatible with "
+                f"the {version} metric config. Install "
+                "waymo-open-dataset-tf-2-12-0==1.6.7 exactly as documented."
+            ) from error
     return config
 
 

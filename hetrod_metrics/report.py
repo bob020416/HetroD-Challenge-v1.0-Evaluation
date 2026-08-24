@@ -20,6 +20,7 @@ from .interaction_candidates import (
     competition_selection_audit,
 )
 from .interaction_selection import select_competition_agents
+from .selection_manifest import manifest_selection_for_scenario
 from .safety import compute_safety
 
 METRIC_VERSION = f"hetrod-{__version__}"
@@ -192,10 +193,26 @@ def evaluate_scenario(
     gt_scenario: dict[str, Any],
     prediction: dict[str, torch.Tensor],
     config: HetrodMetricConfig = DEFAULT_CONFIG,
+    *,
+    selection_record: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Evaluate one scenario with all HetroD Challenge metric components."""
     validate_config(config)
-    selection = select_competition_agents(gt_scenario, config)
+    if selection_record is None:
+        selection = select_competition_agents(gt_scenario, config)
+        interaction_pair_object_ids = selection.pair_object_ids
+        selection_source = "automatic_v0.8"
+    else:
+        manifest_selection = manifest_selection_for_scenario(
+            gt_scenario,
+            selection_record,
+            config,
+        )
+        selection = manifest_selection.result
+        interaction_pair_object_ids = (
+            manifest_selection.interaction_pair_object_ids
+        )
+        selection_source = manifest_selection.source
     selected_mask = selection.anchor_mask
     if not selected_mask.any():
         raise NoSelectedAgentsError(
@@ -207,7 +224,7 @@ def evaluate_scenario(
         prediction,
         selected_mask,
         config,
-        interaction_pair_object_ids=selection.pair_object_ids,
+        interaction_pair_object_ids=interaction_pair_object_ids,
     )
     num_rollouts = prediction["simulated_states"].shape[0]
     gt_future = gt_scenario["tracks"][
@@ -224,7 +241,7 @@ def evaluate_scenario(
         oracle_prediction,
         selected_mask,
         config,
-        interaction_pair_object_ids=selection.pair_object_ids,
+        interaction_pair_object_ids=interaction_pair_object_ids,
     )
     oracle_kinematic = compute_kinematic_realism(
         eval_config,
@@ -250,11 +267,13 @@ def evaluate_scenario(
         "score": overall["score"],
         "scenario_id": gt_scenario.get("scenario_id"),
         "num_selected_agents": int(selected_mask.sum().item()),
-        "selection_audit": competition_selection_audit(
-            gt_scenario,
-            selection,
-            config,
-        ),
+        "selection_audit": {
+            **competition_selection_audit(gt_scenario, selection, config),
+            "source": selection_source,
+            "explicit_pair_selection": (
+                interaction_pair_object_ids is not None
+            ),
+        },
         "submission": {
             "required_agent_policy": "exact_match_all_gt_object_ids",
             "num_required_agents": int(gt_scenario["object_ids"].numel()),

@@ -119,16 +119,18 @@ scenario_id: top-level id
 agent_id:    metadata.required_agent_ids
 ```
 
-Submit one rollout pickle for every scenario in `manifests/test.txt`.
-Each pickle must use `simulated_states` shape `[32, num_agents, 80, 4]`.
+Submit one safe `.npz` rollout for every scenario in `manifests/test.txt`.
+Each file contains numeric `agent_id` and `simulated_states` arrays; states use
+shape `[32, num_agents, 80, 4]`. Legacy pickle is accepted only for trusted
+local validation because loading it can execute arbitrary code.
 
 Archive:
 
 ```text
 your_team_submission.zip
   your_team_submission/
-    <scenario_id_0>.pkl
-    <scenario_id_1>.pkl
+    <scenario_id_0>.npz
+    <scenario_id_1>.npz
     ...
 ```
 

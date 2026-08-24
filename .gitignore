@@ -39,6 +39,8 @@ wosac_metrics_report.json
 smart_cache_wosac_report.json
 hetrod_metrics_report.json
 *_metrics_report.json
+private_*selection*.json
+organizer_private/
 *_debug/
 tests/debug_smoke/
 trash/

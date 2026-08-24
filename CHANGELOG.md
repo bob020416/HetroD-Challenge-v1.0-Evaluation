@@ -3,6 +3,13 @@
 All metric changes are versioned because leaderboard scores from different
 metric versions are not directly comparable.
 
+## 0.8.0 tooling hardening (metric unchanged)
+
+- Add safe numeric `.npz` submissions and complete public preflight.
+- Add versioned organizer-private target/exclusion manifest support.
+- Add one-command organizer scoring and private bundle consistency checks.
+- Fail fast on incompatible Waymo Open Dataset protobuf versions.
+
 ## 0.8.0
 
 - Select up to four strong interaction pairs and eight scoring endpoints with
