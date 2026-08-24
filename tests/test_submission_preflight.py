@@ -9,6 +9,7 @@ import zipfile
 import torch
 
 from hetrod_metrics.submission import (
+    extract_submission_zip,
     preflight_submission,
     validate_rollout_payload,
 )
@@ -97,10 +98,14 @@ class SubmissionPreflightTests(unittest.TestCase):
                 archive.write(payload_path, "team/scene.pkl")
 
             report = preflight_submission(submission, public)
+            extracted = extract_submission_zip(submission, root / "extracted")
+            with (extracted / "scene.pkl").open("rb") as handle:
+                extracted_payload = pickle.load(handle)
 
         self.assertEqual(report["status"], "ok")
         self.assertEqual(report["summary"]["num_valid_scenarios"], 1)
         self.assertEqual(report["summary"]["file_format_counts"], {".pkl": 1})
+        self.assertEqual(extracted_payload["agent_id"].tolist(), [10, 20])
 
 
 if __name__ == "__main__":

@@ -6,10 +6,8 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-import shutil
 import sys
 import tempfile
-import zipfile
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
 if str(REPOSITORY_ROOT) not in sys.path:
@@ -18,6 +16,7 @@ if str(REPOSITORY_ROOT) not in sys.path:
 from hetrod_eval import evaluate_directory
 from hetrod_metrics.selection_manifest import load_selection_manifest
 from hetrod_metrics.submission import (
+    extract_submission_zip,
     preflight_submission,
     resolve_submission_entries,
 )
@@ -40,21 +39,6 @@ def parse_args() -> argparse.Namespace:
         help="Temporary extraction parent, preferably node-local scratch.",
     )
     return parser.parse_args()
-
-
-def extract_submission_zip(submission: Path, destination: Path) -> Path:
-    entries, errors = resolve_submission_entries(submission)
-    if errors:
-        raise ValueError(f"Cannot extract invalid submission: {errors[:5]}")
-    destination.mkdir(parents=True, exist_ok=True)
-    with zipfile.ZipFile(submission) as archive:
-        for scenario_id, entry in entries.items():
-            if entry.zip_member is None:
-                raise ValueError("ZIP submission entry has no archive member.")
-            with archive.open(entry.zip_member) as source:
-                with (destination / f"{scenario_id}{entry.suffix}").open("wb") as target:
-                    shutil.copyfileobj(source, target, length=1024 * 1024)
-    return destination
 
 
 def write_report(path: Path, report: dict) -> None:

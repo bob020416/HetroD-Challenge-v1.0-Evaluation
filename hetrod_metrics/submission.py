@@ -7,6 +7,7 @@ from io import BytesIO
 from collections import Counter
 import pickle
 from pathlib import Path, PurePosixPath
+import shutil
 from typing import Any
 import zipfile
 
@@ -158,6 +159,28 @@ def load_submission_entry(submission: Path, entry: SubmissionEntry) -> Any:
         with np.load(BytesIO(raw), allow_pickle=False) as payload:
             return {key: payload[key] for key in payload.files}
     return pickle.loads(raw)
+
+
+def extract_submission_zip(submission: Path, destination: Path) -> Path:
+    """Safely normalize a resolved submission ZIP into one flat directory."""
+    if not submission.is_file() or submission.suffix.lower() != ".zip":
+        raise ValueError("Submission must be a .zip archive.")
+    entries, errors = resolve_submission_entries(submission)
+    if errors:
+        raise ValueError(f"Cannot extract invalid submission: {errors[:5]}")
+    destination.mkdir(parents=True, exist_ok=True)
+    if any(destination.iterdir()):
+        raise ValueError(f"Extraction destination must be empty: {destination}")
+    with zipfile.ZipFile(submission) as archive:
+        for scenario_id, entry in entries.items():
+            if entry.zip_member is None:
+                raise ValueError("ZIP submission entry has no archive member.")
+            with archive.open(entry.zip_member) as source:
+                with (destination / f"{scenario_id}{entry.suffix}").open(
+                    "wb"
+                ) as target:
+                    shutil.copyfileobj(source, target, length=1024 * 1024)
+    return destination
 
 
 def validate_rollout_payload(

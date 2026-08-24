@@ -79,6 +79,42 @@ Accept the result only when:
 Archive the JSON report, source archive hash, evaluator commit, manifest hash,
 and scheduler job log. Do not publish scenario-level test metrics.
 
+## Parallel scoring
+
+For a scheduler array, preflight and safely normalize the ZIP once:
+
+```bash
+python scripts/prepare_submission.py TEAM.zip \
+  --public-root PUBLIC_ROOT \
+  --output-dir WORK/rollouts \
+  --report WORK/preflight.json
+```
+
+Run all shard IDs from `0` through `N-1` with the same frozen inputs:
+
+```bash
+python hetrod_eval.py WORK/rollouts \
+  --gt-dir PRIVATE_TEST_GT \
+  --selection-manifest PRIVATE_SELECTION.json \
+  --output WORK/shards/shard_$(printf '%03d' SHARD_ID).json \
+  --device cuda \
+  --shard-id SHARD_ID \
+  --num-shards N \
+  --progress-every 10
+```
+
+After every shard succeeds, merge with strict disjointness, completeness,
+manifest-hash, and frozen-input checks:
+
+```bash
+python scripts/merge_evaluation_shards.py WORK/shards \
+  --num-shards N \
+  --preflight-report WORK/preflight.json \
+  --output OUTPUT/TEAM_metrics.json
+```
+
+The merged report uses the same dataset aggregation as sequential scoring.
+
 ## Rebuilding a private selection manifest
 
 Export all Supabase annotation pages, then run the generic builder:

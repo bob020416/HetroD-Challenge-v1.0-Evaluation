@@ -39,6 +39,14 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Organizer-only private target/exclusion manifest.",
     )
+    parser.add_argument("--shard-id", type=int)
+    parser.add_argument("--num-shards", type=int)
+    parser.add_argument(
+        "--progress-every",
+        type=int,
+        default=0,
+        help="Print progress every N assigned scenarios; 0 disables it.",
+    )
     return parser.parse_args()
 
 
@@ -125,6 +133,24 @@ def rollout_file_count(rollout_dir: Path) -> int:
     )
 
 
+def select_shard(
+    items: list[tuple[str, Path, Path]],
+    shard_id: int | None,
+    num_shards: int | None,
+) -> list[tuple[str, Path, Path]]:
+    if shard_id is None and num_shards is None:
+        return items
+    if shard_id is None or num_shards is None:
+        raise ValueError("shard_id and num_shards must be provided together.")
+    if num_shards <= 0 or not 0 <= shard_id < num_shards:
+        raise ValueError("shard_id must be in [0, num_shards).")
+    return [
+        item
+        for index, item in enumerate(items)
+        if index % num_shards == shard_id
+    ]
+
+
 def resolve_device(device: str) -> str:
     if device.startswith("cuda") and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but torch.cuda.is_available() is false.")
@@ -154,12 +180,25 @@ def evaluate_directory(
     rollout_key: str,
     selection_manifest: dict[str, Any] | None = None,
     selection_manifest_sha256: str | None = None,
+    shard_id: int | None = None,
+    num_shards: int | None = None,
+    progress_every: int = 0,
 ) -> dict[str, Any]:
+    if progress_every < 0:
+        raise ValueError("progress_every must be non-negative.")
     eval_config = load_eval_config(version)
     scenario_reports = []
     skipped = []
     excluded = []
-    matched_files, errors = resolve_rollout_files(rollout_dir, gt_dir)
+    all_matched_files, resolution_errors = resolve_rollout_files(
+        rollout_dir, gt_dir
+    )
+    matched_files = select_shard(all_matched_files, shard_id, num_shards)
+    errors = (
+        resolution_errors
+        if shard_id is None or shard_id == 0
+        else []
+    )
 
     manifest_scenarios = None
     if selection_manifest is not None:
@@ -171,7 +210,7 @@ def evaluate_directory(
         manifest_ids = set(manifest_scenarios)
         missing = sorted(gt_ids - manifest_ids)
         extra = sorted(manifest_ids - gt_ids)
-        if missing or extra:
+        if (missing or extra) and (shard_id is None or shard_id == 0):
             errors.append(
                 {
                     "error": "Selection manifest scenario coverage mismatch.",
@@ -181,7 +220,9 @@ def evaluate_directory(
             )
 
     device = resolve_device(device)
-    for scenario_id, rollout_path, gt_path in matched_files:
+    for position, (scenario_id, rollout_path, gt_path) in enumerate(
+        matched_files, start=1
+    ):
         selection_record = (
             manifest_scenarios.get(scenario_id)
             if manifest_scenarios is not None
@@ -229,6 +270,15 @@ def evaluate_directory(
                     "error": f"{type(error).__name__}: {error}",
                 }
             )
+        if progress_every and (
+            position % progress_every == 0 or position == len(matched_files)
+        ):
+            print(
+                f"progress={position}/{len(matched_files)} "
+                f"success={len(scenario_reports)} excluded={len(excluded)} "
+                f"skipped={len(skipped)} errors={len(errors)}",
+                flush=True,
+            )
 
     dataset_report = (
         aggregate_scenario_reports(scenario_reports)
@@ -245,12 +295,16 @@ def evaluate_directory(
             "num_rollout_files": rollout_file_count(rollout_dir),
             "num_gt_files": len(list(gt_dir.glob("*.pkl"))),
             "num_matched_files": len(matched_files),
+            "num_global_matched_files": len(all_matched_files),
+            "num_assigned_scenarios": len(matched_files),
             "num_successful_scenarios": len(scenario_reports),
             "num_skipped_no_selected_agents": len(skipped),
             "num_excluded_by_manifest": len(excluded),
             "num_errors": len(errors),
             "device": device,
             "selection_manifest_sha256": selection_manifest_sha256,
+            "shard_id": shard_id,
+            "num_shards": num_shards,
         },
     }
 
@@ -271,6 +325,9 @@ def main() -> int:
         rollout_key=args.rollout_key,
         selection_manifest=selection_manifest,
         selection_manifest_sha256=selection_manifest_sha256,
+        shard_id=args.shard_id,
+        num_shards=args.num_shards,
+        progress_every=args.progress_every,
     )
     output_path = args.output or args.rollout_dir / "hetrod_metrics_report.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
