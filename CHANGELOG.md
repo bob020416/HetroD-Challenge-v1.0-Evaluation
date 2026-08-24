@@ -3,11 +3,16 @@
 All metric changes are versioned because leaderboard scores from different
 metric versions are not directly comparable.
 
-## 0.8.0 tooling hardening (metric unchanged)
+## 0.8.0 submission and organizer tooling (metric unchanged)
 
-- Add safe numeric `.npz` submissions and complete public preflight.
+- Preserve the originally published `.pkl` submission contract; optionally
+  accept safe numeric `.npz` files with the same two payload keys.
+- Add complete public submission preflight for directories and ZIP archives.
 - Add versioned organizer-private target/exclusion manifest support.
-- Add one-command organizer scoring and private bundle consistency checks.
+- Define hidden-test targets as the frozen union of automatic v0.8 selection
+  and valid human-curated additions.
+- Add sequential and strictly merged parallel organizer scoring, plus private
+  bundle consistency checks.
 - Fail fast on incompatible Waymo Open Dataset protobuf versions.
 
 ## 0.8.0
