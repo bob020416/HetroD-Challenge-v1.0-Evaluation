@@ -5,11 +5,23 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from hetrod_eval import resolve_rollout_files, select_shard
+from hetrod_eval import load_rollout, resolve_rollout_files, select_shard
 from wosac_eval import load_eval_config
 
 
 class HetrodCliTests(unittest.TestCase):
+    def test_rollout_loader_accepts_numpy_2_private_core_pickle(self):
+        import pickle
+        import numpy as np
+
+        raw = pickle.dumps({"array": np.arange(4)}, protocol=0)
+        raw = raw.replace(b"numpy.core.multiarray", b"numpy._core.multiarray")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "rollout.pkl"
+            path.write_bytes(raw)
+            loaded = load_rollout(path)
+        np.testing.assert_array_equal(loaded["array"], np.arange(4))
+
     def test_metric_config_loads_outside_repository_working_directory(self):
         with tempfile.TemporaryDirectory() as directory:
             with chdir(directory):

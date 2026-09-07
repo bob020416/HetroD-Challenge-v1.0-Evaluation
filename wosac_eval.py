@@ -12,6 +12,7 @@ from google.protobuf import text_format
 from tqdm import tqdm
 from waymo_open_dataset.protos import sim_agents_metrics_pb2
 
+from hetrod_metrics.submission import install_numpy_pickle_compatibility_aliases
 from wosac_fast_eval_tool.fast_sim_agents_metrics import metrics as sim_agents_metric_api
 from wosac_fast_eval_tool.scenario_gt_converter import gt_scenario_to_device
 
@@ -86,6 +87,7 @@ def load_eval_config(version: str) -> sim_agents_metrics_pb2.SimAgentMetricsConf
 
 
 def load_pickle(path: Path) -> Any:
+    install_numpy_pickle_compatibility_aliases()
     with open(path, 'rb') as handle:
         return pickle.load(handle)
 
