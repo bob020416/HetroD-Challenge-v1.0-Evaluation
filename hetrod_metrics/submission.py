@@ -5,9 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from io import BytesIO
 from collections import Counter
+import importlib
 import pickle
 from pathlib import Path, PurePosixPath
 import shutil
+import sys
 from typing import Any
 import zipfile
 
@@ -28,6 +30,23 @@ class SubmissionEntry:
 
 
 MAX_SUBMISSION_FILE_BYTES = 512 * 1024 * 1024
+
+
+def _install_numpy_pickle_compatibility_aliases() -> None:
+    """Allow NumPy 2.x array pickles to load under the pinned NumPy 1.x.
+
+    NumPy 2 renamed the private ``numpy.core`` package to ``numpy._core``.
+    Array pickles consequently contain the new module path even though their
+    numeric payload is compatible with the challenge's pinned NumPy 1.23.5.
+    """
+    aliases = {
+        "numpy._core": "numpy.core",
+        "numpy._core.multiarray": "numpy.core.multiarray",
+        "numpy._core.numeric": "numpy.core.numeric",
+    }
+    for alias, target in aliases.items():
+        if alias not in sys.modules:
+            sys.modules[alias] = importlib.import_module(target)
 
 
 def _manifest_rows(path: Path) -> list[str]:
@@ -148,6 +167,7 @@ def load_submission_entry(submission: Path, entry: SubmissionEntry) -> Any:
         with np.load(entry.path, allow_pickle=False) as payload:
             return {key: payload[key] for key in payload.files}
     if entry.path is not None:
+        _install_numpy_pickle_compatibility_aliases()
         with entry.path.open("rb") as handle:
             return pickle.load(handle)
     if entry.zip_member is None:
@@ -158,6 +178,7 @@ def load_submission_entry(submission: Path, entry: SubmissionEntry) -> Any:
     if entry.suffix == ".npz":
         with np.load(BytesIO(raw), allow_pickle=False) as payload:
             return {key: payload[key] for key in payload.files}
+    _install_numpy_pickle_compatibility_aliases()
     return pickle.loads(raw)
 
 

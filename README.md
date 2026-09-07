@@ -92,7 +92,8 @@ Rollout pickle content:
 
 Numeric `.npz` files containing the same two keys are also accepted, but are
 optional. Existing participants submitting the originally specified `.pkl`
-format do not need to convert or regenerate their rollouts.
+format do not need to convert or regenerate their rollouts. The loader accepts
+NumPy array pickles produced by both NumPy 1.x and NumPy 2.x.
 
 `simulated_states` contains exactly 32 rollouts in global `(x, y, z, yaw)` for
 future timesteps 11..90. Positions use meters and yaw uses radians, matching

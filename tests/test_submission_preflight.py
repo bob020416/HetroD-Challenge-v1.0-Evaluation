@@ -6,10 +6,13 @@ import tempfile
 import unittest
 import zipfile
 
+import numpy as np
 import torch
 
 from hetrod_metrics.submission import (
+    SubmissionEntry,
     extract_submission_zip,
+    load_submission_entry,
     preflight_submission,
     validate_rollout_payload,
 )
@@ -106,6 +109,27 @@ class SubmissionPreflightTests(unittest.TestCase):
         self.assertEqual(report["summary"]["num_valid_scenarios"], 1)
         self.assertEqual(report["summary"]["file_format_counts"], {".pkl": 1})
         self.assertEqual(extracted_payload["agent_id"].tolist(), [10, 20])
+
+    def test_numpy_2_private_core_pickle_loads_with_pinned_numpy_1(self):
+        payload = {"array": np.arange(4)}
+        raw = pickle.dumps(payload, protocol=0)
+        self.assertIn(b"numpy.core.multiarray", raw)
+        raw = raw.replace(b"numpy.core.multiarray", b"numpy._core.multiarray")
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "scene.pkl"
+            path.write_bytes(raw)
+            loaded = load_submission_entry(
+                Path(directory),
+                SubmissionEntry(
+                    scenario_id="scene",
+                    display_name="scene.pkl",
+                    path=path,
+                    suffix=".pkl",
+                    size_bytes=len(raw),
+                ),
+            )
+
+        np.testing.assert_array_equal(loaded["array"], payload["array"])
 
 
 if __name__ == "__main__":
