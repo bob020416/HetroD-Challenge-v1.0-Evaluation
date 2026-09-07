@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HetroD · 第一名 Test Results</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f1e9;color:#17202a;font:16px/1.5 system-ui,sans-serif}header{background:linear-gradient(125deg,#261737,#574080,#347b67);color:white;padding:30px 4vw}h1{margin:0;font-size:2rem}header p{max-width:1100px}nav{display:flex;gap:12px;flex-wrap:wrap;padding:14px 4vw;background:#fffdfa}a{color:#165b7a}main{max-width:1600px;margin:20px auto;padding:0 20px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fffdfa;padding:14px;border-radius:12px;margin-bottom:18px}input,select,button{font:inherit;border:1px solid #d8d1c4;background:#fffdfa;border-radius:7px;padding:7px}button{cursor:pointer}button.active{background:#574080;color:white}.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.case{background:#fffdfa;border:1px solid #d8d1c4;border-radius:12px;overflow:hidden}.head,.panel{padding:12px 16px}h2{font-size:1.1rem;margin:0}.meta{color:#61707c;font-size:.9rem}video{width:100%;display:block;background:#e5e3dd;aspect-ratio:8/5}.controls{display:flex;gap:6px;flex-wrap:wrap;padding:8px 16px}.groups{display:grid;grid-template-columns:1fr 1fr;gap:8px}.groups details{padding:8px;background:#f1f3f0;border-radius:6px}summary{cursor:pointer}dl{font-size:.85rem}dt{color:#61707c}dd{margin:0 0 5px;font-variant-numeric:tabular-nums}.pager{text-align:center;padding:24px}.pager span{margin:0 15px}.notice{padding:12px;background:#fff7d8;border-radius:9px;margin-bottom:16px}@media(max-width:850px){.gallery{grid-template-columns:1fr}main{padding:0 10px}}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #1a87b0;outline-offset:2px}
+</style>
+</head>
+<body>
+<header><h1>第一名 · HetroD-C1 / Mix512-Safe</h1><p>Test scenario results — 預設依 Overall 由低分到高分。946 個計分場景、9 個排除場景。每場可切換前 5 個提交 rollout；顯示的分數是該場全部 32 個 rollout 的評分，不是單一影片分數。</p></header>
+<nav><a href="interaction_selection_test_v08.html">Test 人工標記</a><a href="winner_test.html" aria-current="page">第一名結果</a><a href="index.html">原 Metrics report</a><a href="https://hetroddata.github.io/HetroD/challenge.html#leaderboard">官方排行榜</a></nav>
+<main>
+<p class="notice">影片僅顯示參賽者預測與公開 test 地圖；不顯示 GT future，也不套用 hidden GT 的未來消失時間。藍色：vehicle，橘色：two-wheeler，紫色：pedestrian。視角固定，預測可能移出畫面。影片自動靜音播放。</p>
+<div class="toolbar">
+<label>Location <select id="location"><option value="">全部</option></select></label>
+<label>場景 <input id="query" type="search" placeholder="Scenario ID"></label>
+<label>排序項目 <select id="metric"><option>Overall</option><option>Kinematic</option><option>Safety</option><option>Cross-type</option><option>Coverage</option></select></label>
+<label>順序 <select id="order"><option value="asc">低 → 高</option><option value="desc">高 → 低</option></select></label>
+<label>場景狀態 <select id="status"><option value="all">全部（排除場景列尾端）</option><option value="scored">計分場景</option><option value="excluded">排除場景</option></select></label>
+<span>播放速度</span><button class="speed active" data-rate="1">1×</button><button class="speed" data-rate="2">2×</button><button class="speed" data-rate="4">4×</button>
+<span id="count" role="status">Loading…</span>
+</div>
+<section class="gallery" id="gallery"></section>
+<div class="pager"><button id="prev">← 上頁</button><span id="page" aria-live="polite"></span><button id="next">下頁 →</button></div>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);let records=[],page=0,rate=1;const pageSize=4;
+const fmt=v=>v==null?'N/A':v.toFixed(6);
+const loc=id=>id.match(/_loc\d+_/)[0].slice(1,-1);
+const names={linear_speed:'Linear speed',linear_acceleration:'Linear acceleration',angular_speed:'Angular speed',angular_acceleration:'Angular acceleration',collision_rollout_rate:'Collision',valid_region_margin:'Valid region',distance_proximity_to_gt:'Distance proximity to GT',time_to_proximity_to_gt:'Time-to-proximity to GT',vehicle:'Vehicle',two_wheeler:'Two-wheeler',pedestrian:'Pedestrian'};
+function el(tag,text,cls){const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e}
+const observer=new IntersectionObserver(entries=>entries.forEach(({target,isIntersecting})=>{if(isIntersecting)target.play().catch(()=>{});else target.pause()}),{threshold:.2});
+function value(r){return $('metric').value==='Overall'?r.score:r.groups[$('metric').value]?.score}
+function render(){
+ document.querySelectorAll('video').forEach(v=>{observer.unobserve(v);v.pause();v.removeAttribute('src');v.load()});
+ const q=$('query').value.trim().toLowerCase(),filter=$('status').value;
+ const rows=records.filter(r=>(!$('location').value||loc(r.id)===$('location').value)&&r.id.toLowerCase().includes(q)&&(filter==='all'||(filter==='excluded')===r.excluded));
+ rows.sort((a,b)=>{const av=value(a),bv=value(b);if(av==null&&bv==null)return a.id.localeCompare(b.id);if(av==null)return 1;if(bv==null)return -1;return (av-bv)*($('order').value==='asc'?1:-1)||a.id.localeCompare(b.id)});
+ page=Math.max(0,Math.min(page,Math.ceil(rows.length/pageSize)-1));$('gallery').replaceChildren();
+ rows.slice(page*pageSize,(page+1)*pageSize).forEach((r,i)=>{
+  const card=el('article',null,'case'),head=el('div',null,'head');head.append(el('h2',r.id),el('div',r.excluded?'Excluded · 不計分':`#${page*pageSize+i+1} in current view · Overall ${fmt(r.score)}`,'meta'));card.append(head);
+  const video=el('video');video.controls=true;video.muted=true;video.loop=true;video.playsInline=true;video.autoplay=true;video.preload='metadata';video.setAttribute('aria-label',r.id+' submitted rollout');video.src=`winner_test/videos/${r.id}_r0.mp4`;video.playbackRate=rate;card.append(video);
+  const controls=el('div',null,'controls');for(let n=0;n<5;n++){const b=el('button','Rollout '+(n+1),n===0?'active':'');b.onclick=()=>{controls.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');video.src=`winner_test/videos/${r.id}_r${n}.mp4`;video.playbackRate=rate;video.play().catch(()=>{})};controls.append(b)}card.append(controls);
+  const panel=el('div',null,'panel'),groups=el('div',null,'groups');for(const [name,g] of Object.entries(r.groups)){const d=el('details');d.append(el('summary',`${name}: ${fmt(g.score)}`));const list=el('dl');for(const [key,v] of Object.entries(g.details))list.append(el('dt',names[key]||key),el('dd',fmt(v)));d.append(list);groups.append(d)}panel.append(groups);card.append(panel);$('gallery').append(card);observer.observe(video);
+ });
+ $('count').textContent=`${rows.length} 個場景`;$('page').textContent=rows.length?`${page+1} / ${Math.ceil(rows.length/pageSize)}`:'沒有符合場景';$('prev').disabled=page===0;$('next').disabled=(page+1)*pageSize>=rows.length;
+}
+for(const id of ['location','query','metric','order','status'])$(id).addEventListener(id==='query'?'input':'change',()=>{page=0;render()});
+$('prev').onclick=()=>{page--;render()};$('next').onclick=()=>{page++;render()};
+document.querySelectorAll('.speed').forEach(b=>b.onclick=()=>{rate=Number(b.dataset.rate);document.querySelectorAll('.speed').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('video').forEach(v=>v.playbackRate=rate)});
+fetch('winner_test/scenarios.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(data=>{records=data;[...new Set(records.map(r=>loc(r.id)))].sort().forEach(l=>{const o=el('option',l);o.value=l;$('location').append(o)});render()}).catch(e=>{$('count').textContent='載入失敗，請重新整理：'+e.message});
+</script>
+</body></html>
